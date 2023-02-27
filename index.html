@@ -2,13 +2,13 @@
 ><!DOCTYPE html>
 <!--El atributo lang navegador sepas documento esta en español -->
 <html lang="es">
-    <!--Dentro de head se encuentra la info metadatos del doc( no aparece pantalla) -->
+    <!--Dentro de head se encuentra la info metadatos del doc( no aparece pantalla solo nav. buscadores) -->
 <head>
     <!--UTF-8 conjunto caracteres para reperesdentar en todos los idiomas -->
     <meta charset="UTF-8">
     <!--diseño responsive= diseño adaptable a todas las pantallas -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--resursos de una URL(icono/favicon) -->
+    <!--resursos de una URL o enlace externos(icono/favicon) solo dentro de head -->
     <link rel="shortcut icon" href="">
 
     <!--Lo que se muestra en la etiqueta en el navegador SEO -->
@@ -20,7 +20,9 @@
 <!--URL estilos CSS -->
     <link href="css/app.css" rel="stylesheet">
 </head>
+<!--Es lo que va a aparecer en pantalla -->
 <body>
+
     
 </body>
 </html><!DOCTYPE html>
@@ -34,4 +36,91 @@
 <body>
     <p>g</p>
 </body>
+</html>
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="shortcut icon" href="https://www.youtube.com/s/desktop/12d6b690/img/favicon.ico">
+
+		<title>Título</title>
+		<meta name="description" content="descripción de la web, se recomienda 90 caracteres">
+        <meta name="keywords" 	 content="palabras clave, separadas, por comas">
+
+        <link rel="stylesheet" href="css/app.css">
+    </head>
+    <body>
+        <!-- Este es un resumen de los principales elementos html -->
+
+        <!-- Cabecera -->
+        <header>
+            <h1>Título</h1>
+            <p>Subtítulo</p>
+        </header>
+
+        <!-- Menú -->
+        <nav>
+            <ul>
+                <li>
+                    <a href="#">Enlace 1</a>
+                </li>
+                <li>
+                    <a href="#">Enlace 2</a>
+                </li>
+                <li>
+                    <a href="#">Enlace 3</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Contenido -->
+        <main>
+            <div class="contact-form">
+                <form>
+                    <label for="nombre">Nombre</label>
+                    <input type="text" name="nombre" id="nombre" placeholder="Introduce tu nombre">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" placeholder="Introduce tu email">
+                    <label for="mensaje">Mensaje</label>
+                    <textarea name="mensaje" id="mensaje" placeholder="Introduce tu mensaje"></textarea>
+                    <input type="submit" value="Enviar">
+                </form>
+            </div>
+            <div class="contact-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Email</th>
+                            <th>Mensaje</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Nombre 1</td>
+                            <td>Email 1</td>
+                            <td>Mensaje 1</td>
+                        </tr>
+                        <tr>
+                            <td>Nombre 2</td>
+                            <td>Email 2</td>
+                            <td>Mensaje 2</td>
+                        </tr>
+                        <tr>
+                            <td>Nombre 3</td>
+                            <td>Email 3</td>
+                            <td>Mensaje 3</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+
+        <!-- Pie de página -->
+        <footer>
+            <p>© 2019 - Todos los derechos reservados</p>
+        </footer>
+    </body>
 </html>
