@@ -1,0 +1,111 @@
+.faqs{
+    background-color:  hsl(204, 56%, 98%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    width: 70%;
+    padding: 5% 15%;
+}
+.faqs-header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 5rem;
+}
+.faqs-title{
+    text-align: center;
+    position: relative;
+}
+
+.faqs-title h2{
+    text-align: center;
+    font-weight: 600, bold;
+    font-size: 3rem;
+    color: hsl(226, 38%, 25%);
+    text-transform: uppercase;
+}
+
+.faqs-description p{
+    text-align: center;
+    font-weight: 300, bold;
+    font-size: 1.3rem;
+    padding: 0 15%;
+    color:hsl(225, 12%, 66%);
+    margin: 1px;
+    letter-spacing: 1.5px;
+}
+
+.faqs-list{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.faqs-box{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.faqs-box-question1{
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    padding: 1rem 0;
+}
+.faqs-box-question1 h3{
+    display: flex;
+    justify-content: space-between;
+    color: hsl(226, 38%, 25%);
+    font-weight: 600;
+    font-size: 1.8rem;  
+}
+.faqs-box-answer::before{
+    background-color: rgb(184, 184, 184);
+    content: " ";
+    display: block;
+    height: 1px;
+    margin: 0 auto;
+    width: 100%;
+}
+.faqs-box-question2{
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    padding: 1rem 0;
+}
+
+.faqs-box-question2 h3{
+    color:hsl(210, 7%, 49%);
+    font-weight: 600;
+    font-size: 1.8rem;
+}
+.faqs-box-question2 h3::after{
+    background-color: hsl(0, 0%, 83%);
+    content: "";
+    display: block;
+    position: absolute;
+    margin: 2% auto;
+    width: 100%;
+    height: 1px;
+}
+
+.faqs-box-icon {
+    filter: invert(0.6) sepia(0) saturate(0.50) hue-rotate(0.210deg);
+    height: 3vh;
+    width: 2rem;
+    width: 2%;
+    height:5%;
+}
+
+.faqs-box-answer p{
+    color: hsl(210, 3%, 59%);
+    font-weight: 300, bold;
+    font-size: 1.2rem;
+    line-height: 175%;
+    padding: 2rem 0;
+}
