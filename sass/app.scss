@@ -1,4 +1,5 @@
-@charset "utf-8";
+@charset"utf-8";
+@import"helpers/mixins";
 @import"helpers/variables";
 @import"base/normalize";
 @import"base/contents";
@@ -6,11 +7,12 @@
 @import"layout/header";
 @import"layout/footer";
 @import"layout/master";
-@import "components/slider";
-@import "components/featured";
+@import"components/slider";
+@import"components/featured";
 @import"components/faqs";
 @import"components/details";
 @import"components/team";
 @import"components/contact";
+
 
 
