@@ -1,9 +1,9 @@
-/* Error: expected ";".
+/* Error: Expected expression.
  *    ,
- * 12 | $z-index-slider:     
- *    |                ^
+ * 11 | $z-index-header:;
+ *    |                 ^
  *    '
- *   sass\helpers\_variables.scss 12:16  @import
+ *   sass\helpers\_variables.scss 11:17  @import
  *   sass\app.scss 2:8                   root stylesheet */
 
 body::before {
@@ -14,5 +14,5 @@ body::before {
   padding: 1em;
   margin-bottom: 1em;
   border-bottom: 2px solid black;
-  content: 'Error: expected ";".\a    \2577 \a 12 \2502  $z-index-slider:     \d\a    \2502                 ^\a    \2575 \a   sass\\helpers\\_variables.scss 12:16  @import\a   sass\\app.scss 2:8                   root stylesheet';
+  content: "Error: Expected expression.\a    \2577 \a 11 \2502  $z-index-header:;\d\a    \2502                  ^\a    \2575 \a   sass\\helpers\\_variables.scss 11:17  @import\a   sass\\app.scss 2:8                   root stylesheet";
 }
