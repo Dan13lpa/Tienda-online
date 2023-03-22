@@ -849,8 +849,24 @@ main {
 }
 
 .contact {
+  display: flex;
+  justify-content: center;
+  padding: 10vh 0;
+  position: relative;
+}
+
+.contact-map {
+  position: absolute;
+  top: 0;
   width: 100%;
   height: 100%;
+  z-index: -1;
+}
+
+.contact-card {
+  z-index: 1;
+  background-color: hsl(0, 0%, 100%);
+  padding: 2rem;
 }
 
 /*# sourceMappingURL=app.css.map */
