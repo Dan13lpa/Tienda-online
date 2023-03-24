@@ -1,22 +1,36 @@
+.footer{ 
+    display: flex;
+    flex-direction: column;
+   
+}
+
 .footer-social-networks{
-
-}
-
-.footer-social-networks-item{
-    display: flex; 
-    justify-content: space-between;
-}
-
-.footer-menu ul{
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    list-style: none;
-    gap: 3rem;
-    margin-right: auto;
-    margin-left: auto;
+    justify-content: center;
+    gap: 1.5rem; 
 }
 
-.footer-copyright{
+.footer-social-networks-item a svg{
+    display: flex; 
+    justify-content: space-between;
+    width: 2rem;
+    height: 2rem;
+    gap: 3rem;
+}
 
+.footer-menu ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    gap: 3rem;
+    width: 70%;
+    padding: 0 15%;
+}
+
+.footer-copyright p{
+    display: flex;
+    justify-content: center;
+    
 }
