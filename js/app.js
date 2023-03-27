@@ -3,6 +3,7 @@ import './social-networks.js';
 import './swipeable-element.js';
 import './modal.js';
 
+
 let featured = document.querySelectorAll('.featured-item');
 console.log(featured);
 
