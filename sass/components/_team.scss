@@ -1,38 +1,19 @@
 .team{
-    background-color: hsl(204, 56%, 98%);
-    display: flex; 
+    display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 2rem;
-    width: 70%;
-    padding: 5% 15%;
-   
-}
-.team-title {
-    padding: 1% 15%;
+    background-color: hsl(204, 56%, 98%);
+    padding: 10vh 10%;
 }
 
-.team-title h2{
-    text-align: center;
-    color:hsl(208, 13%, 25%);
-    font-weight: 600;
-    font-size: 3rem;
-}
-
-.team-description p{
-    text-align: center;
-    color: hsl(210, 7%, 49%);
-    font-weight: 300;
-    font-size: 1.5rem;
-}
-
-.team-items{
-    display: flex; 
+.team-title-box{
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 2rem;
-    width: 80%;
-    padding: 0 10%;
 }
-.team-description p::after{
+
+.team-title-box::after{
     background-color:hsl(0, 0%, 93%) ;
     content: " ";
     display: block;
@@ -41,11 +22,43 @@
     margin: 2rem auto;
 }
 
+.title-text-box{
+    top: 5%;
+}
+
+.title-text-box h2{
+    color: hsl(208, 13%, 25%);
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.description-text-box{
+    padding: 0 10%;
+    margin-bottom: 1rem;
+}
+
+.description-text-box p{
+    color:  hsl(210, 7%, 49%);
+    font-weight: 300;
+    font-size: 1.2rem;
+}
+
+.team-items{
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    width: 100%;
+    margin-top: 3rem;
+}
+
 .team-item{
     display: flex;
     flex-direction: column;
-    position: relative; 
+    position: relative;
 }
+
 .team-item-social-networks{
     align-items: center;
     background-color: hsla(212, 7%, 59%, 0.7);
@@ -62,7 +75,7 @@
 }
 
 .team-item-social-networks.active{
-    background-color: hsl(208, 13%, 25%);
+    background-color: hsl(210, 7%, 35%);
     height: max-content;
     padding-bottom: 0.5rem;
 }
@@ -71,6 +84,10 @@
     fill: hsl(210, 7%, 59%);
     margin: 0.1rem 0;
     width: 1.3rem;
+}
+
+.team-item-social-networks.active svg:hover{
+    fill: hsl(210, 6%, 79%);
 }
 
 .hamburger-button {
@@ -85,10 +102,10 @@
 }
   
 .hamburger-button span {
-    background-color: #fff;
+    background-color: hsl(0, 0%, 100%);
     display: block;
     height: 2px;
-    margin: 0.1rem auto;
+    margin: 1.5px auto;
     transition: all 0.3s ease-in-out;
     width: 50%;
 }
@@ -104,50 +121,42 @@
 .hamburger-button.active span:nth-of-type(2) {
     opacity: 0;
 }   
-  
+
 .hamburger-button.active span:last-of-type {
     transform: translateY(-5px) rotate(-45deg);
 }
-
-.team-item-social-network svg{
-    cursor: pointer;
-}
-.team-item-image img{
-    height: 30vh;
-    border-top-right-radius: 20px;
-    border-top-left-radius: 20px;
+  
+.team-item-picture{
+    height: 100%;
     overflow: hidden;
 }
-.team-item-text{
-    padding: 2rem 0;
-    background-color: hsl(0, 0%, 100%);
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-.team-item-title{
+
+.team-item-name{
     background-color: hsl(0, 0%, 100%);
     padding: 1rem 0;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.team-item-title h4{
-    font-weight: 500;
-    font-size: 1.3rem;
+
+.team-item-name h4{
+    font-weight: 300;
+    font-size: 1.5rem;
     text-align: center;
 }
 
 .team-item-description{
-    background-color: hsl(0, 0%, 100%);
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 0.5rem 0;
+    background-color: hsl(0, 0%, 100%);
 }
+
 .team-item-description p{
-    color: hsl(208, 5%, 54%);
+    color:hsl(208, 13%, 25%);
     font-weight: 300;
     font-size: 1rem;
     text-align: center;
+    
 }

@@ -1,109 +1,179 @@
 .contact{
-   display: flex;
-   height: 50vh;
-   justify-content: center;
-   padding: 10vh 0;
+   height: 60vh;
    position: relative;
 }
 
 .contact-map{
    position: absolute;
-   top:0;
+   top: 0;
    width: 100%;
    height: 100%;
    z-index: -1;
 }
 
-.contact-card{
-   z-index: 1;
-   background-color: hsl(0, 0%, 100%);
-   padding: 2rem;
+.contact-flipbox.flip-card{
+   width: 30%;
+   height: 40vh;
    position: absolute;
-   
+   left: 33%;
+   top: 10%;
+   z-index: 2;
 }
 
-.contact-card-front{
+.contact-flipbox-front{
+   background-color: hsl(0, 0%, 100%);
    display: flex;
    flex-direction: column;
    align-items: flex-start;
+   width: 90%;
+   height: 100%;
    gap: 3rem;
+   padding: 2rem;
+   position: relative;
    backface-visibility: hidden;
    transform: perspective(1000px) rotateY(0deg);
    transition: 1s;
 }
 
-.contact-card.active .contact-card-front{
+.contact-flipbox.active .contact-flipbox-front{
    transform: perspective(1000px) rotateY(180deg);
 }
 
-.contact-card-title{
+.contact-flipbox-title{
    font-weight: 300;
    font-size: 2rem;
 }
 
-.contact-card-items{ 
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-
+.contact-flipbox-title h2{
+   text-align: center;
+   text-transform: uppercase;
 }
 
-.contact-card-item{
+.contact-flipbox-item{
    display: flex;
    align-items: flex-start;
    gap: 1rem;
-
 }
 
-.contact-card-item-icon svg{
-    color:hsl(207, 5%, 56%);
-    height: 1rem;
-    width: 1rem;
+.contact-flipbox-item-icon{
+   align-items: left;
 }
 
-.contact-card-item-text p{
+.contact-flipbox-item-icon svg{
+   color:hsl(207, 5%, 56%);
+   height: 1rem;
+   width: 1rem;
+}
+
+.contact-flipbox-item-description p{
    color: hsl(0, 0%, 50%);
 }
 
-.contact-card-flip-button{
+.contact-flipbox-front-button{
    width: 100%;
-   height: 4rem;
-   background: $primary-color;
-   align-items: center;
+   height: 3rem;
 }
-
-.contact-card-flip-button button {
+.contact-flipbox-front-button button{
    background: $primary-color;
    color: hsl(0, 0%, 100%);
    border: none;
-   font-weight: 600;
-   font-size: 2rem;
-   padding: 1rem 3rem;
+   font-weight: 500;
+   font-size: 1.3rem;
+   padding: 3% 0;
    text-transform: uppercase;
    width: 100%;
    cursor: pointer;
 }
 
-.contact-card-back{
-   backface-visibility: hidden;
-   top: 0;   left: 0;
+.contact-flipbox-front-button button:hover{
+   background-color: $hover-color;
+}
+
+.contact-flipbox-back{
+   background-color: hsl(0, 0%, 100%);
+   padding: 3rem;
    position: absolute;
+   width: 80%;
+   height: 100%;
+   top: 0;   
+   left: 0;
+   backface-visibility: hidden;
    transform: perspective(1000px) rotateY(-180deg);
    transition: 1s;
-   top: 0;
-   
 }
 
-.contact-card.active .contact-card-back{
+.contact-flipbox.active .contact-flipbox-back{
    transform: perspective(1000px) rotateY(0deg);
-    
 }
 
-.contact-card-form{
- 
+.contact-flipbox-back form{
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   width: 100%;
+   height: 100%;
+   gap: 1rem;
 }
 
-.contact-card-send-button{
-   transform: rotateY(180deg);
+.contact-flipbox-back .name-email {
+   display: flex;
+   gap: 1rem;
+}
 
+.contact-flipbox-back input {
+   box-sizing: border-box;
+   width: 100%;
+   height: 100%;
+   border: 1px solid rgba(232,238,242,255);
+   background-color: rgba(248,251,253,255);
+   padding: 15px 10px;
+   font-size: 1rem;
+}
+
+.contact-flipbox-backback .message {
+   height: 100%;
+}
+
+.contact-flipbox-back .message input {
+   position: relative;
+}
+
+.contact-flipbox-back input::placeholder {
+   color: rgba(203,212,217,255); 
+   position: absolute;
+}
+
+.contact-flipbox-back button {
+   width: 100%;
+   height: 100%;
+   background-color: $primary-color;
+   color: white;
+   border: none;
+   font-family: $font-stack;
+   font-weight: 600;
+   font-size: 1.5rem;
+   padding: 1rem 2rem;
+   transition: 0.5s;
+   cursor: pointer;
+}
+
+.contact-flipbox-back button:hover {
+   background-color: $hover-color;
+}
+
+.close-button{
+   cursor: pointer;
+   right: 1rem;
+   top: 1rem;
+   position: absolute;
+}
+
+.contact-flipbox-back .close-button svg{
+   fill: hsl(203, 15%, 78%);
+   width: 2rem;
+   height: 2rem;
+}
+
+.contact-flipbox-back .close-button svg:hover{
+   fill: hsl(202, 4%, 61%);
 }

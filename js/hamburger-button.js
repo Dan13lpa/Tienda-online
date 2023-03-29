@@ -1,6 +1,6 @@
 export default (() => {
 
-    const hamburguerButtons = document.querySelectorAll('.hamburguerButton');
+    const hamburguerButtons = document.querySelectorAll('.hamburger-button');
     
 
     hamburguerButtons.forEach(hamburguerButton => {
