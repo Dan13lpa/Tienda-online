@@ -687,6 +687,7 @@ main {
 }
 
 .faqs-box-question {
+  border-bottom: 1px solid rgb(184, 184, 184);
   display: flex;
   justify-content: space-between;
   position: relative;
@@ -701,15 +702,6 @@ main {
   font-size: 1.8rem;
 }
 
-.faqs-box-answer::before {
-  background-color: rgb(184, 184, 184);
-  content: " ";
-  display: block;
-  height: 1px;
-  margin: 0 auto;
-  width: 100%;
-}
-
 .faqs-box-icon {
   filter: invert(0.6) sepia(0) saturate(0.5) hue-rotate(0.21deg);
   height: 3vh;
@@ -720,14 +712,12 @@ main {
 
 .faqs-box-answer {
   overflow: hidden;
+  max-height: 0;
+  transition: all 0.5s;
 }
 
 .faqs-box-answer.active {
-  max-height: 0;
-}
-
-.faqs-button {
-  cursor: pointer;
+  max-height: 50vh;
 }
 
 .faqs-box-answer p {
@@ -736,6 +726,44 @@ main {
   font-size: 1.2rem;
   line-height: 175%;
   padding: 2rem 0;
+}
+
+.plus-minus-toggle {
+  cursor: pointer;
+  position: relative;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.plus-minus-toggle::before,
+.plus-minus-toggle::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80%;
+  height: 2px;
+  background-color: hsl(210, 3%, 59%);
+  transform: translate(-50%, -50%);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.plus-minus-toggle::before {
+  transform-origin: center center;
+  transform: translate(-50%, -50%) rotate(0deg);
+}
+
+.plus-minus-toggle::after {
+  transform-origin: center center;
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.plus-minus-toggle.active::after {
+  transform: translate(-50%, -50%) rotate(0deg);
+}
+
+.plus-minus-toggle.active::before {
+  opacity: 0;
 }
 
 .details {
