@@ -1,8 +1,10 @@
 export default (() => {
     
-    const flipButton = document.querySelector('.flip-button');
+    const flipButtons = document.querySelectorAll('.flip-button');
   
-    flipButton?.addEventListener('click', () => {
-      flipButton.closest('.flip-card').classList.toggle('active');
+    flipButtons.forEach(flipButton => {
+      flipButton.addEventListener('click', () => {
+        flipButton.closest('.flip-card').classList.toggle('active');
+      });
     });
-  })();
+})();
