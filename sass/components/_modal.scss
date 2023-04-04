@@ -226,23 +226,48 @@
     flex-direction: column;
     justify-content: space-between;
     width: 100%;
-
 }
 
-.goback-button{
+.go-back-button{
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.go-back-button button{
+    border: 1px solid hsl(0, 0%, 80%);
+    background-color: transparent;
+    color: hsl(0, 0%, 80%);
+    padding: 8px 2rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
     cursor: pointer;
-    margin: 0 auto;
-    padding-bottom: 2rem;
+    transition: 0.5s;
 }
 
-.goback-button.button{
-    
+.go-back-button button:hover{
+    background: $hover-color;
+    color: hsl(0, 0%, 100%);
+    cursor: pointer;
+}
+
+.modal-close-button{
+    cursor: pointer;
+    right: 1rem;
+    top: 1rem;
+    position: absolute;
 
 }
 
-.goback-button.go-button:hover{
-    background-color: $hover-color;
+.modal-close-button svg{
+    fill: hsl(203, 15%, 78%);
+    width: 2rem;
+    height: 2rem;
     transition: 0.3s;
+}
+
+.modal-close-button svg:hover{
+    fill: hsl(210, 1%, 33%);
 }
 
 

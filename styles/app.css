@@ -1375,15 +1375,45 @@ main {
   width: 100%;
 }
 
-.goback-button {
-  cursor: pointer;
-  margin: 0 auto;
-  padding-bottom: 2rem;
+.go-back-button {
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
 }
 
-.goback-button.go-button:hover {
-  background-color: hsl(0, 1%, 26%);
+.go-back-button button {
+  border: 1px solid hsl(0, 0%, 80%);
+  background-color: transparent;
+  color: hsl(0, 0%, 80%);
+  padding: 8px 2rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.go-back-button button:hover {
+  background: hsl(0, 1%, 26%);
+  color: hsl(0, 0%, 100%);
+  cursor: pointer;
+}
+
+.modal-close-button {
+  cursor: pointer;
+  right: 1rem;
+  top: 1rem;
+  position: absolute;
+}
+
+.modal-close-button svg {
+  fill: hsl(203, 15%, 78%);
+  width: 2rem;
+  height: 2rem;
   transition: 0.3s;
+}
+
+.modal-close-button svg:hover {
+  fill: hsl(210, 1%, 33%);
 }
 
 form {
@@ -1400,7 +1430,7 @@ form {
   justify-content: space-between;
 }
 
-.form-row.button {
+.form-row-button button {
   background: hsl(209, 100%, 50%);
   color: hsl(0, 0%, 100%);
   border: none;
