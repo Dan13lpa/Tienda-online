@@ -337,6 +337,12 @@ video {
   max-width: 100%;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 h1, h2, h3, h4, h5, h6, a, p {
   color: hsl(208, 13%, 25%);
 }
@@ -1188,6 +1194,7 @@ main {
   position: fixed;
   top: 15%;
   width: 50%;
+  overflow: hidden;
 }
 
 .modal-image {
@@ -1203,10 +1210,15 @@ main {
 
 .modal-product-gallery {
   display: flex;
-  left: 0;
+  left: 50%;
   position: absolute;
   width: 100%;
   height: 100%;
+  transition: left 0.3s ease-in;
+}
+
+.modal-product-gallery.active {
+  left: 0;
 }
 
 .modal-product {
@@ -1215,6 +1227,8 @@ main {
   justify-content: space-evenly;
   height: 100%;
   width: 100%;
+  padding: 0 1.5rem;
+  margin-right: 2rem;
 }
 
 .modal-product-info {
@@ -1367,29 +1381,33 @@ main {
 }
 
 .modal-form-gallery {
-  height: 100%;
   background-color: hsl(0, 0%, 100%);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
+  height: 100%;
+  overflow: hidden;
+  margin-right: 1.6rem;
 }
 
 .go-back-button {
   display: inline-block;
   text-align: center;
   vertical-align: middle;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
 }
 
 .go-back-button button {
   border: 1px solid hsl(0, 0%, 80%);
   background-color: transparent;
   color: hsl(0, 0%, 80%);
-  padding: 8px 2rem;
+  padding: 7px 7%;
   border-radius: 20px;
   font-size: 0.8rem;
   cursor: pointer;
-  transition: 0.5s;
+  transition: 0.4s;
 }
 
 .go-back-button button:hover {
@@ -1403,12 +1421,13 @@ main {
   right: 1rem;
   top: 1rem;
   position: absolute;
+  z-index: 2000;
 }
 
 .modal-close-button svg {
   fill: hsl(203, 15%, 78%);
-  width: 2rem;
-  height: 2rem;
+  width: 1.5rem;
+  height: 1.5rem;
   transition: 0.3s;
 }
 
@@ -1426,8 +1445,13 @@ form {
 
 .form-row {
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
   justify-content: space-between;
+}
+
+.form-row-button {
+  width: 95%;
+  padding: 5% 5%;
 }
 
 .form-row-button button {
@@ -1436,15 +1460,15 @@ form {
   border: none;
   font-weight: 500;
   font-size: 1.7rem;
-  padding: 5% 0%;
+  padding: 5% 10%;
   text-transform: uppercase;
-  width: 80%;
+  width: 95%;
   border-radius: 3%;
   cursor: pointer;
 }
 
 .form-element {
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   width: 100%;
   padding: 0 1rem;
 }
@@ -1458,6 +1482,18 @@ form {
 *:focus {
   outline: none;
   border: 1px solid red;
+}
+
+.plus-minus-buttons {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.plus-minus-buttons input {
+  text-align: center;
+  width: 10%;
 }
 
 /*# sourceMappingURL=app.css.map */

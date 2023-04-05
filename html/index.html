@@ -528,10 +528,13 @@
             </div>
             <div class="modal">
                 <div class="modal-content">
+                    <div class="modal-close-button modal-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>close</title><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" /></svg>
+                    </div>
                     <div class="modal-image">
                         <img src="../images/slider-image.webp" alt="motorbike">
                     </div>
-                    <div class="modal-product-gallery">
+                    <div class="modal-product-gallery swipe-element">
                         <div class="modal-product">
                             <div class="modal-product-info">
                                 <div class="modal-product-title">
@@ -554,53 +557,35 @@
                                         <p>EARLY BIRD OFFER</p>
                                     </div>
                                 </div>
+                                <div class="tabs">
+                                    <ul class="tabs-header">
+                                        <li class = "active" >Description</li>
+                                        <li>Characteristics</li>
+                                        <li>Opinions</li>
+                                    </ul>
+                                    <div class="tab-contents">
+                                        <div class="tab-context">
+                                            <div class="tab-pane1"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam ex optio molestiae deleniti accusantium nobis hic, quia, quaerat ipsa numquam, eius expedita odit earum. Dolores dolore iusto est earum praesentium?</p></div>
+                                            <div class="tab-pane2"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam ex optio molestiae deleniti accusantium nobis hic, quia, quaerat ipsa numquam, eius expedita odit earum. Dolores dolore iusto est earum praesentium?</p></div>
+                                            <div class="tab-pane3"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam ex optio molestiae deleniti accusantium nobis hic, quia, quaerat ipsa numquam, eius expedita odit earum. Dolores dolore iusto est earum praesentium?</p></div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="modal-description">
-                                <div class="modal-description-text">
-                                    <p>8mm Silver Aluminum Case with Blue Sport Band. Its perfect fit for tracking fitness. 
-                                        100% waterproof. Buy this limted edition sports edition.
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="modal-details">
-                                <div class="modal-details-box-color">
-                                    <div class="modal-details-text-color">
-                                        <p>AVALIABLE COLORS</p>
-                                    </div>
-                                    <div class="modal-details-input-color">
-                                        <input type="radio" id="black" name="color" value="#000000">
-                                        <input type="radio" id="green" name="color" value="#008000">
-                                        <input type="radio" id="blue" name="color" value="#0000ff">
-                                        <input type="radio" id="brown" name="color" value="#A52A2A">
-                                    </div> 
-                                </div>
-                                <div class="modal-details-box-stock">
-                                    <div class="modal-details-text-stock">
-                                        <p>LEFT</p>
-                                    </div>
-                                    <div class="modal-details-number-stock">
-                                        <p>300 SOLD</p>
-                                    </div>
-                                </div>
-                                <div class="modal-details-box-size">
-                                    <div class="modal-details-text-size">
-                                        <p>AVALIABLE SIZES</p>
-                                    </div>
-                                    <div class="modal-details-option-size">
-                                        <p>XL,M,S</p>
-                                    </div>
-                                </div>
+                            <div class="plus-minus-buttons">
+                                <button class="plus-minus-button">-</button>
+                                <input type="number" value="1">
+                                <button class="plus-minus-button">+</button>
                             </div>
                             <div class="modal-footer-button">
-                                <button class="modal-checkout-button
-                                    ">CHECKOUT</button>
+                                <button class="modal-checkout-button swipe-button">CHECKOUT</button>
                             </div>
                         </div>
                         <div class="modal-form-gallery">
+                            <div class="go-back-button swipe-button">
+                                <button>Go Back</button>
+                            </div>
                             <form>
-                                <div class="go-back-button">
-                                    <button>Go Back</button>
-                                </div>
                                 <div class="form-row">
                                     <div class="form-element">
                                         <input type="text" placeholder="First name">
@@ -639,10 +624,7 @@
                                 </div>
                                 <div class="form-row-button">
                                     <div class="button">
-                                        <button>SEND MESSAGE</button>
-                                    </div>
-                                    <div class="modal-close-button">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>close</title><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" /></svg>
+                                        <button>FINISH PURCHASE</button>
                                     </div>
                                 </div>
                             </form>

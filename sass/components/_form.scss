@@ -8,8 +8,13 @@ form{
 
 .form-row{
     display: flex;
-    gap: 1rem;
+    gap: 1.5rem;
     justify-content: space-between
+}
+
+.form-row-button{
+    width: 95%;
+    padding: 5% 5%;
 }
 
 .form-row-button button{
@@ -18,16 +23,16 @@ form{
    border: none;
    font-weight: 500;
    font-size: 1.7rem;
-   padding: 5% 0%;
+   padding: 5% 10%;
    text-transform: uppercase;
-   width: 80%;
+   width: 95%;
    border-radius: 3%;
    cursor: pointer;
-
-}
+  
+   }
 
 .form-element{
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     width: 100%;
     padding:0 1rem;
 }
