@@ -1,21 +1,14 @@
 export default (() => {
-    let list = document.querySelectorAll("ul li");
-    let content = document.querySelectorAll(".tab-contents");
-  
-    list.forEach((li) => {
-        li.addEventListener("click", (e) => {
-            list.forEach((li) => {
-                li.classList.remove("active");
-            });
-            e.currentTarget.classList.add("active");
+    const tabsHeader = document.querySelector('.tabs-header');
+    const tabContents = document.querySelector('.tab-contents');
+    const tabs = tabsHeader.querySelectorAll('li');
 
-            content.forEach((tabContents) => {
-                tabContents.classList.remove("active");
-                document
-
-    .querySelector(e.currentTarget.dataset.num)
-            .classList.add("active");
-            });
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            tabsHeader.querySelector('.active').classList.remove('active');
+            tabContents.querySelector('.active').classList.remove('active');
+            tab.classList.add('active');
+            tabContents.querySelector(`[data-num="${tab.dataset.num}"]`).classList.add('active');
         });
     });
-})();
+})(); 

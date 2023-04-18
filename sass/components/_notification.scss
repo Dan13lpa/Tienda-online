@@ -1,0 +1,24 @@
+.notification-message{
+    
+    width: 20%;
+    padding: 30px;
+    position: fixed;
+    z-index: 0;
+    bottom: 1rem;
+    right: 1rem;
+}
+
+.notification-message p{
+   
+   
+}
+
+.notification-message.success{
+    border: 1px solid greenyellow;
+    background-color: rgb(94, 236, 129);
+}
+
+.notification-message.error{
+    border: 1px solid rgb(255, 47, 47);
+    background-color: rgb(255, 47, 47);
+}

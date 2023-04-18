@@ -23,7 +23,6 @@
     top: 15%;
     width: 50%;
     overflow: hidden;
-    
 }
 
 .modal-image{
@@ -56,13 +55,13 @@
     justify-content: space-evenly;
     height: 100%;
     width: 100%;
-    padding: 0 1.5rem;
+    padding: 0 1rem;
     margin-right: 2rem;
 }
 
 .modal-product-info{
     display: flex;
-    gap: 0.5rem;
+    gap: 0.2rem;
     flex-direction: column;
     border-bottom: 1px solid hsl(210, 15%, 79%);
     padding-bottom: 1.5rem;
@@ -230,7 +229,6 @@
     height: 100%;
     overflow: hidden;
     margin-right: 1.6rem;
-    
 }
 
 .go-back-button{

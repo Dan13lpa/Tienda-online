@@ -5,6 +5,7 @@ import './modal.js';
 import './faqs.js';
 import './plus-minus-button.js';
 import './tabs.js';
+import './custom-event.js';
 
 
 //let featured = document.querySelectorAll('.featured-item');

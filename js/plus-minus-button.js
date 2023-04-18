@@ -6,13 +6,21 @@ export default (() => {
         plusMinusButton.addEventListener('click', () => {
             if (plusMinusButton.textContent === '+') {
                 plusMinusButton.parentElement.querySelector('input').value = parseInt(plusMinusButton.parentElement.querySelector('input').value) + 1;
+                document.dispatchEvent(new CustomEvent('message', {
+                    detail: {
+                        text: 'El producto ha sido añadido a tu cesta correctamente',
+                        type: 'success'
+                    }
+                }));
             }
-            else if(parseInt(plusMinusButton.parentElement.querySelector('input').value) > 1){
-
-
-            if(plusMinusButton.textContent === '-')
-                 plusMinusButton.parentElement.querySelector('input').value = parseInt(plusMinusButton.parentElement.querySelector('input').value) - 1;
-                
+            if(plusMinusButton.textContent === '-' && parseInt(plusMinusButton.parentElement.querySelector('input').value) > 1){
+                plusMinusButton.parentElement.querySelector('input').value = parseInt(plusMinusButton.parentElement.querySelector('input').value) - 1;
+                document.dispatchEvent(new CustomEvent('message', {
+                    detail: {
+                        text: 'Su producto ha sido eliminado',
+                        type: 'error'
+                    }
+                }));
             }
         });
     });
