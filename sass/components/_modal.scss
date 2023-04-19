@@ -55,8 +55,7 @@
     justify-content: space-evenly;
     height: 100%;
     width: 100%;
-    padding: 0 1rem;
-    margin-right: 2rem;
+    padding: 2rem;
 }
 
 .modal-product-info{
@@ -156,10 +155,6 @@
 
 }
 
-.modal-details-input-color{
-
-}
-
 .modal-details-box-stock{
     display: flex;
     flex-direction: column;
@@ -170,14 +165,11 @@
 .modal-details-text-stock p{
     color:hsl(213, 4%, 58%);
     text-transform: uppercase;
-
 }
-
 
 .modal-details-number-stock p{
     color:$primary-color;
     text-transform: uppercase;
-
 }
 
 .modal-details-box-size{
@@ -200,8 +192,8 @@
 
 }
 .modal-footer-button{
-    width: 90%;
-    padding: 5% 10%;
+    width: 100%;
+    padding: 5% 0;
 }
 
 .modal-checkout-button{
@@ -212,10 +204,11 @@
    font-size: 1.7rem;
    padding: 5% 0%;
    text-transform: uppercase;
-   width: 80%;
+   width: 100%;
    border-radius: 3%;
    cursor: pointer;
 }
+
 .modal-checkout-button:hover{
     background-color: $hover-color;
     transition: 0.3s;
@@ -228,7 +221,7 @@
     width: 100%;
     height: 100%;
     overflow: hidden;
-    margin-right: 1.6rem;
+    padding: 2rem;
 }
 
 .go-back-button{

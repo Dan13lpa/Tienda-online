@@ -1227,8 +1227,7 @@ main {
   justify-content: space-evenly;
   height: 100%;
   width: 100%;
-  padding: 0 1rem;
-  margin-right: 2rem;
+  padding: 2rem;
 }
 
 .modal-product-info {
@@ -1358,8 +1357,8 @@ main {
 }
 
 .modal-footer-button {
-  width: 90%;
-  padding: 5% 10%;
+  width: 100%;
+  padding: 5% 0;
 }
 
 .modal-checkout-button {
@@ -1370,7 +1369,7 @@ main {
   font-size: 1.7rem;
   padding: 5% 0%;
   text-transform: uppercase;
-  width: 80%;
+  width: 100%;
   border-radius: 3%;
   cursor: pointer;
 }
@@ -1388,7 +1387,7 @@ main {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  margin-right: 1.6rem;
+  padding: 2rem;
 }
 
 .go-back-button {
@@ -1438,9 +1437,9 @@ main {
 form {
   display: flex;
   flex-direction: column;
-  height: 80%;
-  justify-content: space-between;
-  padding: 1rem;
+  height: 100%;
+  gap: 1.5rem;
+  justify-content: start;
 }
 
 .form-row {
@@ -1450,8 +1449,7 @@ form {
 }
 
 .form-row-button {
-  width: 95%;
-  padding: 5% 5%;
+  width: 100%;
 }
 
 .form-row-button button {
@@ -1462,15 +1460,13 @@ form {
   font-size: 1.7rem;
   padding: 5% 10%;
   text-transform: uppercase;
-  width: 95%;
+  width: 100%;
   border-radius: 3%;
   cursor: pointer;
 }
 
 .form-element {
-  margin-bottom: 1.5rem;
   width: 100%;
-  padding: 0 1rem;
 }
 
 .form-element input {
@@ -1479,7 +1475,7 @@ form {
   width: 100%;
 }
 
-*:focus {
+input:focus, textarea:focus {
   outline: none;
   border: 1px solid red;
 }
@@ -1489,7 +1485,6 @@ form {
   width: 100%;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
 }
 
 .plus-minus-buttons input {
@@ -1497,17 +1492,18 @@ form {
   width: 10%;
 }
 
-.plus-button.button {
+.plus-minus-buttons button {
   cursor: pointer;
 }
 
 .tabs {
-  width: 600px;
-  margin: 25px auto;
+  margin: 2rem 0;
+  width: 100%;
 }
 
 .tabs-header {
   display: flex;
+  margin: 0;
 }
 
 .tabs-header li {
@@ -1535,8 +1531,8 @@ form {
 
 .tab-contents {
   background-color: hsl(0, 0%, 87%);
-  width: 50%;
-  padding: 0 2rem;
+  width: 90%;
+  padding: 0 5%;
 }
 
 .tab-contents > div {
@@ -1553,9 +1549,15 @@ form {
   width: 20%;
   padding: 30px;
   position: fixed;
-  z-index: 0;
   bottom: 1rem;
   right: 1rem;
+  z-index: 3000;
+  opacity: 0;
+  transition: opacity 0.3;
+}
+
+.notification-message.active {
+  opacity: 1;
 }
 
 .notification-message.success {

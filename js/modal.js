@@ -6,7 +6,6 @@ export default (() => {
     modalButtons.forEach(modalButton => {
         modalButton.addEventListener("click", () => {
             modal.classList.toggle("active");
-            console.log("active");
         })
     });
 })();

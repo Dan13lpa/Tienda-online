@@ -1,17 +1,18 @@
 .notification-message{
-    
     width: 20%;
     padding: 30px;
     position: fixed;
-    z-index: 0;
     bottom: 1rem;
     right: 1rem;
+    z-index: 3000;
+    opacity: 0;
+    transition: opacity 0.3;
 }
 
-.notification-message p{
-   
-   
+.notification-message.active{
+    opacity: 1;
 }
+
 
 .notification-message.success{
     border: 1px solid greenyellow;

@@ -1,9 +1,9 @@
 form{
     display: flex;
     flex-direction: column;
-    height: 80%;
-    justify-content: space-between;
-    padding: 1rem;
+    height: 100%;
+    gap: 1.5rem;
+    justify-content: start;
 }
 
 .form-row{
@@ -13,8 +13,7 @@ form{
 }
 
 .form-row-button{
-    width: 95%;
-    padding: 5% 5%;
+    width: 100%;
 }
 
 .form-row-button button{
@@ -25,16 +24,13 @@ form{
    font-size: 1.7rem;
    padding: 5% 10%;
    text-transform: uppercase;
-   width: 95%;
+   width: 100%;
    border-radius: 3%;
    cursor: pointer;
-  
-   }
+}
 
 .form-element{
-    margin-bottom: 1.5rem;
     width: 100%;
-    padding:0 1rem;
 }
 
 .form-element input{
@@ -43,7 +39,7 @@ form{
     width: 100%;
 }
 
-*:focus{
+input:focus, textarea:focus{
     outline: none;
     border: 1px solid red;
 }

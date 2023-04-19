@@ -1,11 +1,12 @@
   
 .tabs{
-    width: 600px;
-    margin: 25px auto;
+    margin: 2rem 0; 
+    width: 100%;
 }
 
 .tabs-header{
     display: flex;
+    margin: 0;
 }
 
 .tabs-header li{
@@ -33,8 +34,8 @@
 
 .tab-contents{
     background-color: hsl(0, 0%, 87%);
-    width: 50%;
-    padding: 0 2rem;
+    width: 90%;
+    padding: 0 5%;
 }
 
 .tab-contents > div{
