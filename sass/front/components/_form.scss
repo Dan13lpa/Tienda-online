@@ -1,0 +1,45 @@
+form{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    gap: 1.5rem;
+    justify-content: start;
+}
+
+.form-row{
+    display: flex;
+    gap: 1.5rem;
+    justify-content: space-between
+}
+
+.form-row-button{
+    width: 100%;
+}
+
+.form-row-button button{
+   background: $primary-color;
+   color: hsl(0, 0%, 100%);
+   border: none;
+   font-weight: 500;
+   font-size: 1.7rem;
+   padding: 5% 10%;
+   text-transform: uppercase;
+   width: 100%;
+   border-radius: 3%;
+   cursor: pointer;
+}
+
+.form-element{
+    width: 100%;
+}
+
+.form-element input{
+    box-sizing: border-box;
+    padding: 0.8rem 1rem;
+    width: 100%;
+}
+
+input:focus, textarea:focus{
+    outline: none;
+    border: 1px solid red;
+}

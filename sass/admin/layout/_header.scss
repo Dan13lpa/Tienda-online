@@ -1,0 +1,39 @@
+.header-panel{
+    background-color: hsl(226, 63%, 45%);
+}
+
+.header-panel-menu{
+    display: flex ;
+    justify-content: space-between;
+
+}
+
+.header-panel-menu-left{
+ 
+}
+
+.header-panel-menu-left h1{
+    color:hsl(0, 0%, 100%);
+
+}
+.header-panel-menu-center h1{
+    color:hsl(0, 0%, 100%);
+
+}
+
+.header-panel-menu-button{
+    width: 25%;
+   
+
+}
+
+.header-panel-menu-button span{
+    background-color: hsl(0, 0%, 100%);
+    display: block;
+    height: 2px;
+    margin: 1.5px auto;
+    transition: all 0.3s ease-in-out;
+    width: 10%;
+    
+    
+}
