@@ -1,0 +1,58 @@
+.admin-panel{
+    margin-top: 2.5rem;
+
+}
+
+.admin-panel-table{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 35%;
+}
+.admin-contact{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    
+
+}
+.admin-contact-button{
+    background-color: hsl(207, 85%, 69%);
+    display: flex;
+    justify-content: flex-end;
+   
+}
+.admin-contact-button-edit {
+    width: 3rem;
+}
+.admin-contact-button-delete {
+    width: 3rem;
+}
+
+.admin-contact-button-edit svg{
+    fill: hsl(0, 0%, 100%);
+    width: 2rem;
+    padding: 0.5rem 0;
+    margin-left: auto;
+    cursor: pointer;
+}
+
+.admin-contact-button-delete svg{
+    fill: hsl(0, 0%, 100%);
+    width: 2rem;
+    padding: 0.5rem 0;
+    margin-left: auto;
+    cursor: pointer;
+}
+
+.admin-contact-info{
+    background-color: hsl(226, 64%, 66%);
+
+}
+
+.admin-contact-info li{
+    color:hsl(0, 0%, 100%);
+    font-size: 1em;;
+}
+
+

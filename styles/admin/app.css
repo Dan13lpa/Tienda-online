@@ -398,34 +398,46 @@ a:hover, a:focus {
   outline-offset: 0;
 }
 
-.header-panel {
+body {
   background-color: hsl(226, 63%, 45%);
+  padding: 0 5%;
+  max-width: 90%;
+  margin-top: 1rem;
 }
 
-.header-panel-menu {
+.header-panel {
   display: flex;
   justify-content: space-between;
 }
 
-.header-panel-menu-left h1 {
+.header-panel-left h1 {
   color: hsl(0, 0%, 100%);
 }
 
-.header-panel-menu-center h1 {
+.header-panel-center h1 {
   color: hsl(0, 0%, 100%);
 }
 
-.header-panel-menu-button {
-  width: 25%;
+.header-panel-button {
+  align-items: center;
+  background-color: hsl(226, 63%, 45%);
+  border-radius: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.1rem;
+  height: 4rem;
+  width: 4rem;
+  transition: all 0.5s ease-in-out;
 }
 
-.header-panel-menu-button span {
+.header-panel-button span {
   background-color: hsl(0, 0%, 100%);
   display: block;
-  height: 2px;
+  height: 3px;
   margin: 1.5px auto;
   transition: all 0.3s ease-in-out;
-  width: 10%;
+  width: 50%;
 }
 
 body {
@@ -454,23 +466,6 @@ form {
   justify-content: space-between;
 }
 
-.form-row-button {
-  width: 100%;
-}
-
-.form-row-button button {
-  background: hsl(209, 100%, 50%);
-  color: hsl(0, 0%, 100%);
-  border: none;
-  font-weight: 500;
-  font-size: 1.7rem;
-  padding: 5% 10%;
-  text-transform: uppercase;
-  width: 100%;
-  border-radius: 3%;
-  cursor: pointer;
-}
-
 .form-element {
   width: 100%;
 }
@@ -481,9 +476,60 @@ form {
   width: 100%;
 }
 
-input:focus, textarea:focus {
-  outline: none;
-  border: 1px solid red;
+.admin-panel {
+  margin-top: 2.5rem;
+}
+
+.admin-panel-table {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 35%;
+}
+
+.admin-contact {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.admin-contact-button {
+  background-color: hsl(207, 85%, 69%);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.admin-contact-button-edit {
+  width: 3rem;
+}
+
+.admin-contact-button-delete {
+  width: 3rem;
+}
+
+.admin-contact-button-edit svg {
+  fill: hsl(0, 0%, 100%);
+  width: 2rem;
+  padding: 0.5rem 0;
+  margin-left: auto;
+  cursor: pointer;
+}
+
+.admin-contact-button-delete svg {
+  fill: hsl(0, 0%, 100%);
+  width: 2rem;
+  padding: 0.5rem 0;
+  margin-left: auto;
+  cursor: pointer;
+}
+
+.admin-contact-info {
+  background-color: hsl(226, 64%, 66%);
+}
+
+.admin-contact-info li {
+  color: hsl(0, 0%, 100%);
+  font-size: 1em;
 }
 
 .tabs {
@@ -533,6 +579,23 @@ input:focus, textarea:focus {
 
 .tab-contents > div.active {
   display: block;
+}
+
+.filter-panel {
+  background-color: hsl(0, 0%, 100%);
+  width: 100%;
+  height: 3rem;
+}
+
+.filter-panel-button svg {
+  width: 1.7rem;
+  padding: 0.5rem 0;
+  display: block;
+  margin: auto;
+}
+
+svg {
+  fill: hsl(207, 85%, 69%);
 }
 
 /*# sourceMappingURL=app.css.map */

@@ -21,22 +21,107 @@
     <body>
         <header>
             <div class="header-panel">
-                <div class="header-panel-menu">
-                    <div class="header-panel-menu-left">
-                        <h1>Detectib</h1>
-                    </div>
-                    <div class="header-panel-menu-center">
-                        <h1>Clientes</h1>
-                    </div>
-                    <div class="header-panel-menu-button">
-                        <div class="header-panel-menu-hamburger">
-                            <span></span>
-                            <span></span>
-                            <span></span>
+                <div class="header-panel-left">
+                    <h1>Detectib</h1>
+                </div>
+                <div class="header-panel-center">
+                    <h1>Clientes</h1>
+                </div>
+                <div class="header-panel-button">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>    
+        </header>
+        <main>
+            <div class="filter-panel">
+                <div class="filter-panel-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>filter</title><path d="M14,12V19.88C14.04,20.18 13.94,20.5 13.71,20.71C13.32,21.1 12.69,21.1 12.3,20.71L10.29,18.7C10.06,18.47 9.96,18.16 10,17.87V12H9.97L4.21,4.62C3.87,4.19 3.95,3.56 4.38,3.22C4.57,3.08 4.78,3 5,3V3H19V3C19.22,3 19.43,3.08 19.62,3.22C20.05,3.56 20.13,4.19 19.79,4.62L14.03,12H14Z" /></svg>
+                </div>
+            </div>
+            <div class = "admin-panel">
+                <div class = "admin-panel-table">
+                    <div class = "admin-contact">
+                        <div class = "admin-contact-button">
+                            <div class = "admin-contact-button-edit">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>pencil</title><path d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z" /></svg>
+                            </div>
+                            <div class = "admin-contact-button-delete">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>delete</title><path d="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z" /></svg>
+                            </div>
+                        </div>
+                        <div class = "admin-contact-info">
+                            <ul>
+                                <li><strong>Nombre:</strong> KIM</li>
+                                <li><strong>Apellidos:</strong> LEE</li>
+                              </ul>
                         </div>
                     </div>
-                </div>    
+                    <div class = "admin-contact">
+                        <div class = "admin-contact-button">
+                            <div class = "admin-contact-button-edit">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>pencil</title><path d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z" /></svg>
+                            </div>
+                            <div class = "admin-contact-button-delete">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>delete</title><path d="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z" /></svg>
+                            </div>
+                        </div>
+                        <div class = "admin-contact-info">
+                            <ul>
+                                <li><strong>Nombre:</strong> TOM</li>
+                                <li><strong>Apellidos:</strong> PEARSON</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="tabs">
+                    <ul class="tabs-header">
+                        <li data-num="one" class="active">Principal</li>
+                        <li data-num="two">Imágenes</li>
+                    </ul>
+                    <div class = "tabs-header-button">
+                        <div class = "tabs-header-button-broom">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>broom</title><path d="M19.36,2.72L20.78,4.14L15.06,9.85C16.13,11.39 16.28,13.24 15.38,14.44L9.06,8.12C10.26,7.22 12.11,7.37 13.65,8.44L19.36,2.72M5.93,17.57C3.92,15.56 2.69,13.16 2.35,10.92L7.23,8.83L14.67,16.27L12.58,21.15C10.34,20.81 7.94,19.58 5.93,17.57Z" /></svg>
+                        </div>
+                        <div class = "tabs-header-button-save">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>content-save</title><path d="M15,9H5V5H15M12,19A3,3 0 0,1 9,16A3,3 0 0,1 12,13A3,3 0 0,1 15,16A3,3 0 0,1 12,19M17,3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V7L17,3Z" /></svg>
+                        </div>
+                    </div>
+                    <div class="tab-contents">
+                        <div class="tab-content" class="active" data-num="one">
+                            <form>
+                                <div class="form-row">
+                                    <div class="form-element">
+                                        <label>Nombre</label>
+                                        <input class="form-input" type="text">
+                                    </div>
+                                    <div class="form-element">
+                                        <label>E-mail</label>
+                                        <input class="form-input" type="text">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-element">
+                                        <label>Contraseña</label>
+                                        <input class="form-input" type="text">
+                                    </div>
+                                    <div class="form-element">
+                                        <label>Repite contraseña</label>
+                                        <input class="form-input" type="text">
+                                    </div>
+                                </div>
+                            </form>    
+                        </div>
+                        <div class="tab-content" data-num="two"> 
+                            <form>
+                                <label for="seleccionar_archivo">Seleccionar archivo:</label>
+                                <input type="file" id="seleccionar_archivo" name="seleccionar_archivo">
+                            </form> 
+                        </div>   
+                    </div>           
+                </div>
             </div>
-        </header>
+        </main>
     </body>
 </html>

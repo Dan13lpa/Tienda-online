@@ -1,39 +1,47 @@
-.header-panel{
+body{
     background-color: hsl(226, 63%, 45%);
+    padding: 0 5%;
+    max-width: 90%;
+    margin-top: 1rem;
 }
-
-.header-panel-menu{
+    
+.header-panel{
     display: flex ;
     justify-content: space-between;
-
 }
 
-.header-panel-menu-left{
+.header-panel-left{
+    
  
 }
 
-.header-panel-menu-left h1{
+.header-panel-left h1{
+    color:hsl(0, 0%, 100%);
+}
+
+.header-panel-center h1{
     color:hsl(0, 0%, 100%);
 
 }
-.header-panel-menu-center h1{
-    color:hsl(0, 0%, 100%);
 
+.header-panel-button{
+    align-items: center;
+    background-color: hsl(226, 63%, 45%);
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.1rem;
+    height: 4rem;
+    width: 4rem;
+    transition: all 0.5s ease-in-out;
 }
 
-.header-panel-menu-button{
-    width: 25%;
-   
-
-}
-
-.header-panel-menu-button span{
+.header-panel-button span{
     background-color: hsl(0, 0%, 100%);
     display: block;
-    height: 2px;
+    height: 3px;
     margin: 1.5px auto;
     transition: all 0.3s ease-in-out;
-    width: 10%;
-    
-    
+    width: 50%;
 }
