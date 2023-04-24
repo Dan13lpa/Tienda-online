@@ -1488,9 +1488,14 @@ form {
   width: 100%;
 }
 
+input.invalid {
+  outline: none;
+  border: 2px solid hsl(0, 100%, 50%);
+}
+
 input:focus, textarea:focus {
   outline: none;
-  border: 1px solid red;
+  border: 2px solid hsl(209, 100%, 50%);
 }
 
 .plus-minus-buttons {
@@ -1574,6 +1579,11 @@ input:focus, textarea:focus {
 }
 
 .notification-message.success {
+  border: 1px solid greenyellow;
+  background-color: rgb(94, 236, 129);
+}
+
+.notification-message.valid {
   border: 1px solid greenyellow;
   background-color: rgb(94, 236, 129);
 }

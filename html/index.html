@@ -503,7 +503,7 @@
                     <div class="contact-flipbox-back">
                         <form>
                             <div class="name-email">
-                                <input type="text" placeholder="Name">
+                                <input type="text" data-validate="only-letters" placeholder="Name">
                                 <input type="text" placeholder="E-mail adress">
                             </div>
                             <div class="subject">
@@ -512,7 +512,7 @@
                             <div class="message">
                                 <input type="text" placeholder="Message">
                             </div>
-                            <div class="button">
+                            <div class="send-button">
                                 <button type="submit">SEND MESSAGE</button>
                             </div>
                         </form>
@@ -582,50 +582,58 @@
                             <form>
                                 <div class="form-row">
                                     <div class="form-element">
-                                        <input class="form-input" maxlength="20" type="text" placeholder="Name">
+                                        <input class="form-input" maxlength="20" type="text" data-validate="only-letters" placeholder="Name">
                                         <span class="form-element-counter">0/20</span>
+                                        <span class="error-message"></span>
                                     </div>
                                     <div class="form-element">
-                                        <input class="form-input" maxlength="20" type="text" placeholder="Last name">
+                                        <input class="form-input" maxlength="20" type="text" data-validate="only-letters" placeholder="Last name">
                                         <span class="form-element-counter">0/20</span>
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-element">
-                                        <input class="form-input" maxlength="20" type="text" placeholder="E-mail adress">
-                                        <span class="form-element-counter">0/20</span>
+                                        <span class="error-message"></span>
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-element">
-                                        <input class="form-input" maxlength="20" type="text" placeholder="Message">
-                                        <span class="form-element-counter">0/20</span>      
+                                        <input class="form-input" maxlength="20" type="text" data-validate="email" placeholder="E-mail adress">
+                                        <span class="form-element-counter">0/20</span>
+                                        <span class="error-message"></span>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-element">
+                                        <input class="form-input" maxlength="20" type="text" data-validate="telephone"placeholder="Telephone">
+                                        <span class="form-element-counter">0/20</span>
+                                        <span class="error-message"></span>      
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-element">
                                         <input class="form-input" maxlength="20"type="text" placeholder="Address Line 1">
                                         <span class="form-element-counter">0/20</span>
+                                        <span class="error-message"></span>
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-element">
                                         <input class="form-input" maxlength="20" type="text" placeholder="Address Line 2">
                                         <span class="form-element-counter">0/20</span>
+                                        <span class="error-message"></span>
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-element">
-                                        <input class="form-input" maxlength="20" type="text" placeholder="State">
+                                        <input class="form-input" maxlength="20" type="text"data-validate="only-letters" placeholder="State">
                                         <span class="form-element-counter">0/20</span>
+                                        <span class="error-message"></span>
                                     </div>
                                     <div class="form-element">
-                                        <input class="form-input" maxlength="20" type="text" placeholder="Zip Code">
+                                        <input class="form-input" maxlength="20" type="text" data-validate="only-numbers"placeholder="Zip Code">
                                         <span class="form-element-counter">0/20</span>
+                                        <span class="error-message"></span>
                                     </div>
                                 </div>
                                 <div class="form-row-button">
-                                    <div class="button">
+                                    <div class="send-button">
                                         <button>FINISH PURCHASE</button>
                                     </div>
                                 </div>
