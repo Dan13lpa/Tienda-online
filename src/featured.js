@@ -11,6 +11,10 @@ class Featured extends HTMLElement {
         this.shadow.innerHTML = 
         `
         <style>
+            html {
+                line-height: 1.15; 
+                -webkit-text-size-adjust: 100%; 
+            }
             .featured{
                 background-color: hsl(0, 0%, 100%);
                 display: flex;
@@ -27,6 +31,8 @@ class Featured extends HTMLElement {
                 color:hsl(208, 13%, 25%);
                 font-weight: 600;
                 font-size: 3rem;
+                font-family: "Poppins", sans-serif;
+                text-decoration: none;
             }
             
             .featured-description p{
@@ -36,6 +42,7 @@ class Featured extends HTMLElement {
                 color: hsl(210, 7%, 49%);
                 width: 70%;
                 padding: 0 15%;
+                font-family: "Poppins", sans-serif;
             }
             
             .featured-description::after{
@@ -74,11 +81,14 @@ class Featured extends HTMLElement {
             .featured-item-title h3{
                 font: 600 20px/32px; 
                 font-stack: "Poppins",sans-serif;
+                font-weight: 600;
+                text-decoration: none;
             }
             
             .featured-item-description p{
                 text-align: center;
                 color: hsl(210, 7%, 49%);
+                font-family: "Poppins", sans-serif;
             }
            
         </style>

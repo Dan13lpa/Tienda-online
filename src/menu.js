@@ -11,6 +11,10 @@ class Menu extends HTMLElement {
         this.shadow.innerHTML = 
         `
         <style>
+            html {
+                line-height: 1.15; 
+                -webkit-text-size-adjust: 100%; 
+            }
             .header-menu ul {
                 display: flex; 
                 gap: 1.5rem;

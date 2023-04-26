@@ -11,6 +11,10 @@ class Slider extends HTMLElement {
         this.shadow.innerHTML = 
         `
         <style>
+            html {
+                line-height: 1.15; 
+                -webkit-text-size-adjust: 100%; 
+            }
             .slider{
                 display: flex;
                 flex-direction: column;
@@ -30,6 +34,7 @@ class Slider extends HTMLElement {
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
+                border-style: none;
             }
             .slider-image{
                 position: absolute;
@@ -40,6 +45,7 @@ class Slider extends HTMLElement {
             
             .slider-image img{
                 width: 100%;
+                border-style: none;
                 
             }
             .slider .slider-title{
@@ -51,6 +57,9 @@ class Slider extends HTMLElement {
                 text-align: center;
                 font-size: 5rem;
                 color: rgb(77, 75, 75);
+                margin: 0;
+                font-weight: 600;
+                text-decoration: none;
             }
             
             .slider .slider-description{
@@ -64,6 +73,7 @@ class Slider extends HTMLElement {
                 padding: 0 25%;
                 color:rgb(151, 129, 129);
                 margin: 1px
+                font-family: "Poppins", sans-serif;
             }
             
             .slider .slider-button{
@@ -77,10 +87,13 @@ class Slider extends HTMLElement {
                 border-radius: 80px;
                 padding: 20px 80px;
                 border: none;
-                background-color: $primary-color;
+                background-color: hsl(209, 100%, 50%);;
                 color:white;
                 cursor: pointer;
                 font-size: 1.5rem;
+                font-stack: "Poppins",sans-serif;
+                text-transform: none;
+                --webkit-appearance: button;
             }
             .slider .slider-button button:hover{
                 background-color: #374048;

@@ -11,7 +11,10 @@ class ModalButton extends HTMLElement {
         this.shadow.innerHTML = 
         `
         <style>
-
+            html {
+                line-height: 1.15; 
+                -webkit-text-size-adjust: 100%; 
+            }
             .header-checkout-button button{
                 border-radius: 30px;
                 color: white;
