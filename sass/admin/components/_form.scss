@@ -1,25 +1,104 @@
-form{
+.contact-form{
+    width: 70%;
+}
+
+.form-menu{
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    justify-content: space-between;
+}
+
+.form-menu div{
+    height: 3rem;
+}
+
+.form-tab{
+    display: flex;
+    align-items: center;
+}
+
+.form-tab div{
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+}
+
+.principal-tab{
+    background-color: hsl(204, 85%, 69%);
+    cursor: pointer;
+}
+
+.principal-tab h3{
+    color: white;
+    text-align: center;
+}
+
+.image-tab{
+    cursor: pointer;
+}
+
+.image-tab h3{
+    text-align: center;
+}
+
+.form-editor{
+    display:flex;
+    gap: 0.5rem;
+}
+
+.form-editor div{
+    display: flex;
+    align-items: center;
+}
+
+.form-editor svg{
+    fill:hsl(204, 85%, 69%);
+    width: 2.5rem;
+}
+
+.editor-save{
+    padding: 0 0.5rem;
+}
+
+.principal-form{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    gap: 2rem;
+    padding-top: 2rem;
+    width: 100%;
     height: 100%;
-    gap: 1.5rem;
-    justify-content: start;
-}
-
-.form-row{
-    display: flex;
-    gap: 1.5rem;
-    justify-content: space-between
-}
-
-.form-element{
-    width: 100%;
-}
-.form-element label{
 
 }
-.form-element input{
-    box-sizing: border-box;
-    padding: 0.8rem 1rem;
-    width: 100%;
+
+.user-data{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 2rem;
+}
+
+.user-pwd{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 2rem;
+}
+
+label {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: white;
+    display: block;
+    margin-bottom: 1.5rem;
+}
+  
+input[type="text"],
+input[type="password"] {
+    border: none;
+    border-bottom: 1px solid white;
+    background-color:  hsl(216, 94%, 67%);
+    width: 25rem;
+    height: 2.5rem;
 }
