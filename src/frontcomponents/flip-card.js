@@ -11,21 +11,13 @@ class FlipCard extends HTMLElement {
         this.shadow.innerHTML = 
         `
         <style>
-            html {
-                line-height: 1.15; 
-                -webkit-text-size-adjust: 100%; 
-            }
+        html {
+            line-height: 1.15; 
+            -webkit-text-size-adjust: 100%; 
+        }
             .contact{
                 height: 60vh;
                 position: relative;
-            }
-            
-            .contact-map{
-                position: absolute;
-                top: 0;
-                width: 100%;
-                height: 100%;
-                z-index: -1;
             }
             
             .contact-flipbox.flip-card{

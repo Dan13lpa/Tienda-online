@@ -14,7 +14,7 @@
         <link rel="stylesheet" href="../styles/front/app.css">
         
 
-        <script type="module" src="../src/index.js"></script>
+        <script type="module" src="../src/frontcomponents/index.js"></script>
 
     </head>
     <body>
@@ -36,126 +36,137 @@
                 <contact-form-component slot="back"></contact-form-component>
                 </flip-card-component>
             </section>
-            <div class="modal">
-                <div class="modal-content">
-                    <div class="modal-close-button modal-button">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>close</title><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" /></svg>
-                    </div>
-                    <div class="modal-image">
-                        <img src="../images/slider-image.webp" alt="motorbike">
-                    </div>
-                    <div class="modal-product-gallery swipe-element">
-                        <div class="modal-product">
-                            <div class="modal-product-info">
-                                <div class="modal-product-title">
-                                    <h4>SMART WATCH</h4>
-                                </div>
-                                <div class="modal-product-subtitle">
-                                    <h2>WATCH LIMITED EDITION</h2>
-                                </div>
-                                <div class="modal-product-model">
-                                    <h5>MODEL AS1500</h5>
-                                </div>
-                                <div class="modal-product-price">
-                                    <del class="modal-no-price">
-                                        <p>10.000€</p>
-                                    </del>
-                                    <div class="modal-price">
-                                        <p>9.000€</p>
-                                    </div>
-                                    <div class="modal-offer-price">
-                                        <p>EARLY BIRD OFFER</p>
-                                    </div>
-                                </div>
-                                <div class="tabs">
-                                    <ul class="tabs-header">
-                                        <li data-num="one" class="active">Description</li>
-                                        <li data-num="two">Characteristics</li>
-                                        <li data-num="three">Opinions</li>
-                                    </ul>
-                                    <div class="tab-contents">
-                                        <div class="active" data-num="one">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam ex optio molestiae deleniti accusantium nobis hic, quia, quaerat ipsa numquam, eius expedita odit earum. Dolores dolore iusto est earum praesentium?</div>
-                                        <div class="tab-content" data-num="two">holaa consectetur adipisicing elit. Quam ex optio molestiae deleniti accusantium nobis hic, quia, quaerat ipsa numquam, eius expedita odit earum. Dolores dolore iusto est earum praesentium?</div>
-                                        <div class="tab-content" data-num="three">adiost amet, consectetur adipisicing elit. Quam ex optio molestiae deleniti accusantium nobis hic, quia, quaerat ipsa numquam, eius expedita odit earum. Dolores dolore iusto est earum praesentium?</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="plus-minus-buttons">
-                                <button class="plus-minus-button">-</button>
-                                <input type="number" value="1">
-                                <button class="plus-minus-button">+</button>
-                            </div>
-                            <div class="modal-footer-button">
-                                <button class="modal-checkout-button swipe-button">CHECKOUT</button>
-                            </div>
+            <section>
+                <modal-component>
+                    <product-component slot="box">
+                        <image-component slot="product-image"></image-component>
+                        <swipeable-element-component slot="product-content">
+                            <product-info-component slot="primary-swipe-content"></product-info-component>
+                        </swipeable-element-component>    
+                    </product-component>
+                <modal-component>
+                    
+                <!--<div class="modal">
+                    <div class="modal-content">
+                        <div class="modal-close-button modal-button">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>close</title><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" /></svg>
                         </div>
-                        <div class="modal-form-gallery">
-                            <div class="go-back-button swipe-button">
-                                <button>Go Back</button>
+                        <div class="modal-image">
+                            <img src="../images/slider-image.webp" alt="motorbike">
+                        </div>
+                        <div class="modal-product-gallery swipe-element">
+                            <div class="modal-product">
+                                <div class="modal-product-info">
+                                    <div class="modal-product-title">
+                                        <h4>SMART WATCH</h4>
+                                    </div>
+                                    <div class="modal-product-subtitle">
+                                        <h2>WATCH LIMITED EDITION</h2>
+                                    </div>
+                                    <div class="modal-product-model">
+                                        <h5>MODEL AS1500</h5>
+                                    </div>
+                                    <div class="modal-product-price">
+                                        <del class="modal-no-price">
+                                            <p>10.000€</p>
+                                        </del>
+                                        <div class="modal-price">
+                                            <p>9.000€</p>
+                                        </div>
+                                        <div class="modal-offer-price">
+                                            <p>EARLY BIRD OFFER</p>
+                                        </div>
+                                    </div>
+                                    <div class="tabs">
+                                        <ul class="tabs-header">
+                                            <li data-num="one" class="active">Description</li>
+                                            <li data-num="two">Characteristics</li>
+                                            <li data-num="three">Opinions</li>
+                                        </ul>
+                                        <div class="tab-contents">
+                                            <div class="active" data-num="one">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam ex optio molestiae deleniti accusantium nobis hic, quia, quaerat ipsa numquam, eius expedita odit earum. Dolores dolore iusto est earum praesentium?</div>
+                                            <div class="tab-content" data-num="two">holaa consectetur adipisicing elit. Quam ex optio molestiae deleniti accusantium nobis hic, quia, quaerat ipsa numquam, eius expedita odit earum. Dolores dolore iusto est earum praesentium?</div>
+                                            <div class="tab-content" data-num="three">adiost amet, consectetur adipisicing elit. Quam ex optio molestiae deleniti accusantium nobis hic, quia, quaerat ipsa numquam, eius expedita odit earum. Dolores dolore iusto est earum praesentium?</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="plus-minus-buttons">
+                                    <button class="plus-minus-button">-</button>
+                                    <input type="number" value="1">
+                                    <button class="plus-minus-button">+</button>
+                                </div>
+                                <div class="modal-footer-button">
+                                    <button class="modal-checkout-button swipe-button">CHECKOUT</button>
+                                </div>
                             </div>
-                            <form>
-                                <div class="form-row">
-                                    <div class="form-element">
-                                        <input class="form-input" maxlength="20" type="text" data-validate="only-letters" placeholder="Name">
-                                        <span class="form-element-counter">0/20</span>
-                                        <span class="error-message"></span>
-                                    </div>
-                                    <div class="form-element">
-                                        <input class="form-input" maxlength="20" type="text" data-validate="only-letters" placeholder="Last name">
-                                        <span class="form-element-counter">0/20</span>
-                                        <span class="error-message"></span>
-                                    </div>
+                            <div class="modal-form-gallery">
+                                <div class="go-back-button swipe-button">
+                                    <button>Go Back</button>
                                 </div>
-                                <div class="form-row">
-                                    <div class="form-element">
-                                        <input class="form-input" maxlength="20" type="text" data-validate="email" placeholder="E-mail adress">
-                                        <span class="form-element-counter">0/20</span>
-                                        <span class="error-message"></span>
+                                <form>
+                                    <div class="form-row">
+                                        <div class="form-element">
+                                            <input class="form-input" maxlength="20" type="text" data-validate="only-letters" placeholder="Name">
+                                            <span class="form-element-counter">0/20</span>
+                                            <span class="error-message"></span>
+                                        </div>
+                                        <div class="form-element">
+                                            <input class="form-input" maxlength="20" type="text" data-validate="only-letters" placeholder="Last name">
+                                            <span class="form-element-counter">0/20</span>
+                                            <span class="error-message"></span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-element">
-                                        <input class="form-input" maxlength="20" type="text" data-validate="telephone"placeholder="Telephone">
-                                        <span class="form-element-counter">0/20</span>
-                                        <span class="error-message"></span>      
+                                    <div class="form-row">
+                                        <div class="form-element">
+                                            <input class="form-input" maxlength="20" type="text" data-validate="email" placeholder="E-mail adress">
+                                            <span class="form-element-counter">0/20</span>
+                                            <span class="error-message"></span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-element">
-                                        <input class="form-input" maxlength="20"type="text" placeholder="Address Line 1">
-                                        <span class="form-element-counter">0/20</span>
-                                        <span class="error-message"></span>
+                                    <div class="form-row">
+                                        <div class="form-element">
+                                            <input class="form-input" maxlength="20" type="text" data-validate="telephone"placeholder="Telephone">
+                                            <span class="form-element-counter">0/20</span>
+                                            <span class="error-message"></span>      
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-element">
-                                        <input class="form-input" maxlength="20" type="text" placeholder="Address Line 2">
-                                        <span class="form-element-counter">0/20</span>
-                                        <span class="error-message"></span>
+                                    <div class="form-row">
+                                        <div class="form-element">
+                                            <input class="form-input" maxlength="20"type="text" placeholder="Address Line 1">
+                                            <span class="form-element-counter">0/20</span>
+                                            <span class="error-message"></span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-element">
-                                        <input class="form-input" maxlength="20" type="text"data-validate="only-letters" placeholder="State">
-                                        <span class="form-element-counter">0/20</span>
-                                        <span class="error-message"></span>
+                                    <div class="form-row">
+                                        <div class="form-element">
+                                            <input class="form-input" maxlength="20" type="text" placeholder="Address Line 2">
+                                            <span class="form-element-counter">0/20</span>
+                                            <span class="error-message"></span>
+                                        </div>
                                     </div>
-                                    <div class="form-element">
-                                        <input class="form-input" maxlength="20" type="text" data-validate="only-numbers"placeholder="Zip Code">
-                                        <span class="form-element-counter">0/20</span>
-                                        <span class="error-message"></span>
+                                    <div class="form-row">
+                                        <div class="form-element">
+                                            <input class="form-input" maxlength="20" type="text"data-validate="only-letters" placeholder="State">
+                                            <span class="form-element-counter">0/20</span>
+                                            <span class="error-message"></span>
+                                        </div>
+                                        <div class="form-element">
+                                            <input class="form-input" maxlength="20" type="text" data-validate="only-numbers"placeholder="Zip Code">
+                                            <span class="form-element-counter">0/20</span>
+                                            <span class="error-message"></span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-row-button">
-                                    <div class="send-button">
-                                        <button>FINISH PURCHASE</button>
+                                    <div class="form-row-button">
+                                        <div class="send-button">
+                                            <button>FINISH PURCHASE</button>
+                                        </div>
                                     </div>
-                                </div>
-                            </form>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </section>
             <div class="notification-message">
                 <p></p>
             </div>
