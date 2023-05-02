@@ -1,4 +1,4 @@
-class ProductInfo extends HTMLElement {
+class ProductTitle extends HTMLElement {
 
     constructor() {
         super();
@@ -11,16 +11,8 @@ class ProductInfo extends HTMLElement {
         this.shadow.innerHTML = 
         `
         <style>
-        .modal-product{
-            display: flex;
-            flex-direction: column;
-            justify-content: space-evenly;
-            height: 100%;
-            width: 100%;
-            padding: 1rem;
-        }
-        
-        .modal-product-info{
+       
+        .modal-info{
             display: flex;
             gap: 0.1rem;
             flex-direction: column;
@@ -28,50 +20,54 @@ class ProductInfo extends HTMLElement {
             padding-bottom: 0.5rem;
         }
         
-        .modal-product-title h4{
+        .modal-title h4{
             color: hsl(210, 8%, 67%);
             text-transform: uppercase;
             font-size: 1.3rem;
             font-weight: 400;
             text-align: left;
+            font-stack: "Poppins",sans-serif;
         }
         
-        .modal-product-subtitle h2{
+        .modal-subtitle h2{
             color:$hover-color;
             text-transform: uppercase;
             font-weight: 600;
             font-size: 2rem;
             text-align: left;
+            font-stack: "Poppins",sans-serif;
         }
         
-        .modal-product-model h5{
+        .modal-model h5{
             font-weight: 300;
             text-align: left;
-            color: hsl(210, 8%, 67%);
+            color:  hsl(210, 8%, 67%);
             font-size: 1rem;
             text-transform: uppercase;
+            font-stack: "Poppins",sans-serif;
         }
         
-        .modal-product-price{ 
+        .modal-price{ 
             display: flex;
             gap: 1rem;
             align-items: center;
         }
         
         .modal-no-price {
-            color: hsl(210, 8%, 67%);
+            color:  hsl(210, 8%, 67%);
         }
         
         .modal-no-price p{
-            color: hsl(210, 8%, 67%);
+            color:  hsl(210, 8%, 67%);
             font-size: 1.3rem;
         
         }
         
         .modal-price p{
             font-size: 1.7rem;
-            color: $primary-color;
+            color:  hsl(209, 100%, 50%);
             font-weight: 600;
+            font-stack: "Poppins",sans-serif;
         }
         
         .modal-offer-price p{
@@ -95,6 +91,7 @@ class ProductInfo extends HTMLElement {
             line-height: 1.5;
             font-size: 1rem;
             font-weight: 300;
+            font-stack: "Poppins",sans-serif;
         }
         
         .modal-details{
@@ -114,6 +111,7 @@ class ProductInfo extends HTMLElement {
         .modal-details-text-color p{
             color:hsl(213, 4%, 58%);
             text-transform: uppercase;
+            font-stack: "Poppins",sans-serif;
         
         }
         
@@ -126,11 +124,13 @@ class ProductInfo extends HTMLElement {
         .modal-details-text-stock p{
             color:hsl(213, 4%, 58%);
             text-transform: uppercase;
+            font-stack: "Poppins",sans-serif;
         }
         
         .modal-details-number-stock p{
             color:$primary-color;
             text-transform: uppercase;
+            font-stack: "Poppins",sans-serif;
         }
         
         .modal-details-box-size{
@@ -142,64 +142,42 @@ class ProductInfo extends HTMLElement {
         .modal-details-text-size p{
             color:hsl(213, 4%, 58%);
             text-transform: uppercase;
+            font-stack: "Poppins",sans-serif;
         }
         
         .modal-details-option-size p{
             color:$primary-color;
             text-transform: uppercase;
+            font-stack: "Poppins",sans-serif;
         
-        }
-        .modal-footer-button{
-            width: 100%;
-            padding: 5% 0;
-        }
-        
-        .modal-checkout-button{
-           background: $primary-color;
-           color: hsl(0, 0%, 100%);
-           border: none;
-           font-weight: 500;
-           font-size: 1.7rem;
-           padding: 5% 0%;
-           text-transform: uppercase;
-           width: 100%;
-           border-radius: 3%;
-           cursor: pointer;
-        }
-        
-        .modal-checkout-button:hover{
-            background-color: $hover-color;
-            transition: 0.3s;
         }
                
         </style>
-        
-        <div class="modal-product">
-            <div class="modal-product-info">
-                <div class="modal-product-title">
-                    <h4>SMART WATCH</h4>
-                </div>
-                <div class="modal-product-subtitle">
-                    <h2>WATCH LIMITED EDITION</h2>
-                </div>
-                <div class="modal-product-model">
-                    <h5>MODEL AS1500</h5>
-                </div>
-                <div class="modal-product-price">
-                    <del class="modal-no-price">
-                        <p>10.000€</p>
-                    </del>
-                    <div class="modal-price">
-                        <p>9.000€</p>
-                    </div>
-                    <div class="modal-offer-price">
-                        <p>EARLY BIRD OFFER</p>
-                    </div>
-                </div> 
+        <div class="modal-info">
+            <div class="modal-title">
+                <h4>SMART WATCH</h4>
             </div>
+            <div class="modal-subtitle">
+                <h2>WATCH LIMITED EDITION</h2>
+            </div>
+            <div class="modal-model">
+                <h5>MODEL AS1500</h5>
+            </div>
+            <div class="modal-price">
+                <del class="modal-no-price">
+                    <p>10.000€</p>
+                </del>
+                <div class="modal-price">
+                    <p>9.000€</p>
+                </div>
+                <div class="modal-offer-price">
+                    <p>EARLY BIRD OFFER</p>
+                </div>
+            </div> 
         </div>
+        
         `;
     }
 }
 
-customElements.define('product-info-component',ProductInfo);
+customElements.define('product-title-component',ProductTitle);

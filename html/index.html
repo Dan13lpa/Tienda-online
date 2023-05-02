@@ -38,10 +38,15 @@
             </section>
             <section>
                 <modal-component>
-                    <product-component slot="box">
+                    <product-component slot="content">
                         <image-component slot="product-image"></image-component>
                         <swipeable-element-component slot="product-content">
-                            <product-info-component slot="primary-swipe-content"></product-info-component>
+                            <product-info-component slot="primary-swipe-content">
+                                <product-title-component slot="title"></product-title-component>
+                                <product-tabs-component slot="tabs"></product-tabs-component>
+                                <product-amount-component slot="plusminus-button"></product-amount-component>
+                            </product-info-component>    
+                            <checkout-form-component slot="secondary-swipe-content"></checkout-form-component>
                         </swipeable-element-component>    
                     </product-component>
                 <modal-component>

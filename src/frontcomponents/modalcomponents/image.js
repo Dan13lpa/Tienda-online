@@ -1,4 +1,4 @@
-class Tabs extends HTMLElement {
+class Image extends HTMLElement {
 
     constructor() {
         super();
@@ -11,8 +11,7 @@ class Tabs extends HTMLElement {
         this.shadow.innerHTML = 
         `
         <style>
-            
-            .modal-image{
+            .image{
                 background-color:  hsl(210, 8%, 67%);
                 display: flex;
                 justify-content: center;
@@ -23,12 +22,17 @@ class Tabs extends HTMLElement {
                 z-index: 2000;
                 border-style: none;
             }
+            img {
+                border-style: none;
+                object-fit: cover;
+                max-width: 100%;
+            }
         </style>
-        <div class="modal-image">
+        <div class="image">
             <img src="../images/slider-image.webp" alt="motorbike">
         </div>
         `;
     }
 }
 
-customElements.define('tabs-component',Tabs);
+customElements.define('image-component',Image);
