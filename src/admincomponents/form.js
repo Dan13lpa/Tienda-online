@@ -11,170 +11,255 @@ class Form extends HTMLElement {
         this.shadow.innerHTML = 
         `
         <style>
-            .contact-form{
+           
+            .form-section {
                 width: 100%;
+                display: flex;
+                flex-direction: column;
+                gap: 3rem;
             }
             
-            .form-menu{
-                display: flex;
-                align-items: center;
+            .form-section .form-selector {
+                width: 100%;
+                height: 5vh;
                 background-color: white;
-                box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+                display: flex;
                 justify-content: space-between;
-            }
-            
-            .form-menu div{
-                height: 3rem;
-            }
-            
-            .form-tab{
-                display: flex;
                 align-items: center;
             }
             
-            .form-tab div{
+            .form-selector .selector {
                 display: flex;
-                align-items: center;
+                height: 100%;
+            }
+            
+            .selector div {
+                height: 100%;
+                width: 100%;
                 padding: 0 1rem;
             }
             
-            .principal-tab{
-                background-color: hsl(204, 85%, 69%);
+            .selector div button {
+                height: 5vh;
+                width: 100%;
+                background-color: transparent;
+                border: none;
+                height: 100%;
                 cursor: pointer;
             }
             
-            .principal-tab h3{
+            .selector div p {
+                color: rgb(133, 133, 133);
+                font-size: 1rem;
+                font-weight: 600;
+            }
+            
+            .selector div.active {
+                background-color: rgb(109, 183, 243);
+            }
+            
+            .selector div.active p {
                 color: white;
-                text-align: center;
-                color: hsl(208, 13%, 25%);
-                font-family: "Poppins", sans-serif;
-                margin: 0;
             }
             
-            .image-tab{
+            .form-selector .options {
+                height: 100%;
+                display: flex;
+                gap: 1rem;
+                align-items: center;
+                margin-right: 10px;
+            }
+            
+            .options div {
+                height: 2.5rem;
+                width: 2.5rem;
+                display: flex;
+            }
+            
+            .options div button {
+                width: 100%;
+                height: 100%;
                 cursor: pointer;
+                background-color: transparent;
+                border: none;
             }
             
-            .image-tab h3{
-                text-align: center;
-                color: hsl(208, 13%, 25%);
-                font-family: "Poppins", sans-serif;
-                margin: 0;
+            .options div svg {
+                fill: rgb(109, 183, 243);
+            }
+           
+            .form {
+                display: none;
             }
             
-            .form-editor{
-                display:flex;
+            .form.active {
+                display: flex;
+            }
+            
+            .form form {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                width: 100%;
+                gap: 2rem;
+            }
+            
+            form div {
+                display: flex;
+                flex-direction: column;
                 gap: 0.5rem;
             }
             
-            .form-editor div{
-                display: flex;
-                align-items: center;
-            }
-            
-            .form-editor svg{
-                fill:hsl(204, 85%, 69%);
-                width: 2.5rem;
-                cursor: pointer;
-            }
-            
-            .editor-save{
-                padding: 0 0.5rem;
-            }
-            
-            .principal-form{
-                display: flex;
-                align-items: flex-start;
-                justify-content: space-evenly;
-                gap: 1rem;
-                padding-top: 2rem;
-            }
-            
-            .user-data{
-                display:flex;
-                flex-direction: column;
-                justify-content: space-around;
-                gap: 2rem;
-            }
-            
-            .user-pwd{
-                display:flex;
-                flex-direction: column;
-                justify-content: space-around;
-                gap: 2rem;
-            }
-            
-            label {
-                font-size: 1.5rem;
-                font-weight: 500;
+            form div label {
                 color: white;
-                display: block;
-                margin-bottom: 1rem;
-                font-family: "Poppins", sans-serif;
+                font-size: 1.5rem;
+                font-weight: 600;
             }
             
-            input[type="text"],
-            input[type="password"] {
+            form div input {
+                background-color: rgb(113, 139, 224);
+                font-size: 2rem;
+                color: white;
                 border: none;
                 border-bottom: 1px solid white;
-                background-color:  hsl(216, 94%, 67%);
-                box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
-                width: 25rem;
-                height: 2rem;
-                outline: none;
-                font-family: "Poppins", sans-serif;
-                font-size: 100%;
-                line-height: 1.15;
-                margin: 0;
-                overflow: visible;
-            }           
+            }
+            
         </style>
-        <div class="contact-form">
-            <div class="form-menu">
-                <div class="form-tab">
-                    <div class="principal-tab">
-                        <h3>Principal</h3>
+        <section class="form-section">
+            <div class="form-selector">
+                <div class="selector">
+                    <div class="active" data-form="principal">
+                        <button>
+                            <p>Principal</p>
+                        </button>
                     </div>
-                    <div class="image-tab">
-                        <h3>Imágenes</h3>
-                    </div>
-                </div>
-                <div class="form-editor">
-                    <div class="editor-brow">
-                        <div class="broom-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>broom</title><path d="M19.36,2.72L20.78,4.14L15.06,9.85C16.13,11.39 16.28,13.24 15.38,14.44L9.06,8.12C10.26,7.22 12.11,7.37 13.65,8.44L19.36,2.72M5.93,17.57C3.92,15.56 2.69,13.16 2.35,10.92L7.23,8.83L14.67,16.27L12.58,21.15C10.34,20.81 7.94,19.58 5.93,17.57Z" /></svg></div>
-                    </div>
-                    <div class="editor-save">
-                        <div class="submit-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>content-save</title><path d="M15,9H5V5H15M12,19A3,3 0 0,1 9,16A3,3 0 0,1 12,13A3,3 0 0,1 15,16A3,3 0 0,1 12,19M17,3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V7L17,3Z" /></svg></div>
+                    <div data-form="image">
+                        <button>
+                            <p>Imágenes</p>
+                        </button>
                     </div>
                 </div>
-            </div>
-            <div class="principal-form">
-                <div class="user-data">
-                    <div class="nombre">
-                        <label>Nombre</label>
-                        <input type="text" />
+                <div class="options">
+                    <div>
+                        <button type="button" id="resetButton">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>broom</title><path d="M19.36,2.72L20.78,4.14L15.06,9.85C16.13,11.39 16.28,13.24 15.38,14.44L9.06,8.12C10.26,7.22 12.11,7.37 13.65,8.44L19.36,2.72M5.93,17.57C3.92,15.56 2.69,13.16 2.35,10.92L7.23,8.83L14.67,16.27L12.58,21.15C10.34,20.81 7.94,19.58 5.93,17.57Z" /></svg>                        </button>
                     </div>
-                    <div class="email">
-                        <label>E-mail</label>
-                        <input type="text" />
-                    </div>
-                </div>
-                <div class="user-pwd">
-                    <div class="password">
-                        <label>Contraseña</label>
-                        <input type="password" />
-                    </div>
-                    <div class="confirm-password">
-                        <label>Confirmar Contraseña</label>
-                        <input type="password" />
+                    <div>
+                        <button type="button" id="submitButton">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15,8V4H5V8H15M12,18A3,3 0 0,0 15,15A3,3 0 0,0 12,12A3,3 0 0,0 9,15A3,3 0 0,0 12,18M17,2L21,6V18A2,2 0 0,1 19,20H5C3.89,20 3,19.1 3,18V4A2,2 0 0,1 5,2H17M11,22H13V24H11V22M7,22H9V24H7V22M15,22H17V24H15V22Z" /></svg>
+                        </button>
                     </div>
                 </div>
             </div>
-            <div class="imagenes-form"></div>
-        </div>
+            <div class="form-container">
+                <div class="form active" data-form="principal">
+                    <form id="form-principal">
+                        <div>
+                            <label>Nombre</label>
+                            <input type="text"></input>
+                        </div>
+                        <div>
+                            <label>Email</label>
+                            <input type="text"></input>
+                        </div>
+                        <div>
+                            <label>Contraseña</label>
+                            <input type="text"></input>
+                        </div>
+                        <div>
+                            <label>Confirme contraseña</label>
+                            <input type="text"></input>
+                        </div>
+                    </form>
+                </div>
+                <div class="form" data-form="image">
+                    <form id="form-images">
+                        <div class="input-image">
+                            <label>Seleccione una imagen</label>
+                            <input type="file">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
         `;
+        
+    const selector = document.querySelector('.selector');
+    const formContainer = document.querySelector('.form-container');
+    const formselector = selector.querySelectorAll('');
 
+    const formSelectors=this.shadowRoot.querySelectorAll("")
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            tabsHeader.querySelector('.active').classList.remove('active');
+            tabContents.querySelector('.active').classList.remove('active');
+            tab.classList.add('active');
+            tabContents.querySelector(`[data-num="${tab.dataset.num}"]`).classList.add('active');
+        });
+    });
+
+
+        
+// import {validateForm} from './validator.js';
+
+// export let renderForm = () => {
+
+//     let form = document.getElementById('form');
+//     let sendFormButton = document.getElementById('send-form-button');
+
+//     sendFormButton.addEventListener('click', event => {
+
+//         event.preventDefault();
+
+//         // if(!validateForm(form.elements)){
+//         //     return;
+//         // }
+
+//         // Podemos recoger el valor de todos los inputs de un formulario mediante el objeto FormData. 
+//         // Para ello debemos pasar como parámetro el formulario al que queremos acceder. 
+//         // let formData = new FormData(form);
+//         // Podemos añadir un nuevo dato al objeto FormData mediante el método append.
+//         // formData.append("fingerprint", "123456789");
+
+//         // Podemos recorrer el objeto FormData mediante un bucle for...of.
+//         // for (let pair of formData.entries()) {
+//         //     console.log(pair[0]+ ', ' + pair[1]); 
+//         // }
+
+//         // Capturar los datos del formulario y enviarlos mediante fetch para ser recibidos por express.
+
+//         // Podemos convertir el objeto FormData en un objeto json mediante el método entries.
+
+//         let formData = new FormData(form);
+//         let formDataJson = Object.fromEntries(formData.entries());
+
+//         fetch('http://192.168.1.16:8080/api/admin/users', {
+//             method: 'POST',
+//             headers: {
+//                 'Content-Type': 'application/json',
+//                 'x-access-token': sessionStorage.getItem('accessToken')
+//             },
+//             body: JSON.stringify(formDataJson)
+//         }).then(response => {
+//             return response.json();
+//         }).then(data => {
+            
+//             document.dispatchEvent(new CustomEvent('message', {
+//                 detail: {
+//                     text: 'Formulario enviado correctamente',
+//                     type: 'success'
+//                 }
+//             }));
+    
+//         }).catch(error => {
+//             console.log(error);
+//         });
+//     });
+// };
+
+        
     }
 }
+
+
 
 customElements.define('form-component', Form);

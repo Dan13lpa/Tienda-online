@@ -56,7 +56,6 @@ class Tabs extends HTMLElement {
                 padding: 20px;
                 display: none;
                 width: 100%;
-                
             }
             
             .tab-contents > div.active{

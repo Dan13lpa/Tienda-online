@@ -13,12 +13,14 @@ header{
   
 main{
   margin: 1rem 0;
-  width: 100%;  
+  width: 100%;
+   
 }
 
 section{
-  margin-bottom: 1rem;
+  margin-bottom: 3rem;
   width: 100%;
+  
 }
 
 .main{
