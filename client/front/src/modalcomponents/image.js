@@ -29,7 +29,7 @@ class Image extends HTMLElement {
             }
         </style>
         <div class="image">
-            <img src="../images/slider-image.webp" alt="motorbike">
+            <img src="./images/slider-image.webp" alt="motorbike">
         </div>
         `;
     }

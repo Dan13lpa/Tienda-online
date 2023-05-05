@@ -11,6 +11,12 @@ class Details extends HTMLElement {
         this.shadow.innerHTML = 
         `
         <style>
+            *{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: "Poppins", sans-serif;
+            }
             html {
                 line-height: 1.15; 
                 -webkit-text-size-adjust: 100%; 
@@ -18,7 +24,7 @@ class Details extends HTMLElement {
             .details{
                 display: flex;
                 justify-content: space-between;
-                width: 70%;
+                width: 100%;
                 padding: 5% 15%;
                 gap: 2rem;
                 
@@ -84,7 +90,7 @@ class Details extends HTMLElement {
                 <div class="details-column">
                     <div class="details-item">
                         <div class="details-item-icon">
-                            <img src="./../images/icons/key-variant.svg"alt="key-image">
+                            <img src="././images/icons/key-variant.svg"alt="key-image">
                         </div>
                         <div class="details-text">
                             <div class="details-title">
@@ -100,7 +106,7 @@ class Details extends HTMLElement {
                     </div>
                     <div class="details-item">
                         <div class="details-icon">
-                            <img src="../images/icons/phone-bluetooth.svg"alt="phone-image">
+                            <img src="./images/icons/phone-bluetooth.svg"alt="phone-image">
                         </div>
                         <div class="details-text">
                             <div class="details-title">
@@ -116,7 +122,7 @@ class Details extends HTMLElement {
                     </div>
                     <div class="details-item">
                         <div class="details-icon">
-                            <img src="../images/icons/diamond-stone.svg"alt="diamond-image">
+                            <img src="./images/icons/diamond-stone.svg"alt="diamond-image">
                         </div>
                         <div class="details-text">
                             <div class="details-title">
@@ -133,13 +139,13 @@ class Details extends HTMLElement {
                 </div>
                 <div class="details-column">
                     <div class="details-image">
-                        <img src="../images/slider-image.webp"alt="key-image">
+                        <img src="./images/slider-image.webp"alt="key-image">
                     </div>
                 </div>
                 <div class="details-column">
                     <div class="details-item">
                         <div class="details-icon">
-                            <img src="../images/icons/atv.svg"alt="motorbike-image">
+                            <img src="./images/icons/atv.svg"alt="motorbike-image">
                         </div>
                         <div class="details-text">
                             <div class="details-title">
@@ -155,7 +161,7 @@ class Details extends HTMLElement {
                     </div>
                     <div class="details-item">
                         <div class="details-icon">
-                            <img src="../images/icons/shield-lock-outline.svg"alt="shield-image">
+                            <img src="./images/icons/shield-lock-outline.svg"alt="shield-image">
                         </div>
                         <div class="details-text">
                             <div class="details-title">
@@ -170,7 +176,7 @@ class Details extends HTMLElement {
                     </div>
                     <div class="details-item">
                         <div class="details-icon">
-                            <img src="../images/icons/medal.svg"alt="medal-image">
+                            <img src="./images/icons/medal.svg"alt="medal-image">
                         </div>
                         <div class="details-text">
                             <div class="details-title">

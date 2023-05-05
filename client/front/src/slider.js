@@ -11,6 +11,12 @@ class Slider extends HTMLElement {
         this.shadow.innerHTML = 
         `
         <style>
+            *{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: 'Poppins', sans-serif;
+            }
             html {
                 line-height: 1.15; 
                 -webkit-text-size-adjust: 100%; 
@@ -103,7 +109,7 @@ class Slider extends HTMLElement {
 
         <div class="slider">
             <div class="slider-background">
-                <img src="../images/beautiful-travel-road.webp" alt="Background">
+                <img src="./images/beautiful-travel-road.webp" alt="Background">
             </div>
                 <div class="slider-title">  
                     <h1>The future of motorbikes</h1>
@@ -118,7 +124,7 @@ class Slider extends HTMLElement {
                 <button type="button">BUY IT NOW</button>
             </div>
             <div class="slider-image">
-                <img src="../images/slider-image.webp" alt="image motorbike">
+                <img src="./images/slider-image.webp" alt="image motorbike">
             </div>
         </div>
         `;

@@ -11,6 +11,13 @@ class Faqs extends HTMLElement {
         this.shadow.innerHTML = 
         `
         <style>
+            *{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: "Poppins", sans-serif;
+            }
+
              html {
                 line-height: 1.15; 
                 -webkit-text-size-adjust: 100%; 
@@ -22,7 +29,7 @@ class Faqs extends HTMLElement {
                 flex-direction: column;
                 align-items: center;
                 gap: 1rem;
-                width: 70%;
+                width: 100%;
                 padding: 5% 15%;
             }
             .faqs-header{

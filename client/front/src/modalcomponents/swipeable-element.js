@@ -11,6 +11,13 @@ class SwipeableElement  extends HTMLElement {
         this.shadow.innerHTML = 
         `
         <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family:"Poppins", sans-serif;
+
+        }
             
         .swipe-element{
             display: flex;
@@ -19,10 +26,11 @@ class SwipeableElement  extends HTMLElement {
             width: 200%;
             height: 100%;
             transition: left 0.3s ease-in;
+            padding: 1rem 1rem;
         }
-
-        .primary-swipe-content, .secondary-swipe-content{
-            displa
+        .primary-content{
+            height: 80%;
+            width: 100%;
         }
         
         .swipe-element.active{
@@ -55,7 +63,8 @@ class SwipeableElement  extends HTMLElement {
 
         .swipe-button{
             width: 100%;
-           padding: 5% 0;
+            height: 20%;
+          
         }
         
         
@@ -80,9 +89,11 @@ class SwipeableElement  extends HTMLElement {
 
         </style>
 
-        <div class="swipe-element active">
+        <div class="swipe-element ">
             <div class="primary-swipe-content">
-                <slot name="primary-swipe-content"></slot>
+                <div class="primary-content">
+                    <slot name="primary-swipe-content"></slot>
+                </div>    
                 <div class="swipe-button">
                     <button class="modal-swipe-button">CHECKOUT</button>
                 </div>

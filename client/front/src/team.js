@@ -11,6 +11,13 @@ class Team extends HTMLElement {
         this.shadow.innerHTML = 
         `
         <style>
+            *{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: 'Poppins', sans-serif;
+            }
+
             html {
                 line-height: 1.15; 
                 -webkit-text-size-adjust: 100%; 
@@ -222,7 +229,7 @@ class Team extends HTMLElement {
                             </div>
                         </div>
                         <div class="team-item-picture">
-                            <img src="../images/team-1.webp" alt="Avatar">
+                            <img src="./images/team-1.webp" alt="Avatar">
                         </div>
                         <div class="team-item-name">
                             <h4>Gary Elliott</h4>
@@ -252,7 +259,7 @@ class Team extends HTMLElement {
                             </div>
                         </div>
                         <div class="team-item-picture">
-                            <img src="../images/team-2.webp" alt="Avatar">
+                            <img src="./images/team-2.webp" alt="Avatar">
                         </div>
                         <div class="team-item-name">
                             <h4>Jeffrey Allen</h4>
@@ -282,7 +289,7 @@ class Team extends HTMLElement {
                             </div>
                         </div>
                         <div class="team-item-picture">
-                            <img src="../images/team-3.webp" alt="Avatar">
+                            <img src="./images/team-3.webp" alt="Avatar">
                         </div>
                         <div class="team-item-name">
                             <h4>Sara Mendez</h4>
@@ -312,7 +319,7 @@ class Team extends HTMLElement {
                             </div>
                         </div>
                         <div class="team-item-picture">
-                            <img src="../images/team-4.webp" alt="Avatar">
+                            <img src="./images/team-4.webp" alt="Avatar">
                         </div>
                         <div class="team-item-name">
                             <h4>Albert Castro</h4>

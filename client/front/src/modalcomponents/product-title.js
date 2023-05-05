@@ -14,10 +14,10 @@ class ProductTitle extends HTMLElement {
        
         .modal-info{
             display: flex;
-            gap: 0.1rem;
+           
             flex-direction: column;
             border-bottom: 1px solid hsl(210, 15%, 79%);
-            padding-bottom: 0.5rem;
+            
         }
         
         .modal-title h4{
@@ -83,7 +83,7 @@ class ProductTitle extends HTMLElement {
         
         .modal-description{
             border-bottom: 1px solid hsl(210, 15%, 79%);
-            padding-bottom: 1.5rem;
+            
         }
         
         .modal-description-text p{

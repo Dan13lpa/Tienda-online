@@ -11,6 +11,13 @@ class Featured extends HTMLElement {
         this.shadow.innerHTML = 
         `
         <style>
+            *{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: "Poppins", sans-serif;
+            }
+            
             html {
                 line-height: 1.15; 
                 -webkit-text-size-adjust: 100%; 
@@ -22,7 +29,7 @@ class Featured extends HTMLElement {
                 flex-direction: column;
                 align-items: center;
                 gap: 2rem;
-                width: 70%;
+                width: 100%;
                 padding: 5% 15%;
             }
             
@@ -31,7 +38,6 @@ class Featured extends HTMLElement {
                 color:hsl(208, 13%, 25%);
                 font-weight: 600;
                 font-size: 3rem;
-                font-family: "Poppins", sans-serif;
                 text-decoration: none;
             }
             
@@ -40,9 +46,8 @@ class Featured extends HTMLElement {
                 font-weight: 300;
                 font-size: 1.2rem;
                 color: hsl(210, 7%, 49%);
-                width: 70%;
+                width: 100%;
                 padding: 0 15%;
-                font-family: "Poppins", sans-serif;
             }
             
             .featured-description::after{
@@ -104,7 +109,7 @@ class Featured extends HTMLElement {
             <div class="featured-items">
                 <div class="featured-item">
                     <div class="featured-item-image">
-                        <img src="../images/desktop-106x106.png" alt="card-image">
+                        <img src="./images/desktop-106x106.png" alt="card-image">
                     </div>
                     <div class="featured-item-title">
                         <h3>Connect Device</h3>
@@ -115,7 +120,7 @@ class Featured extends HTMLElement {
                 </div>
                 <div class="featured-item">
                     <div class="featured-item-image">
-                        <img src="../images/toggles-106x106.png" alt="card-image">
+                        <img src="./images/toggles-106x106.png" alt="card-image">
                     </div>
                     <div class="featured-item-title">
                         <h3>Configure it</h3>
@@ -126,7 +131,7 @@ class Featured extends HTMLElement {
                 </div>
                 <div class="featured-item">
                     <div class="featured-item-image">
-                        <img src="../images/trophy-106x106.png" alt="card-image">
+                        <img src="./images/trophy-106x106.png" alt="card-image">
                     </div>
                     <div class="featured-item-title">
                         <h3>Yay! Done.</h3>

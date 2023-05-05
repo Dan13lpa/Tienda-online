@@ -11,13 +11,18 @@ class ProductInfo extends HTMLElement {
         this.shadow.innerHTML = 
         `
         <style>
+         *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+          }
         .product{
             display: flex;
             flex-direction: column;
             justify-content: space-evenly;
             height: 100%;
             width: 100%;
-            padding: 0.5rem;
+            
         }
         .title{
             display: flex;
