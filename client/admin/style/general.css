@@ -1,0 +1,36 @@
+body{
+    background-color: hsl(226, 63%, 45%);
+    padding: 0 5%;
+    max-width: 90%;
+    margin-top: 1rem;
+  }
+  
+  header{
+    display: flex ;
+    justify-content: space-between;
+  }
+    
+  main{
+    margin: 1rem 0;
+    width: 100%;
+     
+  }
+  
+  section{
+    margin-bottom: 3rem;
+    width: 100%;
+    
+  }
+  
+  .main{
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .column-small{
+    width: 35%;
+  }
+  
+  .column-large{
+    width: 60%;
+  }
