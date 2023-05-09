@@ -11,7 +11,10 @@ class Tabs extends HTMLElement {
         this.shadow.innerHTML = 
         `
         <style>
-            
+            .tab{
+                width: 80%;
+                height: 20%;
+            }
             .tabs{
                 margin: 2rem 0; 
                 width: 100%;
@@ -63,12 +66,15 @@ class Tabs extends HTMLElement {
             }
         
         </style>
-        <div class="tabs">
-        <ul class="tabs-header">
-            <li data-num="one" class="active">Description</li>
-            <li data-num="two">Characteristics</li>
-            <li data-num="three">Opinions</li>
-        </ul>
+        <div class="tab">
+            <div class="tabs">
+            <ul class="tabs-header">
+                <li data-num="one" class="active">Description</li>
+                <li data-num="two">Characteristics</li>
+                <li data-num="three">Opinions</li>
+            </ul>
+            </div>
+        </div> 
         <div class="tab-contents">
             <div class="active" data-num="one">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam ex optio molestiae deleniti accusantium nobis hic, quia, quaerat ipsa numquam, eius expedita odit earum. Dolores dolore iusto est earum praesentium?</div>
             <div class="tab-content" data-num="two">holaa consectetur adipisicing elit. Quam ex optio molestiae deleniti accusantium nobis hic, quia, quaerat ipsa numquam, eius expedita odit earum. Dolores dolore iusto est earum praesentium?</div>

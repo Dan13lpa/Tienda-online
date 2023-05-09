@@ -13,7 +13,7 @@ class ProductAmount extends HTMLElement {
         <style>
             .plus-minus-buttons{
                 display: flex;
-                width: 100%;
+                width: 80%;
                 justify-content: center;
                 align-items: center;
             }
