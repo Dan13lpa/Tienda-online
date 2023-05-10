@@ -25,15 +25,6 @@ module.exports = function(sequelize, DataTypes) {
                 }
             }
         },
-        comercial_name: {
-            type: DataTypes.STRING(255),
-            allowNull: false,
-            validate: {
-                notNull: {
-                    msg: 'Por favor, rellena el campo "Nombre".'
-                }
-            }
-        },
         nif: {
             type: DataTypes.STRING(255),
             allowNull: false,
@@ -59,14 +50,10 @@ module.exports = function(sequelize, DataTypes) {
                     msg: 'Por favor, rellena el campo "Email" con un email válido.'
                 }
             }
-        },
-        password: {
-            type: DataTypes.STRING(255),
-            allowNull: true
         }
     }, {
         sequelize,
-        tableName: 'Companys',
+        tableName: 'companies',
         timestamps: true,
         paranoid: true,
         indexes: [
@@ -88,8 +75,6 @@ module.exports = function(sequelize, DataTypes) {
             },
         ]
     });
-
-    useBcrypt(Company);
 
     Company.associate = function(models) {
     };
