@@ -2,35 +2,32 @@
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
+
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('social_networks_companies', {
+    await queryInterface.createTable('locales', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      id_company: {
+      language_alias: {
         allowNull: false,
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'companies',
-          key: 'id'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE'
+        type: Sequelize.STRING
       },
-      id_social_network: {
+      entity: {
         allowNull: false,
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'social_networks',
-          key: 'id'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE'
+        type: Sequelize.STRING
       },
-      account: {
+      entity_key: {
+        allowNull: false,
+        type: Sequelize.INTEGER.UNSIGNED
+      },
+      key: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      value: {
         allowNull: false,
         type: Sequelize.STRING
       },
@@ -49,6 +46,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('social_networks_companies');
+    await queryInterface.dropTable('locales');
   }
 };
