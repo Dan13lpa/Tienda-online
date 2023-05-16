@@ -1,16 +1,16 @@
 module.exports = function(sequelize, DataTypes) {
-    const ProductCategory = sequelize.define('ProductCategory', {
+    const Tax = sequelize.define('Tax', {
         id: {
             allowNull: false,
             autoIncrement: true,
             primaryKey: true,
             type: DataTypes.INTEGER
           },
-          name: {
+          vatRate: {
             allowNull: false,
             type: DataTypes.STRING
           },
-          visible: {
+          valid: {
             type: DataTypes.BOOLEAN,
             defaultValue: false
           },
@@ -27,7 +27,7 @@ module.exports = function(sequelize, DataTypes) {
           }
         }, {
             sequelize,
-            tableName: 'product_categories',
+            tableName: 'taxes',
             timestamps: true,
             paranoid: true,
             indexes: [
@@ -43,8 +43,8 @@ module.exports = function(sequelize, DataTypes) {
         });
     
     
-        ProductCategory.associate = function(models) {
+        Tax.associate = function(models) {
         };
     
-        return ProductCategory;
+        return Tax;
     };

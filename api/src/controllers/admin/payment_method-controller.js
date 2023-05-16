@@ -1,10 +1,10 @@
 const db = require("../../models");
-const Payment_method = db.Payment_method;
+const PaymentMethod = db.PaymentMethod;
 const Op = db.Sequelize.Op;
 
 exports.create = (req, res) => {
 
-    Payment_method.create(req.body).then(data => {
+    PaymentMethod.create(req.body).then(data => {
 
         res.status(200).send(data);
 
@@ -30,9 +30,9 @@ exports.findAll = (req, res) => {
     let whereStatement = {};
     let condition = Object.keys(whereStatement).length > 0 ? {[Op.and]: [whereStatement]} : {};
 
-    Payment_method.findAndCountAll({
+    PaymentMethod.findAndCountAll({
         where: condition, 
-        attributes: ['id', 'name', ],
+        attributes: ['id', 'name', 'visible' ],
         limit: limit,
         offset: offset,
         order: [['createdAt', 'DESC']]
@@ -48,6 +48,7 @@ exports.findAll = (req, res) => {
         res.status(200).send(result);
 
     }).catch(err => {
+
         res.status(500).send({
             message: err.errors || "Algún error ha surgido al recuperar los datos."
         });
@@ -58,7 +59,7 @@ exports.findOne = (req, res) => {
 
     const id = req.params.id;
 
-    Payment_method.findByPk(id).then(data => {
+    PaymentMethod.findByPk(id).then(data => {
 
         if (data) {
             res.status(200).send(data);
@@ -79,7 +80,7 @@ exports.update = (req, res) => {
 
     const id = req.params.id;
 
-    Payment_method.update(req.body, {
+    PaymentMethod.update(req.body, {
         where: { id: id }
     }).then(num => {
         if (num == 1) {
@@ -102,7 +103,7 @@ exports.delete = (req, res) => {
 
     const id = req.params.id;
 
-    Payment_method.destroy({
+    PaymentMethod.destroy({
         where: { id: id }
     }).then(num => {
         if (num == 1) {

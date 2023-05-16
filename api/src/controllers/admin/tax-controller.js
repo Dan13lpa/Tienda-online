@@ -1,21 +1,21 @@
 const db = require("../../models");
-const Fingerprint = db.Fingerprint;
+const Tax = db.Tax;
 const Op = db.Sequelize.Op;
 
 exports.create = (req, res) => {
 
-    Fingerprint.create(req.body).then(data => {
+    Tax.create(req.body).then(data => {
 
         res.status(200).send(data);
 
     }).catch(err => {
         if(err.errors ){
             res.status(422).send({
-                message: err.errors
+            message: err.errors
             });
         }else{
             res.status(500).send({
-                message: "Algún error ha surgido al recuperar los datos."
+            message: "Algún error ha surgido al recuperar los datos."
             });
         }
     });
@@ -30,9 +30,9 @@ exports.findAll = (req, res) => {
     let whereStatement = {};
     let condition = Object.keys(whereStatement).length > 0 ? {[Op.and]: [whereStatement]} : {};
 
-    Fingerprint.findAndCountAll({
+    Tax.findAndCountAll({
         where: condition, 
-        attributes: ['id', 'clientId','fingerprint' ],
+        attributes: ['id', 'vatRate', 'valid' ],
         limit: limit,
         offset: offset,
         order: [['createdAt', 'DESC']]
@@ -48,7 +48,6 @@ exports.findAll = (req, res) => {
         res.status(200).send(result);
 
     }).catch(err => {
-
         res.status(500).send({
             message: err.errors || "Algún error ha surgido al recuperar los datos."
         });
@@ -59,7 +58,7 @@ exports.findOne = (req, res) => {
 
     const id = req.params.id;
 
-    Fingerprint.findByPk(id).then(data => {
+    Tax.findByPk(id).then(data => {
 
         if (data) {
             res.status(200).send(data);
@@ -80,7 +79,7 @@ exports.update = (req, res) => {
 
     const id = req.params.id;
 
-    Fingerprint.update(req.body, {
+    Tax.update(req.body, {
         where: { id: id }
     }).then(num => {
         if (num == 1) {
@@ -103,7 +102,7 @@ exports.delete = (req, res) => {
 
     const id = req.params.id;
 
-    Fingerprint.destroy({
+    Tax.destroy({
         where: { id: id }
     }).then(num => {
         if (num == 1) {

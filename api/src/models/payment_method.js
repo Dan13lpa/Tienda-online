@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-    const Payment_method = sequelize.define('Payment_method', {
+    const PaymentMethod = sequelize.define('PaymentMethod', {
         id: {
             allowNull: false,
             autoIncrement: true,
@@ -43,8 +43,8 @@ module.exports = function(sequelize, DataTypes) {
         });
     
     
-        Payment_method.associate = function(models) {
+        PaymentMethod.associate = function(models) {
         };
     
-        return Payment_method;
+        return PaymentMethod;
     };
