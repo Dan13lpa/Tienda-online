@@ -1,17 +1,23 @@
 const db = require("../../models");
-const SocialNetwork = db.SocialNetworks;
+const EmployeeSocialNetwork = db.EmployeeSocialNetwork;
 const Op = db.Sequelize.Op;
 
 exports.create = (req, res) => {
 
-    SocialNetwork.create(req.body).then(data => {
+    EmployeeSocialNetwork.create(req.body).then(data => {
 
         res.status(200).send(data);
 
     }).catch(err => {
-        res.status(500).send({
-            message: err.errors || "Algún error ha surgido al insertar el dato."
-        });
+        if(err.errors ){
+            res.status(422).send({
+            message: err.errors
+            });
+        }else{
+            res.status(500).send({
+            message: "Algún error ha surgido al recuperar los datos."
+            });
+        }
     });
 };
 
@@ -24,9 +30,9 @@ exports.findAll = (req, res) => {
     let whereStatement = {};
     let condition = Object.keys(whereStatement).length > 0 ? {[Op.and]: [whereStatement]} : {};
 
-    SocialNetwork.findAndCountAll({
+    EmployeeSocialNetwork.findAndCountAll({
         where: condition, 
-        attributes: ['id', 'name', 'baseUrl'],
+        attributes: ['id', 'name', 'employee_id', 'social_network_id', 'account'],
         limit: limit,
         offset: offset,
         order: [['createdAt', 'DESC']]
@@ -52,7 +58,7 @@ exports.findOne = (req, res) => {
 
     const id = req.params.id;
 
-    SocialNetwork.findByPk(id).then(data => {
+    EmployeeSocialNetwork.findByPk(id).then(data => {
 
         if (data) {
             res.status(200).send(data);
@@ -73,7 +79,7 @@ exports.update = (req, res) => {
 
     const id = req.params.id;
 
-    SocialNetwork.update(req.body, {
+    EmployeeSocialNetwork.update(req.body, {
         where: { id: id }
     }).then(num => {
         if (num == 1) {
@@ -87,7 +93,7 @@ exports.update = (req, res) => {
         }
     }).catch(err => {
         res.status(500).send({
-            message: "Algún error ha surgido al actualizar la id=" + id
+            message: "Algún error ha surgido al actualiazar la id=" + id
         });
     });
 };
@@ -96,7 +102,7 @@ exports.delete = (req, res) => {
 
     const id = req.params.id;
 
-    SocialNetwork.destroy({
+    EmployeeSocialNetwork.destroy({
         where: { id: id }
     }).then(num => {
         if (num == 1) {

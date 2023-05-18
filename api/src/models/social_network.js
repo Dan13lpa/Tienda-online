@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-    const SocialNetwork = sequelize.define('SocialNetwork', {
+    const SocialNetworks = sequelize.define('SocialNetworks', {
         id: {
             autoIncrement: true,
             type: DataTypes.INTEGER,
@@ -15,12 +15,12 @@ module.exports = function(sequelize, DataTypes) {
                 }
             }
         },
-        url: {
+        baseUrl: {
             type: DataTypes.STRING(255),
             allowNull: false,
             validate: {
                 notNull: {
-                    msg: 'Por favor, rellena el campo "Url".'
+                    msg: 'Por favor, rellena el campo "Base URL".'
                 }
             }
         },
@@ -37,13 +37,21 @@ module.exports = function(sequelize, DataTypes) {
                 fields: [
                     { name: "id" },
                 ]
-            }
+            },
+            {
+                name: "email",
+                unique: true,
+                using: "BTREE",
+                fields: [
+                    { name: "email" },
+                ]
+            },
         ]
     });
 
-
-    SocialNetwork.associate = function(models) {
+    SocialNetworks.associate = function(models) {
+        // Define las asociaciones con otros modelos aquí
     };
 
-    return SocialNetwork;
+    return SocialNetworks;
 };

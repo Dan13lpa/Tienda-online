@@ -4,7 +4,7 @@
 module.exports = {
 
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('social_networks', {
+    await queryInterface.createTable('employees', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -15,9 +15,19 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
-      url: {
+      position: {
         allowNull: false,
         type: Sequelize.STRING
+      },
+      company_id: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'companies',
+          key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
       },
       createdAt: {
         allowNull: false,
@@ -34,6 +44,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('social_networks');
+    await queryInterface.dropTable('employees');
   }
 };
