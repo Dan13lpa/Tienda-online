@@ -25,7 +25,11 @@ module.exports = function(sequelize, DataTypes) {
             }
         },
         fingerprintId: {
-            type: DataTypes.INTEGER
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'Fingerprint',
+                key: 'id',
+              }
         },
         createdAt: {
             allowNull: false,

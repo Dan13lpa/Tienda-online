@@ -10,20 +10,16 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false,
             type: DataTypes.INTEGER,
             references: {
-              model: 'employees',
+              model: 'Employee',
               key: 'id',
-              onUpdate: 'CASCADE',
-              onDelete: 'CASCADE'
             }
           },
           social_network_id: {
             allowNull: false,
             type: DataTypes.INTEGER,
             references: {
-              model: 'social_network',
+              model: 'SocialNetwork',
               key: 'id',
-              onUpdate: 'CASCADE',
-              onDelete: 'CASCADE'
             }
           },
           account: {

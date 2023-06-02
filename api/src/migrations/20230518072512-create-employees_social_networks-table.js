@@ -11,24 +11,20 @@ module.exports = {
       primaryKey: true,
       type: Sequelize.INTEGER
     },
-    employee_id: {
+    employeeId: {
       allowNull: false,
       type: Sequelize.INTEGER,
       references: {
-        model: 'employees',
+        model: 'Employee',
         key: 'id',
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE'
       }
     },
-    social_network_id: {
+    socialNetworkId: {
       allowNull: false,
       type: Sequelize.INTEGER,
       references: {
-        model: 'social_network',
+        model: 'SocialNetwork',
         key: 'id',
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE'
       }
     },
     account: {

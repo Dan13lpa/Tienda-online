@@ -11,7 +11,7 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false,
             validate: {
                 notNull: {
-                    msg: 'Por favor, rellena el campo "Nombre".'
+                    msg: 'Por favor, rellena el campo "Nombre Fiscal".'
                 }
             }
         },
@@ -21,6 +21,9 @@ module.exports = function(sequelize, DataTypes) {
             validate: {
                 notNull: {
                     msg: 'Por favor, rellena el campo "Email".'
+                },
+                isEmail: {
+                    msg: 'Por favor, rellena el campo "Email" con un email válido.'
                 }
             }
         },
@@ -34,17 +37,20 @@ module.exports = function(sequelize, DataTypes) {
             }
         },
         message: {
-            type: DataTypes.STRING(255),
+            type: DataTypes.TEXT,
             allowNull: false,
             validate: {
-                notNull: {
-                    msg: 'Por favor, rellena el campo "Message".'
-                }
+              notNull: {
+                msg: 'Por favor, rellena el campo "Mensaje".'
+              }
             }
+        },
+        fingerprintId:{
+            type: DataTypes.INTEGER
         },
     }, {
         sequelize,
-        tableName: 'contacts',
+        tableName: 'Contacts',
         timestamps: true,
         paranoid: true,
         indexes: [
@@ -68,6 +74,7 @@ module.exports = function(sequelize, DataTypes) {
     });
 
     Contact.associate = function(models) {
+        // Define las asociaciones con otros modelos aquí
     };
 
     return Contact;

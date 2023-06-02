@@ -15,6 +15,17 @@ module.exports = function(sequelize, DataTypes) {
                 }
             }
         },
+        createdAt: {
+            type: DataTypes.DATE,
+            allowNull: false
+        },
+        updatedAt: {
+            type: DataTypes.DATE,
+            allowNull: false
+        },
+        deletedAt: {
+            type: DataTypes.DATE
+        }
     }, {
         sequelize,
         tableName: 'menus',
@@ -31,8 +42,6 @@ module.exports = function(sequelize, DataTypes) {
             }
         ]
     });
-
-
     Menu.associate = function(models) {
     };
 

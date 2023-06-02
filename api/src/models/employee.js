@@ -18,11 +18,9 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-            model: 'companies',
+            model: 'Company',
             key: 'id'
             },
-            onUpdate: 'CASCADE',
-            onDelete: 'CASCADE'
             },
             createdAt: {
             type: DataTypes.DATE,

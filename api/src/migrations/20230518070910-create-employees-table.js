@@ -11,6 +11,14 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      companyId: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Company',
+          key: 'id'
+        },
+      },
       name: {
         allowNull: false,
         type: Sequelize.STRING
@@ -18,16 +26,6 @@ module.exports = {
       position: {
         allowNull: false,
         type: Sequelize.STRING
-      },
-      company_id: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'companies',
-          key: 'id'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE'
       },
       createdAt: {
         allowNull: false,
