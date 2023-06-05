@@ -1,31 +1,39 @@
-'use strict';
+'use strict'
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('locale_seos', {
+    await queryInterface.createTable('locale_seo_slugs', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      localeSeoId: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'locale_seos',
+          key: 'id'
+        }
+      },
       language: {
         allowNull: false,
         type: Sequelize.STRING
       },
-      group: {
+      relParent: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      slug: {
         allowNull: false,
         type: Sequelize.STRING
       },
       key: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
       },
-      subdomain: {
-        type: Sequelize.STRING
-      },
-      url: {
-        allowNull: false,
+      parentSlug: {
         type: Sequelize.STRING
       },
       title: {
@@ -38,24 +46,6 @@ module.exports = {
       keywords: {
         type: Sequelize.STRING
       },
-      redirection: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: 0
-      },
-      menu: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: 1
-      },
-      changeFrequency: {
-        type: Sequelize.STRING
-      },
-      priority: {
-        type: Sequelize.DECIMAL
-      },
-      sitemap: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: 1
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
@@ -67,10 +57,13 @@ module.exports = {
       deletedAt: {
         type: Sequelize.DATE
       }
-    });
+    })
+    .then(() => queryInterface.addIndex('locale_seo_slugs', ['localeSeoId'],{
+      name: 'localeSeoSlug_localeSeoId_fk'
+    }))
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('locale_seos');
+    await queryInterface.dropTable('locale_seo_slugs')
   }
-};
+}

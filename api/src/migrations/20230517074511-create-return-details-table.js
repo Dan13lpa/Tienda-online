@@ -1,58 +1,47 @@
-'use strict';
+'use strict'
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('returns', {
+    await queryInterface.createTable('return_details', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      saleId: {
+      returnId: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'Sale',
-          key: 'id',
+          model: 'returns',
+          key: 'id'
         }
       },
-      customerId: {
+      productId: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'Customer',
-          key: 'id',
+          model: 'products',
+          key: 'id'
         }
       },
-      paymentMethodId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'PaymentMethod',
-          key: 'id',
-        }
-      },
-      reference: {
+      productName: {
         allowNull: false,
         type: Sequelize.STRING
       },
-      totalPrice: {
+      basePrice: {
         allowNull: false,
-        type: Sequelize.DECIMAL(10, 2)
+        type: Sequelize.DECIMAL(6, 2)
       },
-      totalBasePrice: {
+      taxPrice: {
         allowNull: false,
-        type: Sequelize.DECIMAL(10, 2)
+        type: Sequelize.DECIMAL(6, 2)
       },
-      totalTaxPrice: {
+      unitOfMeasurement: {
         allowNull: false,
-        type: Sequelize.DECIMAL(10, 2)
+        type: Sequelize.STRING
       },
-      issueDate: {
+      quantity: {
         allowNull: false,
-        type: Sequelize.DATEONLY
-      },
-      issueTime: {
-        allowNull: false,
-        type: Sequelize.TIME
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
@@ -65,10 +54,16 @@ module.exports = {
       deletedAt: {
         type: Sequelize.DATE
       }
-    });
+    })
+    .then(() => queryInterface.addIndex('return_details', ['returnId'],{
+      name: 'returnDetail_returnId_fk'
+    }))
+    .then(() => queryInterface.addIndex('return_details', ['productId'],{
+      name: 'returnDetail_productId_fk'
+    }))
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('returns');
+    await queryInterface.dropTable('return_details')
   }
-};
+}

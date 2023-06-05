@@ -1,47 +1,33 @@
-'use strict';
+'use strict'
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('return_details', {
+    await queryInterface.createTable('social_networks_employees', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      returnId: {
+      socialNetworkId: {
+        allowNull: false,
         type: Sequelize.INTEGER,
         references: {
-          model: 'Return',
+          model: 'social_networks',
           key: 'id'
-        },
+        }
       },
-      productId: {
+      employeeId: {
+        allowNull: false,
         type: Sequelize.INTEGER,
         references: {
-          model: 'Product',
+          model: 'employees',
           key: 'id'
-        },
+        }
       },
-      productName: {
+      user: {
         allowNull: false,
         type: Sequelize.STRING
-      },
-      basePrice: {
-        allowNull: false,
-        type: Sequelize.DECIMAL(6, 2)
-      },
-      taxPrice: {
-        allowNull: false,
-        type: Sequelize.DECIMAL(6, 2)
-      },
-      unitOfMeasurement: {
-        allowNull: false,
-        type: Sequelize.STRING
-      },
-      quantity: {
-        allowNull: false,
-        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
@@ -54,10 +40,16 @@ module.exports = {
       deletedAt: {
         type: Sequelize.DATE
       }
-    });
+    })
+    .then(() => queryInterface.addIndex('social_networks_employees', ['socialNetworkId'],{
+      name: 'socialNetworksEmployee_socialNetworkId_fk'
+    }))
+    .then(() => queryInterface.addIndex('social_networks_employees', ['employeeId'],{
+      name: 'socialNetworksEmployee_employeeId_fk'
+    }))
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('return_details');
+    await queryInterface.dropTable('social_networks_employees')
   }
-};
+}

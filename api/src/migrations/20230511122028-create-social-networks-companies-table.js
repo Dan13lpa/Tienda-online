@@ -1,10 +1,10 @@
-'use strict';
+'use strict'
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
 
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('employees', {
+    await queryInterface.createTable('social_networks_companies', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -15,17 +15,17 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
-          model: 'Company',
+          model: 'companies',
           key: 'id'
-        },
+        }
       },
-      name: {
+      socialNetworkId: {
         allowNull: false,
-        type: Sequelize.STRING
-      },
-      position: {
-        allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'social_networks',
+          key: 'id'
+        }
       },
       createdAt: {
         allowNull: false,
@@ -38,10 +38,16 @@ module.exports = {
       deletedAt: {
         type: Sequelize.DATE
       }
-    });
+    })
+    .then(() => queryInterface.addIndex('social_networks_companies', ['companyId'],{
+      name: 'socialNetworksCompany_companyId_fk'
+    }))
+    .then(() => queryInterface.addIndex('social_networks_companies', ['socialNetworkId'],{
+      name: 'socialNetworksCompany_socialNetworkId_fk'
+    }))
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('employees');
+    await queryInterface.dropTable('social_networks_companies')
   }
-};
+}

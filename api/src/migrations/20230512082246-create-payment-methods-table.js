@@ -1,7 +1,8 @@
-'use strict';
+'use strict'
+
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('product_categories', {
+    await queryInterface.createTable('payment_methods', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -14,7 +15,8 @@ module.exports = {
       },
       visible: {
         allowNull: false,
-        type: Sequelize.BOOLEAN
+        type: Sequelize.BOOLEAN,
+        defaultValue: true
       },
       createdAt: {
         allowNull: false,
@@ -23,10 +25,14 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
+      },
+      deletedAt: {
+        type: Sequelize.DATE
       }
-    });
+    })
   },
+
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('product_categories');
+    await queryInterface.dropTable('payment_methods')
   }
-};
+}

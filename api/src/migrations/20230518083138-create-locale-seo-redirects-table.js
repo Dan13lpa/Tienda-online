@@ -1,27 +1,35 @@
-'use strict';
+'use strict'
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('products', {
+    await queryInterface.createTable('locale_seo_redirects', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      productCategoryId: {
+      localeSeoId: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'ProductCategory',
+          model: 'locale_seos',
           key: 'id'
-        },
+        }
       },
-      name: {
-        allowNull: false,
+      language: {
         type: Sequelize.STRING
       },
-      featured: {
-        type: Sequelize.BOOLEAN
+      group: {
+        type: Sequelize.STRING
+      },
+      key: {
+        type: Sequelize.STRING
+      },
+      subdomain: {
+        type: Sequelize.STRING
+      },
+      oldUrl: {
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
@@ -34,10 +42,13 @@ module.exports = {
       deletedAt: {
         type: Sequelize.DATE
       }
-    });
+    })
+    .then(() => queryInterface.addIndex('locale_seo_redirects', ['localeSeoId'],{
+      name: 'localeSeoRedirect_localeSeoId_fk'
+    }))
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('products');
+    await queryInterface.dropTable('locale_seo_redirects')
   }
-};
+}

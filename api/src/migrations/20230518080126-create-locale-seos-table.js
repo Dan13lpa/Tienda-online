@@ -1,39 +1,31 @@
-'use strict';
+'use strict'
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('locale_seo_slugs', {
+    await queryInterface.createTable('locale_seos', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      localeSeoId: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'LocaleSeo',
-          key: 'id',
-        }
-      },
       language: {
         allowNull: false,
         type: Sequelize.STRING
       },
-      relParent: {
-        allowNull: false,
-        type: Sequelize.STRING
-      },
-      slug: {
+      group: {
         allowNull: false,
         type: Sequelize.STRING
       },
       key: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
-      parentSlug: {
+      subdomain: {
+        type: Sequelize.STRING
+      },
+      url: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       title: {
@@ -46,6 +38,24 @@ module.exports = {
       keywords: {
         type: Sequelize.STRING
       },
+      redirection: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: 0
+      },
+      menu: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: 1
+      },
+      changeFrequency: {
+        type: Sequelize.STRING
+      },
+      priority: {
+        type: Sequelize.DECIMAL
+      },
+      sitemap: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: 1
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
@@ -57,10 +67,10 @@ module.exports = {
       deletedAt: {
         type: Sequelize.DATE
       }
-    });
+    })
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('locale_seo_slugs');
+    await queryInterface.dropTable('locale_seos')
   }
-};
+}

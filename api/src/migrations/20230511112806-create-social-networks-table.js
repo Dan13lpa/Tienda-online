@@ -1,34 +1,22 @@
-'use strict';
+'use strict'
 
+/** @type {import('sequelize-cli').Migration} */
 module.exports = {
+
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('locale_seo_redirects', {
+    await queryInterface.createTable('social_networks', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      localeSeoId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'LocaleSeo',
-          key: 'id',
-        }
-      },
-      language: {
+      name: {
+        allowNull: false,
         type: Sequelize.STRING
       },
-      group: {
-        type: Sequelize.STRING
-      },
-      key: {
-        type: Sequelize.STRING
-      },
-      subdomain: {
-        type: Sequelize.STRING
-      },
-      oldUrl: {
+      baseUrl: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       createdAt: {
@@ -42,10 +30,10 @@ module.exports = {
       deletedAt: {
         type: Sequelize.DATE
       }
-    });
+    })
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('locale_seo_redirects');
+    await queryInterface.dropTable('social_networks')
   }
-};
+}
