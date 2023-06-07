@@ -155,111 +155,77 @@ class Form extends HTMLElement {
                     <form id="form-principal">
                         <div>
                             <label>Nombre</label>
-                            <input type="text"></input>
+                            <input type="text" name="name"></input>
                         </div>
                         <div>
                             <label>Email</label>
-                            <input type="text"></input>
+                            <input type="text" name="email"></input>
                         </div>
                         <div>
                             <label>Contraseña</label>
-                            <input type="text"></input>
+                            <input type="password" name="password"></input>
                         </div>
                         <div>
                             <label>Confirme contraseña</label>
-                            <input type="text"></input>
+                            <input type="password" name="repeatPassword"></input>
                         </div>
                     </form>
                 </div>
                 <div class="form" data-form="image">
-                    <form id="form-images">
-                        <div class="input-image">
-                            <label>Seleccione una imagen</label>
-                            <input type="file">
-                        </div>
-                    </form>
+                    <div class="input-image">
+                        <label>Seleccione una imagen</label>
+                        <input type="file">
+                    </div>
                 </div>
             </div>
         </section>
         `;
+
+        // tabs.forEach(tab => {
+        //     tab.addEventListener('click', () => {
+        //         tabsHeader.querySelector('.active').classList.remove('active');
+        //         tabContents.querySelector('.active').classList.remove('active');
+        //         tab.classList.add('active');
+        //         tabContents.querySelector(`[data-num="${tab.dataset.num}"]`).classList.add('active');
+        //     });
+        // });
+
+        const form = this.shadow.querySelector('form'); 
+        const submitButton = this.shadow.querySelector("#submitButton");
+
+        submitButton.addEventListener("click", event =>{
+
+            event.preventDefault(); 
+
+            const formData = new FormData(form); 
+
+            for (let pair of formData.entries()) {
+                console.log(pair[0]+ ', ' + pair[1]); 
+            }
         
-    const selector = document.querySelector('.selector');
-    const formContainer = document.querySelector('.form-container');
-    const formselector = selector.querySelectorAll('');
+            const formDataJson = Object.fromEntries(formData.entries());
+                 
+            fetch('http://localhost:8080/api/admin/users', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formDataJson) 
+            })
+            .then(response => response.json())
+            .then(data => {
 
-    const formSelectors=this.shadowRoot.querySelectorAll("")
-    tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-            tabsHeader.querySelector('.active').classList.remove('active');
-            tabContents.querySelector('.active').classList.remove('active');
-            tab.classList.add('active');
-            tabContents.querySelector(`[data-num="${tab.dataset.num}"]`).classList.add('active');
-        });
-    });
+                console.log(data)
+                form.reset(); 
+            })
+            .catch(error => {
+                console.log(error);
+            });
 
-
-        
-// import {validateForm} from './validator.js';
-
-// export let renderForm = () => {
-
-//     let form = document.getElementById('form');
-//     let sendFormButton = document.getElementById('send-form-button');
-
-//     sendFormButton.addEventListener('click', event => {
-
-//         event.preventDefault();
-
-//         // if(!validateForm(form.elements)){
-//         //     return;
-//         // }
-
-//         // Podemos recoger el valor de todos los inputs de un formulario mediante el objeto FormData. 
-//         // Para ello debemos pasar como parámetro el formulario al que queremos acceder. 
-//         // let formData = new FormData(form);
-//         // Podemos añadir un nuevo dato al objeto FormData mediante el método append.
-//         // formData.append("fingerprint", "123456789");
-
-//         // Podemos recorrer el objeto FormData mediante un bucle for...of.
-//         // for (let pair of formData.entries()) {
-//         //     console.log(pair[0]+ ', ' + pair[1]); 
-//         // }
-
-//         // Capturar los datos del formulario y enviarlos mediante fetch para ser recibidos por express.
-
-//         // Podemos convertir el objeto FormData en un objeto json mediante el método entries.
-
-//         let formData = new FormData(form);
-//         let formDataJson = Object.fromEntries(formData.entries());
-
-//         fetch('http://192.168.1.16:8080/api/admin/users', {
-//             method: 'POST',
-//             headers: {
-//                 'Content-Type': 'application/json',
-//                 'x-access-token': sessionStorage.getItem('accessToken')
-//             },
-//             body: JSON.stringify(formDataJson)
-//         }).then(response => {
-//             return response.json();
-//         }).then(data => {
-            
-//             document.dispatchEvent(new CustomEvent('message', {
-//                 detail: {
-//                     text: 'Formulario enviado correctamente',
-//                     type: 'success'
-//                 }
-//             }));
+        })    
     
-//         }).catch(error => {
-//             console.log(error);
-//         });
-//     });
-// };
-
-        
     }
 }
-
 
 
 customElements.define('form-component', Form);
