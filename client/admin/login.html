@@ -3,7 +3,7 @@
     <head>
         <title>Componente de Inicio de Sesión</title>
         <style>
-          /* Estilos del componente */
+          
           .login-container {
             display: flex;
             flex-direction: column;
@@ -48,17 +48,16 @@
             const username = usernameInput.value;
             const password = passwordInput.value;
       
-            // Aquí puedes agregar la lógica para autenticar al usuario
-            // Por ejemplo, puedes hacer una petición AJAX a un servidor
+            
       
-            // Ejemplo básico para verificar si el usuario es "admin" y la contraseña es "password"
+            
             if (username === 'admin' && password === 'password') {
               alert('Inicio de sesión exitoso');
             } else {
               alert('Usuario o contraseña incorrectos');
             }
       
-            // Limpia los campos de entrada
+            
             usernameInput.value = '';
             passwordInput.value = '';
           }

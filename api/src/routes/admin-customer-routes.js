@@ -2,7 +2,7 @@ module.exports = (app, upload) => {
 
     const router = require("express").Router();
     // const authJwt  = require("../middlewares/auth-jwt.js");
-    const controller = require("../controllers/admin/social-networks-companies-controller.js");
+    const controller = require("../controllers/admin/customer-controller.js");
   
     app.use(function(req, res, next) {
         res.header(
@@ -13,10 +13,11 @@ module.exports = (app, upload) => {
     });
   
     router.post("/", controller.create);
-    router.get("/",  controller.findAll);  
-    router.get("/:id",  controller.findOne);  
-    router.put("/:id",  controller.update);  
-    router.delete("/:id",  controller.delete);
+    router.get("/", controller.findAll);  
+    router.get("/:id", controller.findOne);  
+    router.put("/:id", controller.update);  
+    router.delete("/:id", controller.delete);
   
-    app.use('/api/admin/social_networks_companies', router);
+    app.use('/api/admin/customers', router);
   };
+    

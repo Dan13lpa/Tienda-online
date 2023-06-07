@@ -1,10 +1,10 @@
 const db = require("../../models");
-const Cliente = db.Cliente;
+const Customer = db.Customer;
 const Op = db.Sequelize.Op;
 
 exports.create = (req, res) => {
 
-    Cliente.create(req.body).then(data => {
+    Customer.create(req.body).then(data => {
 
         res.status(200).send(data);
 
@@ -24,9 +24,9 @@ exports.findAll = (req, res) => {
     let whereStatement = {};
     let condition = Object.keys(whereStatement).length > 0 ? {[Op.and]: [whereStatement]} : {};
 
-    Cliente.findAndCountAll({
+    Customer.findAndCountAll({
         where: condition, 
-        attributes: ['id', 'name', 'telephone', 'email', 'poblation', 'postalCode', 'direction'],
+        attributes: ['id', 'name'],
         limit: limit,
         offset: offset,
         order: [['createdAt', 'DESC']]
@@ -42,6 +42,7 @@ exports.findAll = (req, res) => {
         res.status(200).send(result);
 
     }).catch(err => {
+        console.log(err);
         res.status(500).send({
             message: err.errors || "Algún error ha surgido al recuperar los datos."
         });
@@ -52,7 +53,7 @@ exports.findOne = (req, res) => {
 
     const id = req.params.id;
 
-    Cliente.findByPk(id).then(data => {
+    Customer.findByPk(id).then(data => {
 
         if (data) {
             res.status(200).send(data);
@@ -73,7 +74,7 @@ exports.update = (req, res) => {
 
     const id = req.params.id;
 
-    Cliente.update(req.body, {
+    Customer.update(req.body, {
         where: { id: id }
     }).then(num => {
         if (num == 1) {
@@ -96,7 +97,7 @@ exports.delete = (req, res) => {
 
     const id = req.params.id;
 
-    Cliente.destroy({
+    Customer.destroy({
         where: { id: id }
     }).then(num => {
         if (num == 1) {

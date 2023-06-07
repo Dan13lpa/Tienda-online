@@ -198,14 +198,9 @@ class Form extends HTMLElement {
             event.preventDefault(); 
 
             const formData = new FormData(form); 
-
-            for (let pair of formData.entries()) {
-                console.log(pair[0]+ ', ' + pair[1]); 
-            }
-        
             const formDataJson = Object.fromEntries(formData.entries());
                  
-            fetch('http://localhost:8080/api/admin/users', {
+            fetch('http://127.0.0.1:8080/api/admin/users', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
