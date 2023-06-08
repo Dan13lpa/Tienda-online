@@ -210,7 +210,8 @@ class Form extends HTMLElement {
             .then(response => response.json())
             .then(data => {
 
-                console.log(data)
+                document.dispatchEvent(new CustomEvent('refreshTable'));
+
                 form.reset(); 
             })
             .catch(error => {

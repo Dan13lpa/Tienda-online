@@ -8,6 +8,14 @@ class Table extends HTMLElement {
 
     static get observedAttributes () { return ['url'] }
 
+    async connectedCallback () {
+
+        document.addEventListener("refreshTable", async event =>{
+            await this.loadData()
+            await this.render()
+        });
+    }
+
     async attributeChangedCallback (name, oldValue, newValue) {
         await this.loadData()
         await this.render()
@@ -23,8 +31,6 @@ class Table extends HTMLElement {
     }
 
     async render() {
-
-        console.log(this.data)
 
         this.shadow.innerHTML = 
         `
@@ -85,43 +91,77 @@ class Table extends HTMLElement {
                 margin-bottom: 2px;
                 padding-left: 15px;
             }
+
+            .panel-contact-info li strong::after{
+                content: ":";
+                margin-right: 0.5rem;
+            }
             
             
         </style>
-            <div class="panel-table">
-             
-            </div>  
+
+        <div class="panel-table">
+            
+        </div>  
         `;
 
-        const panelTable = this.shadow.querySelector('.panel-table');
 
-        const panelContact = document.createElement('div');
-        panelContact.classList.add('panel-contact');
-        panelTable.appendChild(panelContact);
+        this.data.rows.forEach(element => {
 
-        const panelButton = this.shadow.querySelector('.panel-contact');
+            const panelTable = this.shadow.querySelector('.panel-table');
 
-        const panelContactButton = document.createElement('div');
-        panelContactButton.classList.add('panel-contact-button');
-        panelButton.appendChild(panelContactButton);
-        
-        panelContactButton.innerHTML =  `
-            <div class = "panel-contact-button-edit">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>pencil</title><path d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z" /></svg>
-            </div>
-            <div class = "panel-contact-button-delete">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>delete</title><path d="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z" /></svg>
-            </div>
-        `
+            const panelContact = document.createElement('div');
+            panelContact.classList.add('panel-contact');
+            panelTable.appendChild(panelContact);
 
-        const panelContactInfo = document.createElement('div');
-        panelContactInfo.classList.add('panel-contact-info');
-        panelContact.appendChild(panelContactInfo);
+            const panelContactButton = document.createElement('div');
+            panelContactButton.classList.add('panel-contact-button');
+            panelContact.appendChild(panelContactButton);
+            
+            panelContactButton.innerHTML =  `
+                <div class="panel-contact-button-edit" data-id="${element.id}">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>pencil</title><path d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z" /></svg>
+                </div>
+                <div class="panel-contact-button-delete" data-id="${element.id}">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>delete</title><path d="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z" /></svg>
+                </div>
+            `
 
-        const ul = document.createElement('ul');
-        const li = document.createElement('li');
+            const panelContactInfo = document.createElement('div');
+            panelContactInfo.classList.add('panel-contact-info');
+            panelContact.appendChild(panelContactInfo);
 
-        
+            const ul = document.createElement('ul');
+
+            Object.entries(element).forEach(([key, value]) => {
+                const li = document.createElement('li');
+                const strong = document.createElement('strong');
+                const span = document.createElement('span');
+
+                li.appendChild(strong);
+                li.appendChild(span);
+            
+                strong.textContent = key;
+                span.textContent = value;
+
+                ul.appendChild(li);
+            });
+
+            
+            panelContactInfo.appendChild(ul);
+        });
+
+        this.renderButtons();
+    }
+
+    renderButtons = async () => {
+
+        document.dispatchEvent(new CustomEvent('message', {
+            detail: {
+                text: 'Formulario enviado correctamente',
+                type: 'success'
+            }
+        }));
     }
 }
 
