@@ -4,6 +4,8 @@ class Table extends HTMLElement {
         super();
         this.shadow = this.attachShadow({mode: 'open'});
         this.data = [];
+        this.currentPage = 1
+        this.totalPages = null
     }
 
     static get observedAttributes () { return ['url'] }
@@ -23,8 +25,11 @@ class Table extends HTMLElement {
       
     loadData = async () => {
         try{
-            const response = await fetch(`http://127.0.0.1:8080/api${this.getAttribute('url')}`)
+            const response = await fetch(`http://127.0.0.1:8080/api${this.currentPage}`)
             this.data = await response.json()
+            this.data = data.rows;  
+            this.currentPage = data.meta.currentPage
+            this.totalPages = data.meta.total
         }catch(err){
             console.log(err)
         }
@@ -96,14 +101,45 @@ class Table extends HTMLElement {
                 content: ":";
                 margin-right: 0.5rem;
             }
+
+            .buttons{
+                display: flex;
+                gap: 10px;
+                width: 100%;
+                justify-content: space-between;
+               padding: 1rem 0;
+            }
+
+            .button {
+                background-color: hsl(207, 85%, 69%);
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 16px;
+              }
+              
+              .button:hover {
+                background-color: hsl(207, 85%, 59%);
+              }
             
             
         </style>
 
         <div class="panel-table">
             
-        </div>  
-        `;
+        </div>
+        
+        <div class="buttons">
+            <div class="button first">Primera</div>
+
+            <div class="button prev">Anterior</div>
+
+            <div class="button next">Siguiente</div>
+
+            <div class="button last">Última</div>
+        </div>`
 
 
         this.data.rows.forEach(element => {
@@ -157,8 +193,7 @@ class Table extends HTMLElement {
     renderButtons = async () => {
 
         let editButtons = this.shadow.querySelectorAll('.panel-contact-button-edit');
-        let deleteButtons = this.shadow.querySelectorAll('.panel-contact-button-delete');
-  
+        
         editButtons.forEach(editButton => {
             editButton.addEventListener('click', () => {
                 document.dispatchEvent(new CustomEvent('loadData', {
@@ -169,15 +204,67 @@ class Table extends HTMLElement {
             });
         });
 
+        let deleteButtons = this.shadow.querySelectorAll('.panel-contact-button-delete');
+
         deleteButtons.forEach(deleteButton => {
             deleteButton.addEventListener('click', () => {
-                document.dispatchEvent(new CustomEvent('deleteData', {
+                document.dispatchEvent(new CustomEvent('openModal', {
                     detail: {
                         id: deleteButton.dataset.id
                     }
                 }));
             });
-        }); 
+        });
+
+        const firstButton = this.shadow.querySelector('.button.first');
+        const prevButton = this.shadow.querySelector('.button.prev');
+        const nextButton = this.shadow.querySelector('.button.next');
+        const lastButton = this.shadow.querySelector('.button.last');
+
+        firstButton.addEventListener('click', async () => {
+            try {
+              const response = await fetch('http://127.0.0.1:8080/api?page=1');
+              const data = await response.json();
+
+            } catch (err) {
+                console.log(err);
+            }
+        });  
+
+        prevButton.addEventListener('click', async () => {
+            try {
+              if (currentPage > 1) {
+                const response = await fetch(`http://127.0.0.1:8080/api?page=${this.data.meta.currentPage - 1}`);
+                const data = await response.json();
+              }
+            } catch (err) {
+              console.log(err);
+            }
+        });
+
+        nextButton.addEventListener('click', async () => {
+            try {
+              const totalPages = this.data.meta.total;
+              if (currentPage < totalPages) {
+                const response = await fetch(`http://127.0.0.1:8080/api?page=${this.data.meta.currentPage + 1}`);
+                const data = await response.json();
+              }
+            } catch (err) {
+              console.log(err);
+            }
+        });
+
+        lastButton.addEventListener('click', async () => {
+            try {
+              const response = await fetch(`http://127.0.0.1:8080/api?page=${this.data.meta.total}`);
+              const data = await response.json();
+
+            } catch (err) {
+              console.log(err);
+            }
+        });
+
+
     }
 }
 

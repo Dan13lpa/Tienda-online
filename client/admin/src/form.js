@@ -9,7 +9,7 @@ class Form extends HTMLElement {
 
     async connectedCallback () {
 
-        document.addEventListener("loadData", async event =>{
+        document.addEventListener("loadData", async event => {
             await this.loadData(event.detail.id)
         });
     }
@@ -25,19 +25,18 @@ class Form extends HTMLElement {
 
             Object.entries(this.data).forEach( ([key, value]) => {
 
-                const form = this.shadow.querySelector("#form");
+                const form = this.shadow.querySelector('#form');
                 const inputElement = form.elements[key];
+
                 if (inputElement) {
                     inputElement.value = value;
                 }
-                console.log(`${key}: ${value}`);
             });
 
         } catch (err) {
             console.log(err)
         }
     }
-
 
     render() {
 
@@ -174,7 +173,8 @@ class Form extends HTMLElement {
                 <div class="options">
                     <div>
                         <button type="button" id="resetButton">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>broom</title><path d="M19.36,2.72L20.78,4.14L15.06,9.85C16.13,11.39 16.28,13.24 15.38,14.44L9.06,8.12C10.26,7.22 12.11,7.37 13.65,8.44L19.36,2.72M5.93,17.57C3.92,15.56 2.69,13.16 2.35,10.92L7.23,8.83L14.67,16.27L12.58,21.15C10.34,20.81 7.94,19.58 5.93,17.57Z" /></svg>                        </button>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>broom</title><path d="M19.36,2.72L20.78,4.14L15.06,9.85C16.13,11.39 16.28,13.24 15.38,14.44L9.06,8.12C10.26,7.22 12.11,7.37 13.65,8.44L19.36,2.72M5.93,17.57C3.92,15.56 2.69,13.16 2.35,10.92L7.23,8.83L14.67,16.27L12.58,21.15C10.34,20.81 7.94,19.58 5.93,17.57Z" /></svg>                        
+                        </button>
                     </div>
                     <div>
                         <button type="button" id="submitButton">
@@ -184,9 +184,11 @@ class Form extends HTMLElement {
                 </div>
             </div>
             <div class="form-container">
-                <input type="hidden"name ="id"/>
                 <div class="form active" data-form="principal">
-                    <form id="form-principal">
+                    <form id="form">
+                    
+                        <input type="hidden" name="id"/>
+
                         <div>
                             <label>Nombre</label>
                             <input type="text" name="name"></input>
@@ -224,18 +226,19 @@ class Form extends HTMLElement {
         //     });
         // });
 
-        const form = this.shadow.querySelector('form'); 
-        const submitButton = this.shadow.querySelector("#submitButton");
+        const form = this.shadow.getElementById('form');
+        const sendFormButton = this.shadow.getElementById('submitButton');
 
-        submitButton.addEventListener("click", event =>{
+        sendFormButton.addEventListener('click', event => {
 
-            event.preventDefault(); 
+            event.preventDefault();
 
             let id = form.elements.id.value;
             let formData = new FormData(form);
             let formDataJson = Object.fromEntries(formData.entries());
             let url = id ? `http://127.0.0.1:8080/api/admin/users/${id}` : `http://127.0.0.1:8080/api/admin/users`
             let method = id ? 'PUT':'POST'
+            delete formDataJson.id
 
             fetch(url, {
                 method: method,
@@ -250,14 +253,12 @@ class Form extends HTMLElement {
 
                 form.reset();
 
-            })
-            .catch(error => {
+            }).catch(error => {
                 console.log(error);
             });
 
-        })    
+        });
     }
 }
-
 
 customElements.define('form-component', Form);
