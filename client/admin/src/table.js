@@ -16,7 +16,12 @@ class Table extends HTMLElement {
             await this.loadData()
             await this.render()
         });
+        document.addEventListener("filterResults", async event =>{
+            await this.loadData()
+            await this.render()
+        });
     }
+    
 
     async attributeChangedCallback (name, oldValue, newValue) {
         await this.loadData()
@@ -25,11 +30,12 @@ class Table extends HTMLElement {
       
     loadData = async () => {
         try{
-            const response = await fetch(`http://127.0.0.1:8080/api${this.currentPage}`)
-            this.data = await response.json()
-            this.data = data.rows;  
+            const response = await fetch(`http://127.0.0.1:8080/api${this.getAttribute('url')}`);
+            const data = await response.json()
+            this.data = data;  
             this.currentPage = data.meta.currentPage
-            this.totalPages = data.meta.total
+            this.totalPages = data.meta.pages
+
         }catch(err){
             console.log(err)
         }
@@ -188,6 +194,72 @@ class Table extends HTMLElement {
         });
 
         this.renderButtons();
+        this.renderPagination();
+    }
+
+    renderPagination(){
+
+        const firstButton = this.shadow.querySelector('.button.first');
+        const prevButton = this.shadow.querySelector('.button.prev');
+        const nextButton = this.shadow.querySelector('.button.next');
+        const lastButton = this.shadow.querySelector('.button.last');
+
+        firstButton.addEventListener('click', async () => {
+            try {
+              const response = await fetch('http://127.0.0.1:8080/api/admin/users?page=1');
+              const data = await response.json();
+              this.data = data;
+              this.currentPage = parseInt(data.meta.currentPage);
+
+              this.render();
+
+            } catch (err) {
+                console.log(err);
+            }
+        });  
+
+        prevButton.addEventListener('click', async () => {
+            try {
+              if (this.currentPage > 1) {
+                const response = await fetch(`http://127.0.0.1:8080/api/admin/users?page=${this.currentPage - 1}`);
+                const data = await response.json();
+                this.data = data;
+                this.currentPage = parseInt(data.meta.currentPage);
+
+                this.render();
+              }
+            } catch (err) {
+              console.log(err);
+            }
+        });
+
+        nextButton.addEventListener('click', async () => {
+            try {
+              if (this.currentPage <  this.data.meta.pages) {
+                const response = await fetch(`http://127.0.0.1:8080/api/admin/users?page=${this.currentPage + 1}`);
+                const data = await response.json();
+                this.data = data;
+                this.currentPage = parseInt(data.meta.currentPage);
+
+                this.render();
+              }
+            } catch (err) {
+              console.log(err);
+            }
+        });
+
+        lastButton.addEventListener('click', async () => {
+            try {
+              const response = await fetch(`http://127.0.0.1:8080/api/admin/users?page=${this.totalPages}`);
+              const data = await response.json();
+              this.data = data;
+              this.currentPage = parseInt(data.meta.currentPage);
+               
+              this.render();
+            } catch (err) {
+              console.log(err);
+            }
+        });
     }
 
     renderButtons = async () => {
@@ -215,56 +287,6 @@ class Table extends HTMLElement {
                 }));
             });
         });
-
-        const firstButton = this.shadow.querySelector('.button.first');
-        const prevButton = this.shadow.querySelector('.button.prev');
-        const nextButton = this.shadow.querySelector('.button.next');
-        const lastButton = this.shadow.querySelector('.button.last');
-
-        firstButton.addEventListener('click', async () => {
-            try {
-              const response = await fetch('http://127.0.0.1:8080/api?page=1');
-              const data = await response.json();
-
-            } catch (err) {
-                console.log(err);
-            }
-        });  
-
-        prevButton.addEventListener('click', async () => {
-            try {
-              if (currentPage > 1) {
-                const response = await fetch(`http://127.0.0.1:8080/api?page=${this.data.meta.currentPage - 1}`);
-                const data = await response.json();
-              }
-            } catch (err) {
-              console.log(err);
-            }
-        });
-
-        nextButton.addEventListener('click', async () => {
-            try {
-              const totalPages = this.data.meta.total;
-              if (currentPage < totalPages) {
-                const response = await fetch(`http://127.0.0.1:8080/api?page=${this.data.meta.currentPage + 1}`);
-                const data = await response.json();
-              }
-            } catch (err) {
-              console.log(err);
-            }
-        });
-
-        lastButton.addEventListener('click', async () => {
-            try {
-              const response = await fetch(`http://127.0.0.1:8080/api?page=${this.data.meta.total}`);
-              const data = await response.json();
-
-            } catch (err) {
-              console.log(err);
-            }
-        });
-
-
     }
 }
 

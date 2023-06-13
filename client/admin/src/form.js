@@ -48,7 +48,7 @@ class Form extends HTMLElement {
                 width: 100%;
                 display: flex;
                 flex-direction: column;
-                gap: 3rem;
+                gap: 0.5rem;
             }
             
             .form-section .form-selector {
@@ -134,6 +134,14 @@ class Form extends HTMLElement {
                 width: 100%;
                 gap: 2rem;
             }
+
+            .validation-error {
+                border-color: red;
+            }
+
+            li {
+              list-style: none;
+            }
             
             form div {
                 display: flex;
@@ -183,6 +191,10 @@ class Form extends HTMLElement {
                     </div>
                 </div>
             </div>
+            <div class="validation-errors">
+                <ul>
+                </ul>
+            </div>
             <div class="form-container">
                 <div class="form active" data-form="principal">
                     <form id="form">
@@ -191,19 +203,19 @@ class Form extends HTMLElement {
 
                         <div>
                             <label>Nombre</label>
-                            <input type="text" name="name"></input>
+                            <input type="text" name="name" data-validate="only-letters"></input>
                         </div>
                         <div>
                             <label>Email</label>
-                            <input type="text" name="email"></input>
+                            <input type="text" name="email" data-validate="email"></input>
                         </div>
                         <div>
                             <label>Contraseña</label>
-                            <input type="password" name="password"></input>
+                            <input type="password" name="password" data-validate="password"></input>
                         </div>
                         <div>
                             <label>Confirme contraseña</label>
-                            <input type="password" name="repeatPassword"></input>
+                            <input type="password" name="repeatPassword" data-validate="password"></input>
                         </div>
                     </form>
                 </div>
@@ -233,6 +245,10 @@ class Form extends HTMLElement {
 
             event.preventDefault();
 
+            if(this.validateForm(form.elements)){
+                return;
+            }
+
             let id = form.elements.id.value;
             let formData = new FormData(form);
             let formDataJson = Object.fromEntries(formData.entries());
@@ -246,19 +262,115 @@ class Form extends HTMLElement {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(formDataJson)
+
             }).then(response => {
+
+                if (response.status === 500){
+                    throw response;
+                }
+
                 return response.json();
+
             }).then(data => {
+
                 document.dispatchEvent(new CustomEvent('refreshTable'));
 
                 form.reset();
 
-            }).catch(error => {
-                console.log(error);
+            }).catch(async error => {
+
+                const data = await error.json();
+
+                const form = this.shadow.querySelector('form')
+                const errorMessageContainer = this.shadow.querySelector('.validation-errors ul')
+                errorMessageContainer.innerHTML = ""
+
+                data.message.forEach(error => {
+                    form.elements[error.path].classList.add('validation-error')
+                    const li = document.createElement('li');
+                    errorMessageContainer.appendChild(li);
+                    li.textContent = error.message;
+                });
             });
 
         });
     }
+
+    validateForm = async (elements) => {
+
+        let validForm = true;
+    
+        let validators = {
+            "only-letters": {
+                regex: /^[a-zA-Z\s]+$/g,
+                message: 'Por favor, rellena el campo "Nombre".'
+            },
+            "only-numbers": {
+                regex: /\d/g,
+                message: "Solo números"
+            },
+            "telephone":{ 
+                regex:/^\d{9}$/g,
+                message: "Solo telefono"
+            },
+            "email": {
+                regex:/\w+@\w+\.\w+/g,
+                message:'Por favor, rellena el campo "Email".'
+            },
+            "password": {
+                regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/g,
+                message:'No es una contraseña válida.'
+            },
+            "web": /^(http|https):\/\/\w+\.\w+/g,
+            "date": /^\d{4}-\d{2}-\d{2}$/g,
+            "time": /^\d{2}:\d{2}$/g
+        }
+
+        const errorMessageContainer = this.shadow.querySelector('.validation-errors ul')
+        errorMessageContainer.innerHTML = ""
+    
+        for(let i=0; i < elements.length ; i++) {
+    
+            const element = elements[i];
+            const validationName = element.dataset.validate;
+    
+            if (validationName && validationName !== '') {
+
+                const form = this.shadow.querySelector('form')
+                const validationRegex = validators[validationName];
+
+                if (validationRegex && element.value.match(validationRegex) == null) {
+                    element.classList.add('validation-error');
+                    validForm = false; 
+
+                    const li = document.createElement('li');
+                    errorMessageContainer.appendChild(li);
+                    li.textContent = validationRegex.message;
+
+                } else {
+                    element.classList.remove('validation-error');    
+                } 
+            }
+        }
+        
+        if (!validForm) {
+            document.dispatchEvent(new CustomEvent('message', {
+                detail: {
+                    text: 'Los datos del formulario no son válidos',
+                    type: 'error'
+                }
+            }));
+        } else {
+            document.dispatchEvent(new CustomEvent('message', {
+                detail: {
+                    text: 'El formulario se envió correctamente',
+                    type: 'success'
+                }
+            }));
+        }
+    
+        return validForm;
+    };
 }
 
 customElements.define('form-component', Form);

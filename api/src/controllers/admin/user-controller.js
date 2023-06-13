@@ -19,11 +19,19 @@ exports.create = (req, res) => {
 exports.findAll = (req, res) => {
 
     let page = req.query.page || 1;
-    let limit = parseInt(req.query.size) || 3;
+    let limit = parseInt(req.query.size) || 5;
     let offset = (page - 1) * limit;
 
-    let whereStatement = {};
-    let condition = Object.keys(whereStatement).length > 0 ? {[Op.and]: [whereStatement]} : {};
+    const whereStatement = {}
+
+    for (const key in req.query) {
+        if (req.query[key] != '' && key != 'page' && key != 'size') {
+            whereStatement[key] = { [Op.substring]: req.query[key] }
+            console.log(whereStatement)
+        }
+    }
+
+    const condition = Object.keys(whereStatement).length > 0 ? { [Op.and]: [whereStatement] } : {}
 
     User.findAndCountAll({
         where: condition, 
