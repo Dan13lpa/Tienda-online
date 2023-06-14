@@ -1,66 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title>Componente de Inicio de Sesión</title>
-        <style>
-          
-          .login-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 100px;
-          }
-      
-          .login-input {
-            margin-bottom: 10px;
-            padding: 5px;
-            width: 200px;
-          }
-      
-          .login-button {
-            padding: 5px 10px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-          }
-      
-          .login-button:hover {
-            background-color: #45a049;
-          }
-        </style>
-      </head>
-      <body>
-        <div class="login-container">
-          <input type="text" id="username" class="login-input" placeholder="Usuario">
-          <input type="password" id="password" class="login-input" placeholder="Contraseña">
-          <button id="loginButton" class="login-button">Iniciar sesión</button>
-        </div>
-      
-        <script>
-          const loginButton = document.getElementById('loginButton');
-          loginButton.addEventListener('click', handleLogin);
-      
-          function handleLogin() {
-            const usernameInput = document.getElementById('username');
-            const passwordInput = document.getElementById('password');
-      
-            const username = usernameInput.value;
-            const password = passwordInput.value;
-      
-            
-      
-            
-            if (username === 'admin' && password === 'password') {
-              alert('Inicio de sesión exitoso');
-            } else {
-              alert('Usuario o contraseña incorrectos');
-            }
-      
-            
-            usernameInput.value = '';
-            passwordInput.value = '';
-          }
-        </script>
-      </body>
-      </html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Título</title>
+
+    <meta name="description" content="descripción de la web, se recomienda 90 caracteres">
+    <meta name="keywords" content="palabras clave, separadas, por comas">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style/general.css">
+    <script type="module" src="./dist/index.js"></script>
+  </head>
+  
+    <style>
+    .form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 100px;
+      }
+
+      .login-input {
+        margin-bottom: 20px; 
+        padding: 10px;
+        width: 200px;
+      }
+
+      .login-button {
+        padding: 20px 30px; 
+        background-color: hsl(189, 57%, 49%);
+        color: white;
+        border: none;
+        cursor: pointer;
+        width: 220px; 
+      }
+
+      .login-button:hover {
+        background-color: hsl(182, 26%, 63%);
+      }
+    </style>
+    
+    <body>
+      <form id="loginForm">
+        <login-component></login-component>
+      </form>
+    </body>
+</html>
