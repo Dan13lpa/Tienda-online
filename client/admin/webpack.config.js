@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  entry: '/src-tpv/index.js',
+  entry: '/src/index.js',
   watch: true,
   output: {
     filename: 'index.js',

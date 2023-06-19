@@ -238,139 +238,137 @@ class Form extends HTMLElement {
         //     });
         // });
 
-        const form = this.shadow.getElementById('form');
-        const sendFormButton = this.shadow.getElementById('submitButton');
+       const form = this.shadow.getElementById("form");
+    const sendFormButton = this.shadow.getElementById("submitButton");
 
-        sendFormButton.addEventListener('click', event => {
+    sendFormButton.addEventListener("click", (event) => {
+      event.preventDefault();
 
-            event.preventDefault();
+      if (this.validateForm(form.elements)) {
+        return;
+      }
 
-            if(this.validateForm(form.elements)){
-                return;
-            }
+      let id = form.elements.id.value;
+      let formData = new FormData(form);
+      let formDataJson = Object.fromEntries(formData.entries());
+      let url = id
+        ? `http://127.0.0.1:8080/api/admin/users/${id}`
+        : `http://127.0.0.1:8080/api/admin/users`;
+      let method = id ? "PUT" : "POST";
+      delete formDataJson.id;
 
-            let id = form.elements.id.value;
-            let formData = new FormData(form);
-            let formDataJson = Object.fromEntries(formData.entries());
-            let url = id ? `http://127.0.0.1:8080/api/admin/users/${id}` : `http://127.0.0.1:8080/api/admin/users`
-            let method = id ? 'PUT':'POST'
-            delete formDataJson.id
+      fetch(url, {
+        method: method,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formDataJson),
+      })
+        .then((response) => {
+          if (response.status === 500) {
+            throw response;
+          }
+          return response.json();
+        })
+        .then((data) => {
+          document.dispatchEvent(new CustomEvent("refreshTable"));
+          form.reset();
+        })
+        .catch(async (error) => {
+          const data = await error.json();
+          const form = this.shadow.querySelector("form");
+          const errorMessageContainer = this.shadow.querySelector(
+            ".validation-errors ul"
+          );
+          errorMessageContainer.innerHTML = "";
 
-            fetch(url, {
-                method: method,
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formDataJson)
-
-            }).then(response => {
-
-                if (response.status === 500){
-                    throw response;
-                }
-
-                return response.json();
-
-            }).then(data => {
-
-                document.dispatchEvent(new CustomEvent('refreshTable'));
-
-                form.reset();
-
-            }).catch(async error => {
-
-                const data = await error.json();
-
-                const form = this.shadow.querySelector('form')
-                const errorMessageContainer = this.shadow.querySelector('.validation-errors ul')
-                errorMessageContainer.innerHTML = ""
-
-                data.message.forEach(error => {
-                    form.elements[error.path].classList.add('validation-error')
-                    const li = document.createElement('li');
-                    errorMessageContainer.appendChild(li);
-                    li.textContent = error.message;
-                });
-            });
-
+          data.message.forEach((error) => {
+            form.elements[error.path].classList.add("validation-error");
+            const li = document.createElement("li");
+            errorMessageContainer.appendChild(li);
+            li.textContent = error.message;
+          });
         });
+    });
+  }
+
+  validateForm = async (elements) => {
+    let validForm = true;
+
+    let validators = {
+      "only-letters": {
+        regex: /^[a-zA-Z\s]+$/g,
+        message: 'Por favor, rellena el campo "Nombre".',
+      },
+      "only-numbers": {
+        regex: /\d/g,
+        message: "Solo números",
+      },
+      telephone: {
+        regex: /^\d{9}$/g,
+        message: "Solo teléfono",
+      },
+      email: {
+        regex: /\w+@\w+\.\w+/g,
+        message: 'Por favor, rellena el campo "Email".',
+      },
+      password: {
+        regex: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{1,}$/g,
+        message: "No es una contraseña válida.",
+      },
+    };
+
+    const errorMessageContainer = this.shadow.querySelector(
+      ".validation-errors ul"
+    );
+    errorMessageContainer.innerHTML = "";
+
+    for (let i = 0; i < elements.length; i++) {
+      const element = elements[i];
+      const validationName = element.dataset.validate;
+
+      if (validationName && validationName !== "") {
+        const form = this.shadow.querySelector("form");
+        const validationRegex = validators[validationName];
+
+        if (
+          validationRegex &&
+          element.value.match(validationRegex.regex) === null
+        ) {
+          element.classList.add("validation-error");
+          validForm = false;
+
+          const li = document.createElement("li");
+          errorMessageContainer.appendChild(li);
+          li.textContent = validationRegex.message;
+        } else {
+          element.classList.remove("validation-error");
+        }
+      }
     }
 
-    validateForm = async (elements) => {
+    if (!validForm) {
+      document.dispatchEvent(
+        new CustomEvent("message", {
+          detail: {
+            text: "Los datos del formulario no son válidos",
+            type: "error",
+          },
+        })
+      );
+    } else {
+      document.dispatchEvent(
+        new CustomEvent("message", {
+          detail: {
+            text: "El formulario se envió correctamente",
+            type: "success",
+          },
+        })
+      );
+    }
 
-        let validForm = true;
-    
-        let validators = {
-            "only-letters": {
-                regex: /^[a-zA-Z\s]+$/g,
-                message: 'Por favor, rellena el campo "Nombre".'
-            },
-            "only-numbers": {
-                regex: /\d/g,
-                message: "Solo números"
-            },
-            "telephone":{ 
-                regex:/^\d{9}$/g,
-                message: "Solo telefono"
-            },
-            "email": {
-                regex:/\w+@\w+\.\w+/g,
-                message:'Por favor, rellena el campo "Email".'
-            },
-            "password": {
-                regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/g,
-                message:'No es una contraseña válida.'
-            },
-            "web": /^(http|https):\/\/\w+\.\w+/g,
-            "date": /^\d{4}-\d{2}-\d{2}$/g,
-            "time": /^\d{2}:\d{2}$/g
-        }
-
-        const errorMessageContainer = this.shadow.querySelector('.validation-errors ul')
-        errorMessageContainer.innerHTML = ""
-    
-        for(let i=0; i < elements.length ; i++) {
-    
-            const element = elements[i];
-            const validationName = element.dataset.validate;
-    
-            if (validationName && validationName !== '') {
-
-                const form = this.shadow.querySelector('form')
-                const validationRegex = validators[validationName];
-
-                if (validationRegex && element.value.match(validationRegex) == null) {
-                    element.classList.add('validation-error');
-                    validForm = false; 
-
-                    const li = document.createElement('li');
-                    errorMessageContainer.appendChild(li);
-                    li.textContent = validationRegex.message;
-
-                } else {
-                    element.classList.remove('validation-error');    
-                } 
-            }
-        }
-        
-        if (!validForm) {
-            document.dispatchEvent(new CustomEvent('message', {
-                detail: {
-                    text: 'Los datos del formulario no son válidos',
-                    type: 'error'
-                }
-            }));
-        } else {
-            document.dispatchEvent(new CustomEvent('message', {
-                detail: {
-                    text: 'El formulario se envió correctamente',
-                    type: 'success'
-                }
-            }));
-        }
-    
-        return validForm;
-    };
+    return validForm;
+  };
 }
 
-customElements.define('form-component', Form);
+customElements.define("form-component", Form);
