@@ -31,6 +31,7 @@ class Form extends HTMLElement {
                 if (inputElement) {
                     inputElement.value = value;
                 }
+                console.log(`${key}: ${value}`);
             });
 
         } catch (err) {
@@ -196,64 +197,68 @@ class Form extends HTMLElement {
                 </ul>
             </div>
             <div class="form-container">
-                <div class="form active" data-form="principal">
-                    <form id="form">
-                    
-                        <input type="hidden" name="id"/>
-
+            <form id="form">
+                <div class="profile-form active " data-form="principal" id="form-principal">
                         <div>
                             <label>Nombre</label>
-                            <input type="text" name="name" data-validate="only-letters"></input>
+                            <input name="name" type="text" id='name'></input>
                         </div>
                         <div>
                             <label>Email</label>
-                            <input type="text" name="email" data-validate="email"></input>
+                            <input name="email" type="text" id='email'></input>
                         </div>
                         <div>
                             <label>Contraseña</label>
-                            <input type="password" name="password" data-validate="password"></input>
+                            <input name="password" type="text"></input>
                         </div>
                         <div>
                             <label>Confirme contraseña</label>
-                            <input type="password" name="repeatPassword" data-validate="password"></input>
+                            <input name="passwordConfirmed" type="text"></input>
                         </div>
-                    </form>
                 </div>
-                <div class="form" data-form="image">
+                <div class="profile-form " data-form="image">
                     <div class="input-image">
                         <label>Seleccione una imagen</label>
-                        <input type="file">
+                            <image-component></image-component>
                     </div>
                 </div>
-            </div>
-        </section>
-        `;
+            </form>
+        </div>
+    </section>
+    `;
 
-        // tabs.forEach(tab => {
-        //     tab.addEventListener('click', () => {
-        //         tabsHeader.querySelector('.active').classList.remove('active');
-        //         tabContents.querySelector('.active').classList.remove('active');
-        //         tab.classList.add('active');
-        //         tabContents.querySelector(`[data-num="${tab.dataset.num}"]`).classList.add('active');
-        //     });
-        // });
+          this.renderTabs()
 
-       const form = this.shadow.getElementById("form");
-    const sendFormButton = this.shadow.getElementById("submitButton");
+        }
+
+        // renderTabs = async() => {
+        //   const formParent = this.shadow.querySelector(".form-container");
+        //   const forms = formParent.querySelectorAll(".image-form");
+        //   const form = this.shadow.querySelector('#form');
+        //   const resetForm = this.shadow.querySelector("#resetButton");
+        //   const formSelector = this.shadow.querySelector('.selector');
+        //   const selectors = formSelector.querySelectorAll("div");
+        //   const submitForm = this.shadow.querySelector("#submitButton");
+
+        //   resetForm.addEventListener("click",() => {
+        //     form.reset();
+        // })
+
+
+      const form = this.shadow.querySelector("form");
+      const sendFormButton = this.shadow.querySelector("#submitButton");
 
     sendFormButton.addEventListener("click", (event) => {
       event.preventDefault();
 
-      if (this.validateForm(form.elements)) {
+      if (!this.validateForm(form.elements)) {
         return;
       }
 
       let id = form.elements.id.value;
       let formData = new FormData(form);
       let formDataJson = Object.fromEntries(formData.entries());
-      let url = id
-        ? `http://127.0.0.1:8080/api/admin/users/${id}`
-        : `http://127.0.0.1:8080/api/admin/users`;
+      let url = id ? `http://127.0.0.1:8080/api/admin/users/${id}`: `http://127.0.0.1:8080/api/admin/users`;
       let method = id ? "PUT" : "POST";
       delete formDataJson.id;
 
@@ -264,19 +269,19 @@ class Form extends HTMLElement {
         },
         body: JSON.stringify(formDataJson),
       })
-        .then((response) => {
-          if (response.status === 500) {
-            throw response;
-          }
-          return response.json();
-        })
-        .then((data) => {
+      .then(response => {
+
+        return response.json();
+        
+      }).then((data) => {
+
           document.dispatchEvent(new CustomEvent("refreshTable"));
+
           form.reset();
         })
         .catch(async (error) => {
           const data = await error.json();
-          const form = this.shadow.querySelector("form");
+          const form = this.shadow.querySelector("#form");
           const errorMessageContainer = this.shadow.querySelector(
             ".validation-errors ul"
           );
@@ -292,80 +297,77 @@ class Form extends HTMLElement {
     });
   }
 
-  validateForm = async (elements) => {
+  validateForm =  elements => {
     let validForm = true;
 
     let validators = {
       "only-letters": {
-        regex: /^[a-zA-Z\s]+$/g,
-        message: 'Por favor, rellena el campo "Nombre".',
+          regex: /^[a-zA-Z\s]+$/g,
+          message: 'Por favor, rellena el campo "Nombre".'
       },
       "only-numbers": {
-        regex: /\d/g,
-        message: "Solo números",
+          regex: /\d/g,
+          message: "Solo números"
       },
-      telephone: {
-        regex: /^\d{9}$/g,
-        message: "Solo teléfono",
+      "telephone":{
+          regex:/^\d{9}$/g,
+          message: "Solo telefono"
       },
-      email: {
-        regex: /\w+@\w+\.\w+/g,
-        message: 'Por favor, rellena el campo "Email".',
+      "email": {
+          regex:/\w+@\w+\.\w+/g,
+          message:'Por favor, rellena el campo "Email".'
       },
-      password: {
-        regex: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{1,}$/g,
-        message: "No es una contraseña válida.",
+      "password": {
+    
+          message:'No es una contraseña válida.'
       },
     };
 
     const errorMessageContainer = this.shadow.querySelector(
-      ".validation-errors ul"
-    );
+      ".validation-errors ul");
+
     errorMessageContainer.innerHTML = "";
 
-    for (let i = 0; i < elements.length; i++) {
-      const element = elements[i];
-      const validationName = element.dataset.validate;
+   for(let i=0; i < elements.length ; i++) {
 
-      if (validationName && validationName !== "") {
-        const form = this.shadow.querySelector("form");
+    const element = elements[i];
+    const validationName = element.dataset.validate;
+
+      if (validationName && validationName !== '') {
+
         const validationRegex = validators[validationName];
 
-        if (
-          validationRegex &&
-          element.value.match(validationRegex.regex) === null
-        ) {
-          element.classList.add("validation-error");
-          validForm = false;
+        if (validationRegex && element.value.match(validationRegex) == null) {
+            element.classList.add('validation-error');
+            validForm = false;
 
-          const li = document.createElement("li");
-          errorMessageContainer.appendChild(li);
-          li.textContent = validationRegex.message;
+            const li = document.createElement('li');
+            errorMessageContainer.appendChild(li);
+            li.textContent = validationRegex.message;
+
         } else {
-          element.classList.remove("validation-error");
+            element.classList.remove('validation-error');
         }
       }
     }
 
-    if (!validForm) {
-      document.dispatchEvent(
-        new CustomEvent("message", {
-          detail: {
-            text: "Los datos del formulario no son válidos",
-            type: "error",
-          },
-        })
-      );
-    } else {
-      document.dispatchEvent(
-        new CustomEvent("message", {
-          detail: {
-            text: "El formulario se envió correctamente",
-            type: "success",
-          },
-        })
-      );
-    }
+        if (!validForm) {
+            document.dispatchEvent(new CustomEvent('message', {
+                detail: {
+                    text: 'Los datos del formulario no son válidos',
+                    type: 'error'
+                }
+        }));
+        } else {
+            document.dispatchEvent(new CustomEvent('message', {
+                detail: {
+                    text: 'El formulario se envió correctamente',
+                    type: 'success'
+          }
+        }));
+      }
+
+    console.log(validForm);
 
     return validForm;
   };

@@ -6,3 +6,5 @@ import './table.js';
 import './form.js';
 import './notification.js';
 import './login.js';
+import './image-modal.js';
+import './image-button.js';

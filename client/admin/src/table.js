@@ -16,8 +16,8 @@ class Table extends HTMLElement {
             await this.loadData()
             await this.render()
         });
-        document.addEventListener("filterResults", async event =>{
-            await this.loadData()
+        document.addEventListener("filterResults", async event => {
+            this.data = event.detail.data
             await this.render()
         });
     }
