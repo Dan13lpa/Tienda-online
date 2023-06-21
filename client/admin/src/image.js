@@ -15,7 +15,7 @@ class Image extends HTMLElement {
         `
             <div class="image-section">
                 <button type="button" id="button-image">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" /></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"/></svg>
                 </button>
             </div>
 
@@ -37,9 +37,9 @@ class Image extends HTMLElement {
             </style>
         `
 
-        const buttonImage = this.shadow.querySelector("#button-image")
+        const Image = this.shadow.querySelector("#button-image")
             
-        buttonImage.addEventListener("click", () => {
+        Image.addEventListener("click", () => {
             const addActive = new CustomEvent('add-active', { detail: {detail : "image-component" }});
             document.dispatchEvent(addActive)
         })

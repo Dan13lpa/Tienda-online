@@ -12,6 +12,8 @@ class Form extends HTMLElement {
         document.addEventListener("loadData", async event => {
             await this.loadData(event.detail.id)
         });
+
+
     }
 
     async attributeChangedCallback (name, oldValue, newValue) {
@@ -196,59 +198,66 @@ class Form extends HTMLElement {
                 <ul>
                 </ul>
             </div>
-            <div class="form-container">
             <form id="form">
-                <div class="profile-form active " data-form="principal" id="form-principal">
-                        <div>
-                            <label>Nombre</label>
-                            <input name="name" type="text" id='name'></input>
+                <div class="tab-contents">
+                    <div class="tab-content active" data-tab="main">
+                        <input type="hidden" name="id"/>
+                        <div class="section-inputs">
+                            <label class="section-inputs-form" for="name">
+                                <span>Nombre</span>
+                                <input type="text" name="name" />
+                            </label>
+                            <label class="section-inputs-form" for="email">
+                                <span>Email</span>
+                                <input type="email" name="email" data-validate="email" />
+                            </label>
                         </div>
-                        <div>
-                            <label>Email</label>
-                            <input name="email" type="text" id='email'></input>
+                        <div class="section-inputs">
+                            <label class="section-inputs-form" for="password">
+                                <span>Password</span>
+                                <input type="password" name="password"/>
+                            </label>
+                            <label class="section-inputs-form" for="password">
+                                <span>Repeat password</span>
+                                <input type="password" name="repeat-password"/>
+                            </label>
                         </div>
-                        <div>
-                            <label>Contraseña</label>
-                            <input name="password" type="text"></input>
+                    </div>
+                    <div class="tab-content" data-tab="images">
+                        <div class="add-image">
+                            <h2>Añadir imagen</h2>
+                            <button type="button" id="button-image">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"/></svg>
+                            </button>
                         </div>
-                        <div>
-                            <label>Confirme contraseña</label>
-                            <input name="passwordConfirmed" type="text"></input>
-                        </div>
-                </div>
-                <div class="profile-form " data-form="image">
-                    <div class="input-image">
-                        <label>Seleccione una imagen</label>
-                            <image-component></image-component>
                     </div>
                 </div>
             </form>
         </div>
     </section>
     `;
+    this.renderTabs();
 
-          this.renderTabs()
-
-        }
-
-        // renderTabs = async() => {
-        //   const formParent = this.shadow.querySelector(".form-container");
-        //   const forms = formParent.querySelectorAll(".image-form");
-        //   const form = this.shadow.querySelector('#form');
-        //   const resetForm = this.shadow.querySelector("#resetButton");
-        //   const formSelector = this.shadow.querySelector('.selector');
-        //   const selectors = formSelector.querySelectorAll("div");
-        //   const submitForm = this.shadow.querySelector("#submitButton");
-
-        //   resetForm.addEventListener("click",() => {
-        //     form.reset();
-        // })
+    renderTabs = () => {
+        const tabsHeader = this.shadow.querySelector('.form-tabs');
+        const tabContents = this.shadow.querySelector('.tab-contents');
+        const tabs = tabsHeader.querySelectorAll('button');
+ 
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabsHeader.querySelector('.active').classList.remove('active');
+                tabContents.querySelector('.active').classList.remove('active');
+                tab.classList.add('active');
+                tabContents.querySelector(`[data-tab="${tab.dataset.tab}"]`).classList.add('active');
+            });
+        });
+    };
 
 
       const form = this.shadow.querySelector("form");
-      const sendFormButton = this.shadow.querySelector("#submitButton");
+      const submitButton = this.shadow.querySelector("#submitButton");
 
-    sendFormButton.addEventListener("click", (event) => {
+    submitButton.addEventListener("click", (event) => {
       event.preventDefault();
 
       if (!this.validateForm(form.elements)) {
