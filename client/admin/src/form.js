@@ -12,10 +12,7 @@ class Form extends HTMLElement {
         document.addEventListener("loadData", async event => {
             await this.loadData(event.detail.id)
         });
-
-
     }
-
     async attributeChangedCallback (name, oldValue, newValue) {
         await this.render()
     }
@@ -27,7 +24,7 @@ class Form extends HTMLElement {
 
             Object.entries(this.data).forEach( ([key, value]) => {
 
-                const form = this.shadow.querySelector('#form');
+                const form = this.shadow.querySelector("#form");
                 const inputElement = form.elements[key];
 
                 if (inputElement) {
@@ -43,154 +40,179 @@ class Form extends HTMLElement {
 
     render() {
 
-        this.shadow.innerHTML = 
+        this.shadow.innerHTML =
         `
         <style>
-           
-            .form-section {
-                width: 100%;
-                display: flex;
-                flex-direction: column;
-                gap: 0.5rem;
+            :host {
+                width: 60%;
             }
-            
-            .form-section .form-selector {
+
+            .form{
                 width: 100%;
-                height: 5vh;
+
+            }
+            .form-header{
                 background-color: white;
                 display: flex;
                 justify-content: space-between;
-                align-items: center;
+                margin-bottom:6rem ;
+                height: 4rem;
             }
-            
-            .form-selector .selector {
+            .form-tabs{
                 display: flex;
-                height: 100%;
+                align-items: center;
+                gap: 1rem;
+                max-width: 100%;
+                overflow:hidden;
             }
-            
-            .selector div {
-                height: 100%;
-                width: 100%;
-                padding: 0 1rem;
-            }
-            
-            .selector div button {
-                height: 5vh;
-                width: 100%;
-                background-color: transparent;
-                border: none;
-                height: 100%;
-                cursor: pointer;
-            }
-            
-            .selector div p {
-                color: rgb(133, 133, 133);
-                font-size: 1rem;
-                font-weight: 600;
-            }
-            
-            .selector div.active {
-                background-color: rgb(109, 183, 243);
-            }
-            
-            .selector div.active p {
+            .form-tabs button:first-child{
                 color: white;
+                background-color: hsl(207, 85%, 69%);
+                height: 4rem;
+                display: flex;
+                align-items: center;
+                padding: 0 1.5rem;
             }
-            
-            .form-selector .options {
-                height: 100%;
+            .form-icons{
                 display: flex;
                 gap: 1rem;
                 align-items: center;
-                margin-right: 10px;
-            }
-            
-            .options div {
-                height: 2.5rem;
-                width: 2.5rem;
-                display: flex;
-            }
-            
-            .options div button {
-                width: 100%;
-                height: 100%;
                 cursor: pointer;
-                background-color: transparent;
-                border: none;
+                margin-right: 1rem;
             }
-            
-            .options div svg {
-                fill: rgb(109, 183, 243);
+            .form-icons svg{
+                height: 4rem;
+                fill: hsl(207, 85%, 69%);
             }
-           
-            .form {
-                display: none;
-            }
-            
-            .form.active {
-                display: flex;
-            }
-            
-            .form form {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                width: 100%;
-                gap: 2rem;
+            .form-tabs button{
+                font-family: 'Roboto', sans-serif;
+                font-weight: 600;
+                font-size: 24px;
+                color:#808080 ;
+                cursor: pointer;
+                height: 100%;
+                margin: 0;
+                padding: 0 1.5rem;
             }
 
-            .validation-error {
+            .form-tabs button.active {
+                color: hsl(209, 100%, 50%);
+                border-bottom: none;
+                border-top-color: $primary-color;
+                border-right-color: transparent;
+                border-left-color: transparent;
+            }
+
+            .form-tabs button:hover {
+                background-color: hsl(0, 0%, 87%);
+                border-top-color:hsl(209, 100%, 50%);
+                color: hsl(209, 100%, 50%);
+            }
+
+            .tab-contents > div{
+                display: none;
+                width: 100%;
+            }
+
+            .tab-contents > div.active{
+                display: block;
+            }
+
+            button{
+                overflow: hidden;
+                border: none;
+
+            }
+            .validation-errors{
                 border-color: red;
             }
 
-            li {
-              list-style: none;
+            .section-inputs-form {
+                position: relative;
+                margin: 1rem 0;
+
             }
-            
-            form div {
+
+            .row{
                 display: flex;
-                flex-direction: column;
-                gap: 0.5rem;
+                gap: 2rem;
+                margin-bottom: 5rem;
+                width: 100%;
             }
+
+            .form-element {
+                width: 100%;
+            }
+
             
-            form div label {
-                color: white;
-                font-size: 1.5rem;
+            .form-element-label {
+                margin-bottom: 0.5rem;
+                width: 100%;
+            }
+
+            .form-element-label label {
+                color:  hsl(0, 100%, 100%);
+                font-family:  'Roboto', sans-serif;
                 font-weight: 600;
+                width: 100%;
             }
-            
-            form div input {
-                background-color: rgb(113, 139, 224);
-                font-size: 2rem;
-                color: white;
-                border: none;
-                border-bottom: 1px solid white;
+
+            .form-element-input {
+                width: 100%;
             }
-            
+
+            .form-element-input input{
+                background-color: rgb(113,139,224);
+                border-bottom: 1px solid hsl(0, 0%, 100%);
+                color: hsl(0, 100%, 100%);
+                font-family: 'Roboto', sans-serif;
+                font-size: 1.2rem;
+                padding: 0.5rem;
+                width: 100%;
+            }
+
+            .add-image{
+                display:flex;
+                flex-direction: column;
+                align-items: flex-start;
+
+            }
+            .add-image active{
+
+            }
+            .add-image button{
+                width:6%;
+                margin-left: 5%;
+                padding: 1.5rem;
+                background-color: white;
+
+            }
+            .button-image:hover{
+                cursor:pointer;
+            }
+
+            .add-image h2{
+                color:white;
+                font-size: 30px;
+            }
+
         </style>
-        <section class="form-section">
-            <div class="form-selector">
-                <div class="selector">
-                    <div class="active" data-form="principal">
-                        <button>
-                            <p>Principal</p>
-                        </button>
-                    </div>
-                    <div data-form="image">
-                        <button>
-                            <p>Imágenes</p>
-                        </button>
-                    </div>
+        <div class="form">
+            <div class="form-header">
+                <div class="form-tabs">
+                    <button class="active" data-tab="main">
+                        Principal
+                    </button>
+                    <button data-tab="images">
+                        Imágenes
+                    </button>
                 </div>
-                <div class="options">
-                    <div>
-                        <button type="button" id="resetButton">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>broom</title><path d="M19.36,2.72L20.78,4.14L15.06,9.85C16.13,11.39 16.28,13.24 15.38,14.44L9.06,8.12C10.26,7.22 12.11,7.37 13.65,8.44L19.36,2.72M5.93,17.57C3.92,15.56 2.69,13.16 2.35,10.92L7.23,8.83L14.67,16.27L12.58,21.15C10.34,20.81 7.94,19.58 5.93,17.57Z" /></svg>                        
-                        </button>
+                <div class="form-icons">
+                    <div id="clean-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>broom</title><path d="M19.36,2.72L20.78,4.14L15.06,9.85C16.13,11.39 16.28,13.24 15.38,14.44L9.06,8.12C10.26,7.22 12.11,7.37 13.65,8.44L19.36,2.72M5.93,17.57C3.92,15.56 2.69,13.16 2.35,10.92L7.23,8.83L14.67,16.27L12.58,21.15C10.34,20.81 7.94,19.58 5.93,17.57Z" /></svg>
                     </div>
-                    <div>
-                        <button type="button" id="submitButton">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15,8V4H5V8H15M12,18A3,3 0 0,0 15,15A3,3 0 0,0 12,12A3,3 0 0,0 9,15A3,3 0 0,0 12,18M17,2L21,6V18A2,2 0 0,1 19,20H5C3.89,20 3,19.1 3,18V4A2,2 0 0,1 5,2H17M11,22H13V24H11V22M7,22H9V24H7V22M15,22H17V24H15V22Z" /></svg>
-                        </button>
+                    <div id="send-form-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>content-save</title><path d="M15,9H5V5H15M12,19A3,3 0 0,1 9,16A3,3 0 0,1 12,13A3,3 0 0,1 15,16A3,3 0 0,1 12,19M17,3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V7L17,3Z" /></svg>
                     </div>
                 </div>
             </div>
@@ -198,51 +220,154 @@ class Form extends HTMLElement {
                 <ul>
                 </ul>
             </div>
-            <form id="form">
+            <form>
                 <div class="tab-contents">
                     <div class="tab-content active" data-tab="main">
                         <input type="hidden" name="id"/>
-                        <div class="section-inputs">
-                            <label class="section-inputs-form" for="name">
-                                <span>Nombre</span>
-                                <input type="text" name="name" />
-                            </label>
-                            <label class="section-inputs-form" for="email">
-                                <span>Email</span>
-                                <input type="email" name="email" data-validate="email" />
-                            </label>
+                        <div class="row">
+                            <div class="form-element">
+                                <div class="form-element-label">
+                                    <label for="name">
+                                        Nombre
+                                    </label>
+                                </div>
+                                <div class="form-element-input">
+                                    <input type="text" name="name" />
+                                </div>
+                            </div>
+                                
+                            <div class="form-element">
+                                <div class="form-element-label">
+                                    <label for="email">
+                                        Email
+                                    </label>
+                                </div>
+                                <div class="form-element-input">
+                                    <input type="text" name="email" />
+                                </div>
+                            </div>
                         </div>
-                        <div class="section-inputs">
-                            <label class="section-inputs-form" for="password">
-                                <span>Password</span>
-                                <input type="password" name="password"/>
-                            </label>
-                            <label class="section-inputs-form" for="password">
-                                <span>Repeat password</span>
-                                <input type="password" name="repeat-password"/>
-                            </label>
+                        <div class="row">
+                            <div class="form-element">
+                                <div class="form-element-label">
+                                    <label for="password">
+                                        Contraseña
+                                    </label>
+                                </div>
+                                <div class="form-element-input">
+                                    <input type="password" name="password" />
+                                </div>
+                            </div>
+                                
+                            <div class="form-element">
+                                <div class="form-element-label">
+                                    <label for="repeatPassword">
+                                        Repetir Contraseña
+                                    </label>
+                                </div>
+                                <div class="form-element-input">
+                                    <input type="password" name="repeatPassword" />
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="tab-content" data-tab="images">
-                        <div class="add-image">
-                            <h2>Añadir imagen</h2>
-                            <button type="button" id="button-image">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"/></svg>
-                            </button>
+                        <div class="row">
+                            <div class="form-element">
+                                <div class="form-element-label">
+                                    <label for="file">
+                                        Añadir imagen
+                                    </label>
+                                </div>
+                                <div class="form-element-input">
+                                    <image-button-component></image-button-component>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </form>
         </div>
-    </section>
     `;
+
     this.renderTabs();
+    this.renderButtons();
+
+        const form = this.shadow.querySelector('form');
+        const sendFormButton = this.shadow.getElementById('send-form-button');
+
+        sendFormButton.addEventListener('click', event => {
+
+            event.preventDefault();
+
+            if(!this.validateForm(form.elements)) {
+                return;
+            }
+
+            let id = form.elements.id.value;
+            let formData = new FormData(form);
+            let formDataJson = Object.fromEntries(formData.entries());
+            let url = id ? `http://127.0.0.1:8080/api/admin/users/${id}` : `http://127.0.0.1:8080/api/admin/users`
+            let method = id ? 'PUT':'POST'
+            delete formDataJson.id
+
+            fetch(url, {
+                method: method,
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formDataJson)
+
+            }).then(response => {
+
+                return response.json();
+
+            }).then(data => {
+
+                document.dispatchEvent(new CustomEvent('refreshTable'));
+
+                form.reset();
+
+            }).catch(async error => {
+
+                const data = await error.json();
+                const form = this.shadow.querySelector('#form');
+                const errorMessageContainer = this.shadow.querySelector('.validation-errors ul')
+                errorMessageContainer.innerHTML = ""
+
+                data.message.forEach(error => {
+
+                    form.elements[error.path].classList.add('validation-error')
+                    const li = document.createElement;
+                    errorMessageContainer.appendChild(li);
+                    li.textContent = error.messagge;
+                });
+
+            });
+
+        });
+    }
+
+    renderButtons = () => {
+
+        const imageButton = this.shadow.querySelectorAll('.button-image');
+            imageButton.addEventListener('click', () => {
+                console.log('Hola');
+                document.dispatchEvent( new CustomEvent('openModal',{
+                    detail: {
+
+                        id: imageButton
+                    }
+                }));
+            });
+        };
+
 
     renderTabs = () => {
         const tabsHeader = this.shadow.querySelector('.form-tabs');
         const tabContents = this.shadow.querySelector('.tab-contents');
         const tabs = tabsHeader.querySelectorAll('button');
- 
+
         tabs.forEach(tab => {
             tab.addEventListener('click', () => {
                 tabsHeader.querySelector('.active').classList.remove('active');
@@ -253,112 +378,58 @@ class Form extends HTMLElement {
         });
     };
 
+    validateForm = elements => {
 
-      const form = this.shadow.querySelector("form");
-      const submitButton = this.shadow.querySelector("#submitButton");
+        let validForm = true;
 
-    submitButton.addEventListener("click", (event) => {
-      event.preventDefault();
-
-      if (!this.validateForm(form.elements)) {
-        return;
-      }
-
-      let id = form.elements.id.value;
-      let formData = new FormData(form);
-      let formDataJson = Object.fromEntries(formData.entries());
-      let url = id ? `http://127.0.0.1:8080/api/admin/users/${id}`: `http://127.0.0.1:8080/api/admin/users`;
-      let method = id ? "PUT" : "POST";
-      delete formDataJson.id;
-
-      fetch(url, {
-        method: method,
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formDataJson),
-      })
-      .then(response => {
-
-        return response.json();
-        
-      }).then((data) => {
-
-          document.dispatchEvent(new CustomEvent("refreshTable"));
-
-          form.reset();
-        })
-        .catch(async (error) => {
-          const data = await error.json();
-          const form = this.shadow.querySelector("#form");
-          const errorMessageContainer = this.shadow.querySelector(
-            ".validation-errors ul"
-          );
-          errorMessageContainer.innerHTML = "";
-
-          data.message.forEach((error) => {
-            form.elements[error.path].classList.add("validation-error");
-            const li = document.createElement("li");
-            errorMessageContainer.appendChild(li);
-            li.textContent = error.message;
-          });
-        });
-    });
-  }
-
-  validateForm =  elements => {
-    let validForm = true;
-
-    let validators = {
-      "only-letters": {
-          regex: /^[a-zA-Z\s]+$/g,
-          message: 'Por favor, rellena el campo "Nombre".'
-      },
-      "only-numbers": {
-          regex: /\d/g,
-          message: "Solo números"
-      },
-      "telephone":{
-          regex:/^\d{9}$/g,
-          message: "Solo telefono"
-      },
-      "email": {
-          regex:/\w+@\w+\.\w+/g,
-          message:'Por favor, rellena el campo "Email".'
-      },
-      "password": {
-    
-          message:'No es una contraseña válida.'
-      },
-    };
-
-    const errorMessageContainer = this.shadow.querySelector(
-      ".validation-errors ul");
-
-    errorMessageContainer.innerHTML = "";
-
-   for(let i=0; i < elements.length ; i++) {
-
-    const element = elements[i];
-    const validationName = element.dataset.validate;
-
-      if (validationName && validationName !== '') {
-
-        const validationRegex = validators[validationName];
-
-        if (validationRegex && element.value.match(validationRegex) == null) {
-            element.classList.add('validation-error');
-            validForm = false;
-
-            const li = document.createElement('li');
-            errorMessageContainer.appendChild(li);
-            li.textContent = validationRegex.message;
-
-        } else {
-            element.classList.remove('validation-error');
+        let validators = {
+            "only-letters": {
+                regex: /^[a-zA-Z\s]+$/g,
+                message: 'Por favor, rellena el campo "Nombre".'
+            },
+            "only-numbers": {
+                regex: /\d/g,
+                message: "Solo números"
+            },
+            "telephone":{
+                regex:/^\d{9}$/g,
+                message: "Solo telefono"
+            },
+            "email": {
+                regex:/\w+@\w+\.\w+/g,
+                message:'Por favor, rellena el campo "Email".'
+            },
+            "password": {
+                regex: /^.{1}$/g,
+                message:'No es una contraseña válida.'
+            },
         }
-      }
-    }
+
+        const errorMessageContainer = this.shadow.querySelector('.validation-errors ul')
+        errorMessageContainer.innerHTML = ""
+
+        for(let i=0; i < elements.length ; i++) {
+
+            const element = elements[i];
+            const validationName = element.dataset.validate;
+
+            if (validationName && validationName !== '') {
+
+                const validationRegex = validators[validationName];
+
+                if (validationRegex && element.value.match(validationRegex) == null) {
+                    element.classList.add('validation-error');
+                    validForm = false;
+
+                    const li = document.createElement('li');
+                    errorMessageContainer.appendChild(li);
+                    li.textContent = validationRegex.message;
+
+                } else {
+                    element.classList.remove('validation-error');
+                }
+            }
+        }
 
         if (!validForm) {
             document.dispatchEvent(new CustomEvent('message', {
@@ -366,20 +437,21 @@ class Form extends HTMLElement {
                     text: 'Los datos del formulario no son válidos',
                     type: 'error'
                 }
-        }));
+            }));
         } else {
             document.dispatchEvent(new CustomEvent('message', {
                 detail: {
                     text: 'El formulario se envió correctamente',
                     type: 'success'
-          }
-        }));
-      }
+                }
+            }));
+        }
 
-    console.log(validForm);
+        console.log(validForm);
 
-    return validForm;
-  };
+        return validForm;
+    };
+
 }
 
-customElements.define("form-component", Form);
+customElements.define('form-component', Form);

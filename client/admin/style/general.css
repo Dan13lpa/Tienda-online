@@ -3,6 +3,7 @@ body{
     padding: 0 5%;
     max-width: 90%;
     margin-top: 1rem;
+    
   }
   
   header{
@@ -19,7 +20,8 @@ body{
   section{
     margin-bottom: 3rem;
     width: 100%;
-    
+   
+  
   }
   
   .main{

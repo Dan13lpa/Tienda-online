@@ -1,4 +1,4 @@
-class Image extends HTMLElement {
+class ImageButton extends HTMLElement {
 
     constructor() {
         super();
@@ -27,25 +27,27 @@ class Image extends HTMLElement {
                 }   
                 .image-section {
                     width: 70%;
-                    display: flex; 
-                    justify-content: center
                 }
+
                 .image-section button {
-                    width: 10%;
                     cursor: pointer;
+                    padding: 2rem;
+                }
+
+                .image-section button svg{
+                    width: 2rem;
                 }
             </style>
         `
 
-        const Image = this.shadow.querySelector("#button-image")
+        const buttonImage = this.shadow.querySelector("#button-image")
             
-        Image.addEventListener("click", () => {
-            const addActive = new CustomEvent('add-active', { detail: {detail : "image-component" }});
-            document.dispatchEvent(addActive)
+        buttonImage.addEventListener("click", () => {
+            document.dispatchEvent(new CustomEvent('openGalleryModal'))
         })
     }
 
 }
 
 
-customElements.define('image-component', Image);
+customElements.define('image-button-component', ImageButton);

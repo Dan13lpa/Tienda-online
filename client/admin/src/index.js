@@ -7,4 +7,4 @@ import './form.js';
 import './notification.js';
 import './login.js';
 import './image-modal.js';
-import './image.js';
+import './image-button.js';

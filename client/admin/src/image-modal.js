@@ -7,8 +7,8 @@ class ImageModal extends HTMLElement {
     }
 
     connectedCallback() {
-        document.addEventListener('openModal', event => {
-            const modal = this.shadow.querySelector('.modal');
+        document.addEventListener('openGalleryModal', event => {
+            const modal = this.shadow.querySelector('.gallery-modal');
             modal.classList.toggle('active');
             this.id = event.detail.id;
         });
@@ -19,7 +19,7 @@ class ImageModal extends HTMLElement {
         this.shadow.innerHTML = 
         `
         <style>
-            .image-modal{
+            .gallery-modal{
                 background-color: white;
                 height: 70vh;
                 position: fixed;
@@ -30,10 +30,9 @@ class ImageModal extends HTMLElement {
                 top: 50%;
                 left: 50%;
                 transform: translate(-50%, -50%);
-                
             }
             
-            .image-modal.active{
+            .gallery-modal.active{
                 opacity: 1;
                 z-index: 2000;
                 position: absolute;
@@ -41,9 +40,9 @@ class ImageModal extends HTMLElement {
                 flex-direction: column; 
                 align-items: center; 
                 justify-content: space-between; 
-
             }
-            .image-modal.active h5{
+
+            .gallery-modal.active h5{
                 font-family: "Poppins", sans-serif;
                 font-size: 1.5rem;
             }
@@ -93,7 +92,7 @@ class ImageModal extends HTMLElement {
                 fill: hsl(0, 0%, 0%);
             } 
         </style>
-        <div class="image-modal ">
+        <div class="gallery-modal">
             <h5>Añadir imagen</h5>
             <div class="buttons">
                 <button type="button" class="upload">Cargar archivo</button>
