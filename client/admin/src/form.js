@@ -352,7 +352,6 @@ class Form extends HTMLElement {
 
         const imageButton = this.shadow.querySelectorAll('.button-image');
             imageButton.addEventListener('click', () => {
-                console.log('Hola');
                 document.dispatchEvent( new CustomEvent('openModal',{
                     detail: {
 
