@@ -1,3 +1,5 @@
+import { API_URL } from '../config/config.js'
+
 class ImageModal extends HTMLElement {
 
     constructor() {
@@ -136,7 +138,7 @@ class ImageModal extends HTMLElement {
             <div class="tab-contents">
                 <div class="tab-content active" data-tab="main">
                     <div class="upload">
-                        <input type="file" class="upload-image"></input>
+                        <input type="file" class="upload-image" name="file"></input>
                     </div>
                 </div>
                 <div class="tab-content" data-tab="gallery">
@@ -180,18 +182,17 @@ class ImageModal extends HTMLElement {
 
         const uploadButton = this.shadow.querySelector('.upload-image')
 
-        uploadButton.addEventListener("change", async () => {
+        uploadButton.addEventListener("change", async event => {
 
-            let file = null
-
-            console.log(file)
+            let file = event.target.files[0]
 
             let formData = new FormData()
             formData.append('file', file)
 
-            await fetch( `http://127.0.0.1:8080/api/admin/images`, {
+            await fetch( `${API_URL}/api/admin/images`, {
+                method: 'POST',
                 headers: {
-                    Authorization: 'Bearer ' + sessionStorage.getItem('accessToken')
+                    'Authorization': `Bearer ${sessionStorage.getItem('accessToken')}`,
                 },
                 body: formData
             })

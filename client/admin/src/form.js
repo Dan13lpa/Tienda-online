@@ -1,3 +1,5 @@
+import { API_URL } from '../config/config.js'
+
 class Form extends HTMLElement {
 
     constructor() {
@@ -19,7 +21,11 @@ class Form extends HTMLElement {
 
     async loadData(id) {
         try {
-            const response = await fetch(`http://127.0.0.1:8080/api${this.getAttribute('url')}/${id}`)
+            const response = await fetch(`${API_URL}/api${this.getAttribute('url')}/${id}`,{
+                headers: {
+                  'Authorization': `Bearer ${sessionStorage.getItem('accessToken')}`,
+                }
+              });
             this.data = await response.json()
 
             Object.entries(this.data).forEach( ([key, value]) => {
@@ -288,13 +294,17 @@ class Form extends HTMLElement {
                 </div>
             </form>
         </div>
-    `;
+        `;
 
-    this.renderTabs();
-    this.renderButtons();
+        this.renderTabs();
+        this.renderButtons();
+    }
+
+    renderButtons = () => {
 
         const form = this.shadow.querySelector('form');
         const sendFormButton = this.shadow.getElementById('send-form-button');
+        const cleanButton = this.shadow.getElementById('clean-button');
 
         sendFormButton.addEventListener('click', event => {
 
@@ -307,14 +317,14 @@ class Form extends HTMLElement {
             let id = form.elements.id.value;
             let formData = new FormData(form);
             let formDataJson = Object.fromEntries(formData.entries());
-            let url = id ? `http://127.0.0.1:8080/api/admin/users/${id}` : `http://127.0.0.1:8080/api/admin/users`
+            let url = id ? `${API_URL}/api/admin/users/${id}` : `${API_URL}/api/admin/users`
             let method = id ? 'PUT':'POST'
             delete formDataJson.id
 
             fetch(url, {
                 method: method,
                 headers: {
-                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${sessionStorage.getItem('accessToken')}`,
                 },
                 body: JSON.stringify(formDataJson)
 
@@ -346,20 +356,14 @@ class Form extends HTMLElement {
             });
 
         });
-    }
 
-    renderButtons = () => {
+        cleanButton.addEventListener('click', event => {
 
-        const imageButton = this.shadow.querySelectorAll('.button-image');
-            imageButton.addEventListener('click', () => {
-                document.dispatchEvent( new CustomEvent('openModal',{
-                    detail: {
+            event.preventDefault();
 
-                        id: imageButton
-                    }
-                }));
-            });
-        };
+            form.reset();
+        });
+    };
 
 
     renderTabs = () => {

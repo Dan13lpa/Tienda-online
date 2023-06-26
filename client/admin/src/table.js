@@ -1,3 +1,5 @@
+import { API_URL } from '../config/config.js'
+
 class Table extends HTMLElement {
 
     constructor() {
@@ -35,7 +37,11 @@ class Table extends HTMLElement {
 
     loadData = async() => {
         try {
-            const response = await fetch(`http://127.0.0.1:8080/api${this.getAttribute('url')}`);
+            const response = await fetch(`${API_URL}/api${this.getAttribute('url')}`,{
+                headers: {
+                    'Authorization': `Bearer ${sessionStorage.getItem('accessToken')}`,
+                }
+            });
             const data = await response.json()
             this.data = data;
             this.currentPage = data.meta.currentPage
@@ -163,7 +169,7 @@ class Table extends HTMLElement {
 
         primerapagina.addEventListener('click', async () => {
             try {
-                const response = await fetch('http://127.0.0.1:8080/api/admin/users?page=1');
+                const response = await fetch('${API_URL}/api/admin/users?page=1');
                 const data = await response.json();
                 this.data = data;
                 this.currentPage = parseInt(data.meta.currentPage);
@@ -178,7 +184,7 @@ class Table extends HTMLElement {
         anteriorpagina.addEventListener('click', async () => {
             try {
                 if (this.currentPage > 1) {
-                    const response = await fetch(`http://127.0.0.1:8080/api/admin/users?page=${this.currentPage - 1}`);
+                    const response = await fetch(`${API_URL}/api/admin/users?page=${this.currentPage - 1}`);
                     const data = await response.json();
                     this.data = data;
                     this.currentPage = parseInt(data.meta.currentPage);
@@ -193,7 +199,7 @@ class Table extends HTMLElement {
         siguientepagina.addEventListener('click', async () => {
             try {
                 if (this.currentPage <  this.data.meta.pages) {
-                    const response = await fetch(`http://127.0.0.1:8080/api/admin/users?page=${this.currentPage + 1}`);
+                    const response = await fetch(`${API_URL}/api/admin/users?page=${this.currentPage + 1}`);
                     const data = await response.json();
                     this.data = data;
                     this.currentPage = parseInt(data.meta.currentPage);
@@ -207,7 +213,7 @@ class Table extends HTMLElement {
 
         ultimapagina.addEventListener('click', async () => {
                 try {
-                    const response = await fetch(`http://127.0.0.1:8080/api/admin/users?page=${this.totalPages}`);
+                    const response = await fetch(`${API_URL}/api/admin/users?page=${this.totalPages}`);
                     const data = await response.json();
                     this.data = data;
                     this.currentPage = parseInt(data.meta.currentPage);

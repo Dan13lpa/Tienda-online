@@ -1,3 +1,5 @@
+import { API_URL } from '../config/config.js'
+
 class Filter extends HTMLElement {
 
   constructor() {
@@ -150,7 +152,11 @@ class Filter extends HTMLElement {
               const params = new URLSearchParams(formData).toString();
 
 
-              fetch(`http://localhost:8080/api/admin/users?${params}`)
+              fetch(`${API_URL}/api/admin/users?${params}`,{
+                headers: {
+                'Authorization': `Bearer ${sessionStorage.getItem('accessToken')}`,
+                }
+              })
               .then( async (response) => {
                   if(response.ok) {
                       const filterData = await response.json();
@@ -170,8 +176,7 @@ class Filter extends HTMLElement {
               }).catch((error) => {
                   console.error(error)
               })
-          }
-          else{
+            }else{
               const formFilter = this.shadow.querySelector("#filter-form")
               const formFilerContainer = this.shadow.querySelector(".filter-form")
 

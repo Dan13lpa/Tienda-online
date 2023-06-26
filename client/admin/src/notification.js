@@ -1,3 +1,5 @@
+import { API_URL } from '../config/config.js'
+
 class Notification extends HTMLElement {
 
     constructor() {
@@ -124,7 +126,7 @@ class Notification extends HTMLElement {
         deleteButton.addEventListener('click', async () => {
 
             try {
-                let response = await fetch(`http://127.0.0.1:8080/api/admin/users/${this.id}`, {
+                let response = await fetch(`${API_URL}/api/admin/users/${this.id}`, {
                     method: 'DELETE'
                 });
 

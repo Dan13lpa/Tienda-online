@@ -1,3 +1,5 @@
+import { API_URL } from '../config/config.js'
+
 class Login extends HTMLElement {
     constructor() {
       super();
@@ -53,7 +55,7 @@ class Login extends HTMLElement {
         const username = usernameInput.value;
         const password = passwordInput.value;
   
-        fetch('http://127.0.0.1:8080/api/auth/users/signin', {
+        fetch('${API_URL}/api/auth/users/signin', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -65,7 +67,9 @@ class Login extends HTMLElement {
         })
           .then(response => response.json())
           .then(data => {
-            console.log(data);
+            sessionStorage.setItem('accessToken', data.accessToken)
+            
+            window.location.href = this.getAttribute('redirection')
           })
           .catch(error => {
             console.error('Error:', error);
