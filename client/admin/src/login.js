@@ -1,4 +1,4 @@
-import { API_URL } from '../config/config.js'
+import { API_URL } from '../config.js'
 
 class Login extends HTMLElement {
     constructor() {
@@ -55,7 +55,7 @@ class Login extends HTMLElement {
         const username = usernameInput.value;
         const password = passwordInput.value;
   
-        fetch('${API_URL}/api/auth/users/signin', {
+        fetch(`${API_URL}/api/auth/users/signin`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'

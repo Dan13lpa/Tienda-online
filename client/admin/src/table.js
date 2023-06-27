@@ -1,4 +1,4 @@
-import { API_URL } from '../config/config.js'
+import { API_URL } from '../config.js'
 
 class Table extends HTMLElement {
 
@@ -169,7 +169,7 @@ class Table extends HTMLElement {
 
         primerapagina.addEventListener('click', async () => {
             try {
-                const response = await fetch('${API_URL}/api/admin/users?page=1');
+                const response = await fetch(`${API_URL}/api/admin/users?page=1`);
                 const data = await response.json();
                 this.data = data;
                 this.currentPage = parseInt(data.meta.currentPage);
