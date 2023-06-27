@@ -1,4 +1,4 @@
-import { API_URL } from '../config.js'
+import { API_URL } from '../config/config.js'
 
 class ImageModal extends HTMLElement {
 
