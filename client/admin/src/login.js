@@ -54,6 +54,8 @@ class Login extends HTMLElement {
   
         const username = usernameInput.value;
         const password = passwordInput.value;
+
+        console.log(API_URL)
   
         fetch(`${API_URL}/api/auth/users/signin`, {
           method: 'POST',
