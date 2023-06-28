@@ -142,7 +142,7 @@ class ImageModal extends HTMLElement {
                     </div>
                 </div>
                 <div class="tab-content" data-tab="gallery">
-                    <p> lorem ipsum dolor sit</p>
+                    <div class="gallery-image"></div>
                 </div>
             </div>
             <div class="close-button" id="close-button">
@@ -189,15 +189,36 @@ class ImageModal extends HTMLElement {
             let formData = new FormData()
             formData.append('file', file)
 
-            await fetch( `${API_URL}/api/admin/images`, {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${sessionStorage.getItem('accessToken')}`,
-                },
-                body: formData
-            })
+            try{
+                const response = await fetch( `${API_URL}/api/admin/images`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${sessionStorage.getItem('accessToken')}`,
+                    },
+                    body: formData
+                })
+    
+                const data = await response.json()
+
+                
+                this.loadImage();
+
+            }catch(err){
+
+            }
+            
         })
     }
+
+    loadImage = () => {
+        const images = this.shadow.querySelector('.gallery-image');
+        const image = document.createElement('img');
+        const filename = data[0];
+        const imageUrl=`../storage/images/gallery/thumbnail/${filename}.webp`
+        image.src = imageUrl; 
+        images.appendChild(image);
+        console.log(image)
+      };
 }
 
 customElements.define('image-modal-component', ImageModal);
