@@ -36,7 +36,7 @@ module.exports = class ImageService {
 
         await fs.unlink(tmpFilePath);
 
-        result.push(newFilename);
+        result.push(`${newFilename}.webp`);
 
       } catch (error) {
         console.error('Error al procesar el archivo:', error);

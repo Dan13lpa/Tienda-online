@@ -50,8 +50,17 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
 
     const filename = req.params.filename;
+ 
+    const file = {
+        root: __dirname + '../../../storage/images/gallery/thumbnail/',
+        dotfiles: 'deny',
+        headers: {
+          'x-timestamp': Date.now(),
+          'x-sent': true
+        }
+      }
 
-    console.log(filename)
+    res.sendFile(filename, file)
 };
 
 exports.update = (req, res) => {

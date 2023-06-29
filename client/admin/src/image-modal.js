@@ -192,16 +192,26 @@ class ImageModal extends HTMLElement {
             try{
                 const response = await fetch( `${API_URL}/api/admin/images`, {
                     method: 'POST',
-                    headers: {
-                        'Authorization': `Bearer ${sessionStorage.getItem('accessToken')}`,
+                    headers: { 
+                        'Authorization': `Bearer ${sessionStorage.getItem('accessToken')}`
                     },
                     body: formData
                 })
     
                 const data = await response.json()
+                const imagesContainer = this.shadow.querySelector('.gallery-image');
 
-                
-                this.loadImage();
+                data.forEach( newFilename => {
+
+                    const imageContainer = document.createElement('div');
+                    const image = document.createElement('img');
+
+                    imageContainer.classList.add('image-container');
+                    image.src = `${API_URL}/api/admin/images/${newFilename}`;
+
+                    imageContainer.appendChild(image);
+                    imagesContainer.prepend(imageContainer);
+                })
 
             }catch(err){
 
@@ -209,16 +219,7 @@ class ImageModal extends HTMLElement {
             
         })
     }
-
-    loadImage = () => {
-        const images = this.shadow.querySelector('.gallery-image');
-        const image = document.createElement('img');
-        const filename = data[0];
-        const imageUrl=`../storage/images/gallery/thumbnail/${filename}.webp`
-        image.src = imageUrl; 
-        images.appendChild(image);
-        console.log(image)
-      };
 }
+
 
 customElements.define('image-modal-component', ImageModal);
