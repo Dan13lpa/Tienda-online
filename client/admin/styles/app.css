@@ -25,7 +25,9 @@ section{
 
 .main{
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+ 
+  
 }
 
 .column-small{

@@ -123,6 +123,21 @@ class ImageModal extends HTMLElement {
             .close-button:hover svg {
                 fill: hsl(0, 0%, 0%);
             } 
+            .gallery-image {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: flex-start;
+                margin: 1.5rem;
+              }
+              .
+              .image-container {
+                padding: 10px;
+              }
+              
+              .image-container img {
+                width: 100%;
+                height: auto;
+              }
 
         </style>
         <div class="gallery-modal active">
@@ -178,6 +193,7 @@ class ImageModal extends HTMLElement {
         })
     };
 
+
     uploadImage = async () => {
 
         const uploadButton = this.shadow.querySelector('.upload-image')
@@ -188,6 +204,7 @@ class ImageModal extends HTMLElement {
 
             let formData = new FormData()
             formData.append('file', file)
+            
 
             try{
                 const response = await fetch( `${API_URL}/api/admin/images`, {
@@ -211,6 +228,17 @@ class ImageModal extends HTMLElement {
 
                     imageContainer.appendChild(image);
                     imagesContainer.prepend(imageContainer);
+                })
+
+                const uploadTabs = this.shadow.querySelectorAll('[data-tab="main"]')
+                const galleryTabs = this.shadow.querySelectorAll('[data-tab="gallery"]')
+
+                uploadTabs.forEach( tab => {
+                    tab.classList.remove('active')
+                })
+
+                galleryTabs.forEach( tab => {
+                    tab.classList.add('active')
                 })
 
             }catch(err){

@@ -105,6 +105,9 @@ class Table extends HTMLElement {
             }
             .button{
                 width: 100%;
+                display: flex;
+                gap: 1rem;
+                justify-content: space-around;
             }
             button{
                 width: 20%;
