@@ -50,20 +50,31 @@ class ImageModal extends HTMLElement {
                 top: 0;
                 left: 0;
                 margin: 2rem;
+            }    
+            .modal-header{
+                width: 100%;
+                height: 20%;
             }
+
+            .modal-body {
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+                width: 100%;
+            }    
+            
             .modal-tabs {
                 display: flex;
                 gap: 1rem;
                 align-self: flex-start;
-                top: 0;
-                left: 0;
-                margin: 6.5rem;
+                margin-left: 2rem;
               }
             
             .modal-tabs button {
                 padding: 0.5rem 1rem;
                 border: none;
-                border-radius: 5px;
+                border-top-right-radius: 5px;
+                border-top-left-radius: 5px;
                 cursor: pointer;
                 font-size: 1.2rem;
                 font-family: "Poppins", sans-serif;
@@ -72,12 +83,12 @@ class ImageModal extends HTMLElement {
             
             .modal-tabs button.active {
                 background-color: rgb(109,183,243);
-                
+                border-color: 
             }
 
             .tab-contents{
                 height: 100%;
-                margin-top: 7rem;
+                border-top: 1px solid rgb(180, 180, 180);
             }
 
             .tab-content{
@@ -87,11 +98,39 @@ class ImageModal extends HTMLElement {
             .tab-content.active{
                 display: block;
             }
+
+            .tab-inputs{
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                width: 25%;
+                height: 70%;
+                right: 0%;
+                background-color: rgb(180, 180, 180);
+                gap: 1rem;
+                margin-top:2.8rem;
                 
+            }
+            .tab-inputs input{
+                display: flex;
+                flex-direction: column;
+                margin-left: 1rem;
+                padding: 0.4rem 4rem;
+                
+            }
+            .tab-inputs span{
+                font-family: "Poppins", sans-serif;
+                font-size: 1rem;
+                margin: 1rem;
+                
+            }
+
             .upload {
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                margin-top: 10rem;
+               
             }
             
             .upload input {
@@ -128,40 +167,86 @@ class ImageModal extends HTMLElement {
                 flex-wrap: wrap;
                 justify-content: flex-start;
                 margin: 1.5rem;
-              }
-              .
-              .image-container {
+                align-self: flex-start;
+                align-items: flex-start;
+            }
+            
+            .image-container {
                 padding: 10px;
-              }
+            }
               
-              .image-container img {
+            .image-container img {
                 width: 100%;
                 height: auto;
-              }
+            }
+            .footer{
+                display: flex;
+                flex-direction: column;
+                padding: 1.5rem
+                height: 25%;
+                width: 100%;
+                padding-right: 5rem;
+                padding-top: 1.5rem;
+
+                
+                
+            }
+            .footer button {
+                padding: 1rem;
+                margin: 1.5rem 2rem;
+                color: hsl(0, 0%, 100%);
+                background-color:rgb(109,183,243);
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 1.1rem;
+                align-self: flex-end;
+
+            }
+
 
         </style>
         <div class="gallery-modal active">
-            <h5>Añadir imagen</h5>
-            <div class="modal-tabs">
-                <button class="active" data-tab="main">
-                    Subir archivo
-                </button>
-                <button data-tab="gallery">
-                    Galería
-                </button>
+            <div class="modal-header">
+                <div>
+                    <h5>Añadir imagen</h5>
+                </div>
+                <div class="close-button" id="close-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>window-close</title><path d="M13.46,12L19,17.54V19H17.54L12,13.46L6.46,19H5V17.54L10.54,12L5,6.46V5H6.46L12,10.54L17.54,5H19V6.46L13.46,12Z" /></svg>
             </div>
-            <div class="tab-contents">
-                <div class="tab-content active" data-tab="main">
-                    <div class="upload">
-                        <input type="file" class="upload-image" name="file"></input>
+        </div>
+            <div class="modal-body">
+                <div class="modal-tabs">
+                    <button class="active" data-tab="main">
+                        Subir archivo
+                    </button>
+                    <button data-tab="gallery">
+                        Galería
+                    </button>
+                </div>
+                <div class="tab-contents">
+                    <div class="tab-content active" data-tab="main">
+                        <div class="upload">
+                            <input type="file" class="upload-image" name="file"></input>
+                        </div>
+                    </div>
+                    iv <dclass="tab-content" data-tab="gallery">
+                        <div class="gallery-image"></div>
                     </div>
                 </div>
-                <div class="tab-content" data-tab="gallery">
-                    <div class="gallery-image"></div>
+                <div class="tab-inputs">
+                    <label class="section-inputs-form" for="title">
+                        <span>Título</span>
+                        <input type="text" name="title" />
+                    </label>
+                    <label class="section-inputs-form" for="text">
+                        <span>Texto alternativo</span>
+                        <input type="text" name="alt"/>
+                    </label>
                 </div>
-            </div>
-            <div class="close-button" id="close-button">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>window-close</title><path d="M13.46,12L19,17.54V19H17.54L12,13.46L6.46,19H5V17.54L10.54,12L5,6.46V5H6.46L12,10.54L17.54,5H19V6.46L13.46,12Z" /></svg>
+            </div>     
+            <div class="footer">
+                <button>Elegir Imagen</button>
             </div>
         </div>
         `;
