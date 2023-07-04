@@ -286,7 +286,7 @@ class Form extends HTMLElement {
                                     </label>
                                 </div>
                                 <div class="form-element-input">
-                                    <image-button-component></image-button-component>
+                                    <image-button-component name="avatar"></image-button-component>
                                 </div>
                             </div>
                         </div>

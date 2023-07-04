@@ -5,11 +5,13 @@ class ImageModal extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({mode: 'open'});
+        this.name;
         this.render();
     }
 
     connectedCallback() {
         document.addEventListener('openGalleryModal', event => {
+            this.name = event.detail.name;
             const modal = this.shadow.querySelector('.gallery-modal');
             modal.classList.toggle('active');
         });
@@ -59,15 +61,17 @@ class ImageModal extends HTMLElement {
             .modal-body {
                 display: flex;
                 flex-direction: column;
-                height: 100%;
+                height: 60%;
                 width: 100%;
+                height: 70%;
             }    
             
             .modal-tabs {
                 display: flex;
-                gap: 1rem;
+                gap: 0.5rem;
                 align-self: flex-start;
                 margin-left: 2rem;
+                margin-top: 6rem;
               }
             
             .modal-tabs button {
@@ -98,17 +102,18 @@ class ImageModal extends HTMLElement {
             .tab-content.active{
                 display: block;
             }
+            
 
             .tab-inputs{
                 display: flex;
                 flex-direction: column;
                 position: absolute;
                 width: 25%;
-                height: 70%;
+                height: 80%;
                 right: 0%;
                 background-color: rgb(180, 180, 180);
-                gap: 1rem;
-                margin-top:2.8rem;
+                gap: 2rem;
+                margin-top: 8.9rem;
                 
             }
             .tab-inputs input{
@@ -116,20 +121,20 @@ class ImageModal extends HTMLElement {
                 flex-direction: column;
                 margin-left: 1rem;
                 padding: 0.4rem 4rem;
+
                 
             }
             .tab-inputs span{
                 font-family: "Poppins", sans-serif;
                 font-size: 1rem;
-                margin: 1rem;
-                
+                margin: 1.5rem;
             }
 
             .upload {
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                margin-top: 10rem;
+                margin-top: 15rem;
                
             }
             
@@ -144,6 +149,7 @@ class ImageModal extends HTMLElement {
                 display: flex;
                 justify-content: center;
                 align-items: center;
+
             }
             
             .close-button {
@@ -170,28 +176,31 @@ class ImageModal extends HTMLElement {
                 align-self: flex-start;
                 align-items: flex-start;
             }
-            
+            form{
+                margin: 1.5rem
+
+            }
             .image-container {
-                padding: 10px;
+                border: 0.2rem solid green;
+                margin-right: 1rem;
             }
               
             .image-container img {
                 width: 100%;
                 height: auto;
             }
-            .footer{
+            
+            .buttonContainer {
                 display: flex;
-                flex-direction: column;
-                padding: 1.5rem
-                height: 25%;
+                justify-content: center;
+                position: absolute;
+                bottom: 0;
                 width: 100%;
-                padding-right: 5rem;
-                padding-top: 1.5rem;
-
-                
-                
+                box-sizing: border-box;
+                padding-top: 10rem;
             }
-            .footer button {
+            
+            .buttonContainer button {
                 padding: 1rem;
                 margin: 1.5rem 2rem;
                 color: hsl(0, 0%, 100%);
@@ -199,11 +208,8 @@ class ImageModal extends HTMLElement {
                 border: none;
                 border-radius: 5px;
                 cursor: pointer;
-                font-size: 1.1rem;
-                align-self: flex-end;
-
+                font-size: 1rem;
             }
-
 
         </style>
         <div class="gallery-modal active">
@@ -214,7 +220,6 @@ class ImageModal extends HTMLElement {
                 <div class="close-button" id="close-button">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>window-close</title><path d="M13.46,12L19,17.54V19H17.54L12,13.46L6.46,19H5V17.54L10.54,12L5,6.46V5H6.46L12,10.54L17.54,5H19V6.46L13.46,12Z" /></svg>
             </div>
-        </div>
             <div class="modal-body">
                 <div class="modal-tabs">
                     <button class="active" data-tab="main">
@@ -230,29 +235,32 @@ class ImageModal extends HTMLElement {
                             <input type="file" class="upload-image" name="file"></input>
                         </div>
                     </div>
-                    iv <dclass="tab-content" data-tab="gallery">
+                    <div class="tab-content" data-tab="gallery">
                         <div class="gallery-image"></div>
                     </div>
                 </div>
                 <div class="tab-inputs">
-                    <label class="section-inputs-form" for="title">
-                        <span>Título</span>
-                        <input type="text" name="title" />
-                    </label>
-                    <label class="section-inputs-form" for="text">
-                        <span>Texto alternativo</span>
-                        <input type="text" name="alt"/>
-                    </label>
+                    <form>
+                        <label class="section-inputs-form" for="title">
+                            <span>Título</span>
+                            <input type="text" name="title" />
+                        </label>
+                        <label class="section-inputs-form" for="text">
+                            <span>Texto alternativo</span>
+                            <input type="text" name="alt"/>
+                        </label>
+                        <div class="buttonContainer" >
+                            <button>Elegir Imagen</button>
+                        </div>
+                    </form>
                 </div>
             </div>     
-            <div class="footer">
-                <button>Elegir Imagen</button>
-            </div>
         </div>
         `;
 
         this.renderTabs()
         this.uploadImage()
+        this.sendImageToForm()
     }
 
             
@@ -278,6 +286,50 @@ class ImageModal extends HTMLElement {
         })
     };
 
+    sendImageToForm() {
+        const imageSelectButton = this.shadow.querySelector('.buttonContainer button');
+    
+        imageSelectButton.addEventListener('click', (event) => {
+
+            event.preventDefault();
+
+            const titleInput = this.shadow.querySelector('input[name="title"]');
+            const altInput = this.shadow.querySelector('input[name="alt"]');
+            const selectedImage = this.shadow.querySelector('.selected');
+    
+            if (selectedImage) {
+                const title = titleInput.value;
+                const alt = altInput.value;
+                const imageSrc = selectedImage.src;
+                const filename = selectedImage.dataset.filename;
+                const name = this.name;
+    
+                console.log('Título:', title);
+                console.log('Texto alternativo:', alt);
+                console.log('Imagen:', imageSrc);
+                console.log('Nombre de la Imagen:', filename);
+                console.log(name)
+
+                image = {
+                    title: title,
+                    alt: alt,
+                    imageSrc: imageSrc,
+                    filename: filename,
+                    name: name
+                }
+
+                document.dispatchEvent(new CustomEvent('sendImageToForm', {
+                    detail: {
+                        image: image
+                    }
+                }));
+
+
+            } else {
+                console.log('No se ha seleccionado ninguna imagen.');
+            }
+        });
+    }
 
     uploadImage = async () => {
 
@@ -310,6 +362,8 @@ class ImageModal extends HTMLElement {
 
                     imageContainer.classList.add('image-container');
                     image.src = `${API_URL}/api/admin/images/${newFilename}`;
+                    image.dataset.filename = newFilename;
+                    image.classList.add('selected');
 
                     imageContainer.appendChild(image);
                     imagesContainer.prepend(imageContainer);

@@ -43,7 +43,11 @@ class ImageButton extends HTMLElement {
         const buttonImage = this.shadow.querySelector("#button-image")
             
         buttonImage.addEventListener("click", () => {
-            document.dispatchEvent(new CustomEvent('openGalleryModal'))
+            document.dispatchEvent(new CustomEvent('openGalleryModal', {
+                detail: {
+                    name: this.getAttribute("name")
+                }
+            }))
         })
     }
 
