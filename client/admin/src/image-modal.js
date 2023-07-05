@@ -87,7 +87,7 @@ class ImageModal extends HTMLElement {
             
             .modal-tabs button.active {
                 background-color: rgb(109,183,243);
-                border-color: 
+                border-color: rgb(180,180,180);
             }
 
             .tab-contents{
@@ -139,7 +139,6 @@ class ImageModal extends HTMLElement {
             }
             
             .upload input {
-                padding: 0.5rem 2rem;
                 border: none;
                 border-radius: 5px;
                 cursor: pointer;
@@ -212,7 +211,7 @@ class ImageModal extends HTMLElement {
             }
 
         </style>
-        <div class="gallery-modal active">
+        <div class="gallery-modal">
             <div class="modal-header">
                 <div>
                     <h5>Añadir imagen</h5>
