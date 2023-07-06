@@ -7,6 +7,10 @@ class ImageButton extends HTMLElement {
 
     connectedCallback()  {
         this.render()
+
+        document.addEventListener('sendImageToForm', async event => {
+            await this.loadImage(event.detail.image)
+        });
     }
     
     render() {
@@ -51,7 +55,15 @@ class ImageButton extends HTMLElement {
         })
     }
 
+    loadImage(image) {
+            const imageSection = this.shadow.querySelector('.image-section');
+            imageSection.innerHTML = `<img src="${image.imageSrc}" alt="Image"/>`;
+
+            
+    }
+        
 }
+
 
 
 customElements.define('image-button-component', ImageButton);

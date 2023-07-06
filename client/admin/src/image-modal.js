@@ -6,7 +6,12 @@ class ImageModal extends HTMLElement {
         super();
         this.shadow = this.attachShadow({mode: 'open'});
         this.name;
-        this.render();
+    }
+
+    static get observedAttributes () { return ['url'] }
+
+    async attributeChangedCallback (name, oldValue, newValue) {
+        await this.render()
     }
 
     connectedCallback() {
@@ -15,7 +20,7 @@ class ImageModal extends HTMLElement {
             const modal = this.shadow.querySelector('.gallery-modal');
             modal.classList.toggle('active');
         });
-    }
+    }1
 
     render() {
 
@@ -289,7 +294,7 @@ class ImageModal extends HTMLElement {
         const imageSelectButton = this.shadow.querySelector('.buttonContainer button');
     
         imageSelectButton.addEventListener('click', (event) => {
-
+            
             event.preventDefault();
 
             const titleInput = this.shadow.querySelector('input[name="title"]');
@@ -302,14 +307,8 @@ class ImageModal extends HTMLElement {
                 const imageSrc = selectedImage.src;
                 const filename = selectedImage.dataset.filename;
                 const name = this.name;
-    
-                console.log('Título:', title);
-                console.log('Texto alternativo:', alt);
-                console.log('Imagen:', imageSrc);
-                console.log('Nombre de la Imagen:', filename);
-                console.log(name)
 
-                image = {
+                const image = {
                     title: title,
                     alt: alt,
                     imageSrc: imageSrc,
@@ -321,12 +320,17 @@ class ImageModal extends HTMLElement {
                     detail: {
                         image: image
                     }
+
+                
                 }));
 
 
             } else {
                 console.log('No se ha seleccionado ninguna imagen.');
             }
+
+            const modal = this.shadow.querySelector('.gallery-modal');
+            modal.classList.toggle('active');
         });
     }
 
