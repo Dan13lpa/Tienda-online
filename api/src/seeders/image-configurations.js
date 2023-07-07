@@ -1,5 +1,3 @@
-Seeders/20230622174021-image-configurations.js
-
 'use strict';
 
 /** @type {import('sequelize-cli').Migration} */

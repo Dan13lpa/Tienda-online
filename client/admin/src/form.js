@@ -5,6 +5,7 @@ class Form extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({mode: 'open'});
+        this.images = [];
     }
 
     static get observedAttributes () { return ['url'] }
@@ -14,9 +15,14 @@ class Form extends HTMLElement {
         document.addEventListener("loadData", async event => {
             await this.loadData(event.detail.id)
         });
+
+        document.addEventListener('sendImageToForm', async event => {
+            this.images.push(event.detail.image);
+        });
     }
     async attributeChangedCallback (name, oldValue, newValue) {
         await this.render()
+
     }
 
     async loadData(id) {
@@ -317,6 +323,13 @@ class Form extends HTMLElement {
             let id = form.elements.id.value;
             let formData = new FormData(form);
             let formDataJson = Object.fromEntries(formData.entries());
+
+            if(this.images){
+                formDataJson.images = this.images
+            }
+
+            console.log(formDataJson)
+
             let url = id ? `${API_URL}/api/admin/users/${id}` : `${API_URL}/api/admin/users`
             let method = id ? 'PUT':'POST'
             delete formDataJson.id
@@ -325,6 +338,7 @@ class Form extends HTMLElement {
                 method: method,
                 headers: {
                     'Authorization': `Bearer ${sessionStorage.getItem('accessToken')}`,
+                    'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(formDataJson)
 

@@ -20,7 +20,7 @@ class ImageModal extends HTMLElement {
             const modal = this.shadow.querySelector('.gallery-modal');
             modal.classList.toggle('active');
         });
-    }1
+    }
 
     render() {
 

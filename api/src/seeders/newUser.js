@@ -1,5 +1,3 @@
-seeders/20220608175141-users.js
-
 'use strict';
 
 /** @type {import('sequelize-cli').Migration} */

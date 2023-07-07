@@ -56,10 +56,8 @@ class ImageButton extends HTMLElement {
     }
 
     loadImage(image) {
-            const imageSection = this.shadow.querySelector('.image-section');
-            imageSection.innerHTML = `<img src="${image.imageSrc}" alt="Image"/>`;
-
-            
+        const imageSection = this.shadow.querySelector('.image-section');
+        imageSection.innerHTML = `<img src="${image.imageSrc}" alt="Image"/>`;
     }
         
 }

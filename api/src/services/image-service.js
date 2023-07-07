@@ -48,7 +48,19 @@ module.exports = class ImageService {
 
 
   resizeImages = async (entity, entityId, images) => {
-   
+    images.forEach(async (image) => {
+      try {
+        const imageConfigurations = await ImageConfiguration.findAll({
+          where: {
+            entity,
+            name: image.name
+          }
+        });
+
+      } catch (error) {
+       
+      }
+    });
   };
 
   deleteImages = async (filename) => {
