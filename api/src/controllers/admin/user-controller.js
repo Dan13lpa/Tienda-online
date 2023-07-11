@@ -1,130 +1,164 @@
 const db = require("../../models");
 const User = db.User;
 const Op = db.Sequelize.Op;
-const ImageService = require('../../services/image-service')
+const ImageService = require('../../services/image-service');
+const TrackingService = require('../../services/tracking-service');
+const { STATUS_CODES } = require('http');
 
-exports.create = (req, res) => {
+exports.create = async (req, res) => {
+  try {
+    const data = await User.create(req.body);
 
-    User.create(req.body).then(async data => {
+    await new ImageService.resizeImages('user', data.id, req.body.images);
 
-        await new ImageService.resizeImages('user', data.id, req.body.images)
+    await new TrackingService().registrarAccion(req.userId, req.ip, req.originalUrl, req.method, res.statusCode);
 
-        res.status(200).send(data);
+    res.status(200).send(data);
+    console.log(req)
 
-    }).catch(err => {
-        console.log(err)
-        res.status(500).send({
-            message: err.errors || "Algún error ha surgido al insertar el dato."
-        });
+  } catch (error) {
+
+    console.log(error);
+
+    res.status(500).send({
+      message: error.errors || "Algún error ha surgido al insertar el dato."
     });
+  }
 };
 
-exports.findAll = (req, res) => {
-
-    let page = req.query.page || 1;
-    let limit = parseInt(req.query.size) || 5;
-    let offset = (page - 1) * limit;
-
-    const whereStatement = {}
-
-    for (const key in req.query) {
-        if (req.query[key] != '' && key != 'page' && key != 'size') {
-            whereStatement[key] = { [Op.substring]: req.query[key] }
-            console.log(whereStatement)
+exports.findAll = async (req, res) => {
+    try {
+      const { page = 1, size = 5, ...query } = req.query;
+      const limit = parseInt(size);
+      const offset = (page - 1) * limit;
+  
+      const whereStatement = {};
+  
+      for (const key in query) {
+        if (query[key] !== '' && key !== 'page' && key !== 'size') {
+          whereStatement[key] = { [Op.substring]: query[key] };
+          console.log(whereStatement);
         }
-    }
-
-    const condition = Object.keys(whereStatement).length > 0 ? { [Op.and]: [whereStatement] } : {}
-
-    User.findAndCountAll({
-        where: condition, 
+      }
+  
+      const condition = Object.keys(whereStatement).length > 0 ? { [Op.and]: [whereStatement] } : {};
+  
+      const result = await User.findAndCountAll({
+        where: condition,
         attributes: ['id', 'name', 'email'],
         limit: limit,
         offset: offset,
         order: [['createdAt', 'DESC']]
-    })
-    .then(result => {
+      });
+  
+      result.meta = {
+        total: result.count,
+        pages: Math.ceil(result.count / limit),
+        currentPage: page
+      };
+  
+      await new TrackingService().registrarAccion(req.userId, req.ip, req.originalUrl, req.method, res.statusCode);
+      console.log('Código de estado:', res.statusCode);
+      console.log('Descripción:', STATUS_CODES[res.statusCode]);
+      console.log('Usuario trackeado correctamente.');
+  
+      res.status(200).send(result);
+    } catch (error) {
+      console.log('Error al trackear el usuario:', error);
+      res.status(500).send({
+        message: error.errors || "Algún error ha surgido al recuperar los datos."
+      });
+    }
+  };
 
-        result.meta = {
-            total: result.count,
-            pages: Math.ceil(result.count / limit),
-            currentPage: page
-        };
-
-        res.status(200).send(result);
-
-    }).catch(err => {
-        res.status(500).send({
-            message: err.errors || "Algún error ha surgido al recuperar los datos."
-        });
-    });
-};
-
-exports.findOne = (req, res) => {
-
+exports.findOne = async (req, res) => {
+  try {
     const id = req.params.id;
 
-    User.findByPk(id, {
-        attributes: ['id', 'name', 'email']
-    }).then(data => {
-
-        if (data) {
-            res.status(200).send(data);
-        } else {
-            res.status(404).send({
-                message: `No se puede encontrar el elemento con la id=${id}.`
-            });
-        }
-
-    }).catch(err => {
-        res.status(500).send({
-            message: "Algún error ha surgido al recuperar la id=" + id
-        });
+    const data = await User.findByPk(id, {
+      attributes: ['id', 'name', 'email']
     });
+
+    if (data) {
+      await new TrackingService().registrarAccion(req.userId, req.ip, req.originalUrl, req.method, res.statusCode);
+      console.log('Código de estado:', res.statusCode);
+      console.log('Descripción:', STATUS_CODES[res.statusCode]);
+      console.log('Usuario trackeado correctamente.');
+
+      res.status(200).send(data);
+    } else {
+      res.status(404).send({
+        message: `No se puede encontrar el elemento con la id=${id}.`
+      });
+    }
+  } catch (error) {
+    console.log('Error al trackear el usuario:', error);
+    res.status(500).send({
+      message: "Algún error ha surgido al recuperar la id=" + id
+    });
+  }
 };
 
-exports.update = (req, res) => {
-
-    const id = req.params.id;
-
-    User.update(req.body, {
+exports.update = async (req, res) => {
+    try {
+      const id = req.params.id;
+  
+      const [num] = await User.update(req.body, {
         where: { id: id }
-    }).then(num => {
-        if (num == 1) {
-            res.status(200).send({
-                message: "El elemento ha sido actualizado correctamente."
-            });
-        } else {
-            res.status(404).send({
-                message: `No se puede actualizar el elemento con la id=${id}. Tal vez no se ha encontrado el elemento o el cuerpo de la petición está vacío.`
-            });
-        }
-    }).catch(err => {
-        res.status(500).send({
-            message: "Algún error ha surgido al actualiazar la id=" + id
+      });
+  
+      if (num === 1) {
+        await new TrackingService().registrarAccion(req.userId, req.ip, req.originalUrl, req.method, res.statusCode);
+        console.log('Código de estado:', res.statusCode);
+        console.log('Descripción:', STATUS_CODES[res.statusCode]);
+        console.log('Usuario trackeado correctamente.');
+  
+        res.status(200).send({
+          message: "El elemento ha sido actualizado correctamente."
         });
-    });
-};
-
-exports.delete = (req, res) => {
-
-    const id = req.params.id;
-
-    User.destroy({
+      } else {
+        res.status(404).send({
+          message: `No se puede actualizar el elemento con la id=${id}. Tal vez no se ha encontrado el elemento o el cuerpo de la petición está vacío.`
+        });
+      }
+    } catch (error) {
+      console.log('Error al trackear el usuario:', error);
+      console.error('Error en el controlador:', error);
+      res.status(500).send({
+        message: "Algún error ha surgido al actualizar la id=" + id
+      });
+    }
+  };
+  
+  exports.delete = async (req, res) => {
+    try {
+      const id = req.params.id;
+  
+      const num = await User.destroy({
         where: { id: id }
-    }).then(num => {
-        if (num == 1) {
-            res.status(200).send({
-                message: "El elemento ha sido borrado correctamente"
-            });
-        } else {
-            res.status(404).send({
-                message: `No se puede borrar el elemento con la id=${id}. Tal vez no se ha encontrado el elemento.`
-            });
-        }
-    }).catch(err => {
-        res.status(500).send({
-            message: "Algún error ha surgido al borrar la id=" + id
+      });
+  
+      if (num === 1) {
+        await new TrackingService().registrarAccion(req.userId, req.ip, req.originalUrl, req.method, res.statusCode);
+        console.log('Código de estado:', res.statusCode);
+        console.log('Descripción:', STATUS_CODES[res.statusCode]);
+        console.log('Usuario trackeado correctamente.');
+  
+        res.status(200).send({
+          message: "El elemento ha sido borrado correctamente"
         });
-    });
-};
+      } else {
+        res.status(404).send({
+          message: `No se puede borrar el elemento con la id=${id}. Tal vez no se ha encontrado el elemento.`
+        });
+      }
+    } catch (error) {
+      console.log('Error al trackear el usuario:', error);
+      console.error('Error en el controlador:', error);
+      res.status(500).send({
+        message: "Algún error ha surgido al borrar la id=" + id
+      });
+    }
+  };
+  
+  

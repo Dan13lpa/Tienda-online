@@ -57,6 +57,10 @@ module.exports = class ImageService {
           }
         });
 
+        imageConfigurations.forEach(configuration => {
+          const { widthPx, heightPx } = configuration;
+        });
+
       } catch (error) {
        
       }
