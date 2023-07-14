@@ -1,1 +1,1 @@
-export const API_URL = 'https://przdaniel.com:8080';
+export const API_URL = 'https://przdaniel.com:8080/api';
