@@ -333,7 +333,7 @@ class Team extends HTMLElement {
         
         `;
 
-        const hamburguerButtons = document.querySelectorAll('.hamburger-button');
+        const hamburguerButtons = this.shadow.querySelectorAll('.hamburger-button');
     
 
         hamburguerButtons.forEach(hamburguerButton => {
