@@ -78,6 +78,15 @@ class Modal extends HTMLElement {
 
             
         `;
+
+        const modalButtons = this.shadow.querySelectorAll('.modal-button');
+        const modal = this.shadow.querySelector('.modal');
+
+        modalButtons.forEach(modalButton => {
+        modalButton.addEventListener("click", () => {
+            modal.classList.toggle("active");
+        })
+    });
     }
 }
 
