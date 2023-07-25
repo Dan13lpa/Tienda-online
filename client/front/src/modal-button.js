@@ -42,7 +42,11 @@ class ModalButton extends HTMLElement {
             </div>
          
         `;
-
+        
+        const boton = this.shadow.querySelector(".header-checkout-button");
+        boton.addEventListener("click",() => {
+           
+        })
     }
 }
 
