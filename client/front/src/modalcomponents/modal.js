@@ -65,7 +65,7 @@ class Modal extends HTMLElement {
             }
         </style>
 
-        <div class="modal active">
+        <div class="modal">
            
 
             <div class="modal-content">
