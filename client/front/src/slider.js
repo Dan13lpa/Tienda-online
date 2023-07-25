@@ -109,7 +109,7 @@ class Slider extends HTMLElement {
 
         <div class="slider">
             <div class="slider-background">
-                <img src="./images/beautiful-travel-road.webp" alt="Background">
+                <img src="./images/road.webp" alt="Background">
             </div>
                 <div class="slider-title">  
                     <h1>The future of motorbikes</h1>
