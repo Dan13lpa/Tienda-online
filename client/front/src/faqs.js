@@ -240,7 +240,7 @@ class Faqs extends HTMLElement {
             </div>
         `;
 
-        const faqsButtons = document.querySelectorAll('.plus-minus-toggle');
+        const faqsButtons = this.shadow.querySelectorAll('.plus-minus-toggle');
 
         faqsButtons.forEach(faqsButton => {
             faqsButton.addEventListener("click", () => {
